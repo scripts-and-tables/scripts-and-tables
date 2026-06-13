@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>The AI Fluency framework: Delegation, Description, Discernment, Diligence — Oleksandr Tverdokhlieb</title>
+<meta name="description" content="A plain-English walk through Anthropic's four-D AI Fluency framework — Delegation, Description, Discernment, Diligence — and how a data analyst applies each one in real work, beyond ad-hoc prompt tips." />
+<meta name="theme-color" content="#11161f" />
+<link rel="icon" href="https://avatars.githubusercontent.com/u/43398608?v=4" />
+<link rel="stylesheet" href="../assets/site.css?v=12" />
+<link rel="stylesheet" href="blog.css?v=1" />
+  <link rel="canonical" href="https://oleks.devapp24.com/blog/ai-fluency-framework.html" />
+  <meta name="author" content="Oleksandr Tverdokhlieb" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Oleksandr Tverdokhlieb" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="The AI Fluency framework: Delegation, Description, Discernment, Diligence" />
+  <meta property="og:description" content="A plain-English walk through Anthropic's four-D AI Fluency framework — and how a data analyst applies each D in real work, beyond ad-hoc prompt tips." />
+  <meta property="og:url" content="https://oleks.devapp24.com/blog/ai-fluency-framework.html" />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/43398608?v=4" />
+  <meta property="article:published_time" content="2025-10-03" />
+  <meta property="article:author" content="Oleksandr Tverdokhlieb" />
+  <meta property="article:section" content="AI" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The AI Fluency framework: Delegation, Description, Discernment, Diligence" />
+  <meta name="twitter:description" content="A plain-English walk through Anthropic's four-D AI Fluency framework — and how a data analyst applies each D in real work." />
+  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/43398608?v=4" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://oleks.devapp24.com/#person","name":"Oleksandr Tverdokhlieb","jobTitle":"Data Analytics Manager","url":"https://oleks.devapp24.com/","image":"https://avatars.githubusercontent.com/u/43398608?v=4","sameAs":["https://www.linkedin.com/in/tverd","https://github.com/scripts-and-tables"]},{"@type":"BlogPosting","@id":"https://oleks.devapp24.com/blog/ai-fluency-framework.html#post","headline":"The AI Fluency framework: Delegation, Description, Discernment, Diligence","description":"A plain-English walk through Anthropic's four-D AI Fluency framework — Delegation, Description, Discernment, Diligence — and how a data analyst applies each one in real work, beyond ad-hoc prompt tips.","datePublished":"2025-10-03","dateModified":"2025-10-03","author":{"@id":"https://oleks.devapp24.com/#person"},"image":"https://avatars.githubusercontent.com/u/43398608?v=4","articleSection":"AI","keywords":"AI Fluency, Anthropic, frameworks, skills, Delegation, Description, Discernment, Diligence, data analytics","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https://oleks.devapp24.com/blog/ai-fluency-framework.html"},"publisher":{"@id":"https://oleks.devapp24.com/#person"}}]}</script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-in">
+      <a class="nav-brand" href="../index.html"><img src="https://avatars.githubusercontent.com/u/43398608?v=4" alt="" />Oleksandr&nbsp;Tverdokhlieb</a>
+      <div class="nav-spacer"></div>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog/" class="active">Blog</a>
+        <a href="../about.html">About</a>
+        <a href="../cv.html">CV</a>
+        <a href="../ai.html">AI</a>
+        <a href="../training.html">Training</a>
+        <a href="../credentials.html">Learning</a>
+        <a href="../game/">Games</a>
+      </nav>
+      <a class="nav-cta" href="../contact.html">Contact</a>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="nav-mobile">
+      <a href="../index.html">Home</a><a href="../projects.html">Projects</a><a href="../blog/">Blog</a><a href="../about.html">About</a><a href="../cv.html">CV</a><a href="../ai.html">AI</a><a href="../training.html">Training</a><a href="../credentials.html">Learning</a><a href="../game/">Games</a><a href="../contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="wrap page">
+    <article class="post-wrap">
+      <a class="backlink" href="index.html">← All writing</a>
+      <div class="page-head" style="padding-bottom:6px;">
+        <h1 style="margin-top:8px;font-size:clamp(27px,4.6vw,38px);line-height:1.16;">The AI Fluency framework: Delegation, Description, Discernment, Diligence</h1>
+        <div class="post-meta"><span class="cat">AI</span><span>3 October 2025</span><span>· 8 min read</span></div>
+        <div class="post-tags"><span class="tag">AI Fluency</span><span class="tag">Anthropic</span><span class="tag">Frameworks</span><span class="tag">Skills</span></div>
+      </div>
+
+      <div class="post-body">
+        <p class="lede">Most "how to use AI" advice is a pile of prompt tips: add this magic phrase, tell it to act like an expert, ask it to think step by step. The tips aren't wrong, but they don't add up to a way of thinking. A while ago I worked through Anthropic's <a href="https://www.anthropic.com/ai-fluency/conclusion?id=6116" target="_blank" rel="noopener">AI Fluency: Framework &amp; Foundations</a> course, and what stuck wasn't a list of tricks — it was a small mental model that I now reach for every time I sit down to work with a model.</p>
+
+        <p>That model is the <strong>four-D framework</strong>: <strong>Delegation</strong>, <strong>Description</strong>, <strong>Discernment</strong> and <strong>Diligence</strong>. It was developed through a partnership between Anthropic and two academics — Rick Dakan of Ringling College of Art and Design and Joseph Feller of University College Cork — and it defines AI fluency as working with AI <em>effectively, efficiently, ethically and safely</em>. The four competencies are simply the muscles you train to get there. Here's how I read each one, and how it shows up in a data analyst's day.</p>
+
+        <div class="fig">
+          <svg viewBox="0 0 720 360" role="img" aria-label="The four D's of AI Fluency arranged as a 2x2 grid: Delegation, Description, Discernment, Diligence">
+            <defs>
+              <marker id="lp" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#5b626c"/></marker>
+            </defs>
+            <!-- Delegation -->
+            <rect x="20" y="20" width="320" height="150" rx="12" fill="#eaf0fd" stroke="#cfd8e6"/>
+            <text x="40" y="52" font-family="'Space Grotesk',sans-serif" font-size="18" font-weight="700" fill="#2459d6">1 · Delegation</text>
+            <text x="40" y="80" font-family="'Space Grotesk',sans-serif" font-size="13.5" fill="#15181d">Who does what — human or AI?</text>
+            <text x="40" y="104" font-family="monospace" font-size="11.5" fill="#5b626c">decide the split before you start</text>
+            <text x="40" y="124" font-family="monospace" font-size="11.5" fill="#5b626c">play to each side's strengths</text>
+            <text x="40" y="144" font-family="monospace" font-size="11.5" fill="#5b626c">keep judgement calls for yourself</text>
+
+            <!-- Description -->
+            <rect x="380" y="20" width="320" height="150" rx="12" fill="#fff" stroke="#e6e4df"/>
+            <text x="400" y="52" font-family="'Space Grotesk',sans-serif" font-size="18" font-weight="700" fill="#15181d">2 · Description</text>
+            <text x="400" y="80" font-family="'Space Grotesk',sans-serif" font-size="13.5" fill="#15181d">Say what you actually want</text>
+            <text x="400" y="104" font-family="monospace" font-size="11.5" fill="#5b626c">product — the output you need</text>
+            <text x="400" y="124" font-family="monospace" font-size="11.5" fill="#5b626c">process — how to get there</text>
+            <text x="400" y="144" font-family="monospace" font-size="11.5" fill="#5b626c">performance — tone &amp; style</text>
+
+            <!-- Discernment -->
+            <rect x="20" y="190" width="320" height="150" rx="12" fill="#e4f5ee" stroke="#bfe6d3"/>
+            <text x="40" y="222" font-family="'Space Grotesk',sans-serif" font-size="18" font-weight="700" fill="#0f9d6e">3 · Discernment</text>
+            <text x="40" y="250" font-family="'Space Grotesk',sans-serif" font-size="13.5" fill="#15181d">Judge what comes back</text>
+            <text x="40" y="274" font-family="monospace" font-size="11.5" fill="#5b626c">product — is the answer right?</text>
+            <text x="40" y="294" font-family="monospace" font-size="11.5" fill="#5b626c">process — is the reasoning sound?</text>
+            <text x="40" y="314" font-family="monospace" font-size="11.5" fill="#5b626c">performance — is it helping you?</text>
+
+            <!-- Diligence -->
+            <rect x="380" y="190" width="320" height="150" rx="12" fill="#fbeedd" stroke="#f0d9b8"/>
+            <text x="400" y="222" font-family="'Space Grotesk',sans-serif" font-size="18" font-weight="700" fill="#c2691b">4 · Diligence</text>
+            <text x="400" y="250" font-family="'Space Grotesk',sans-serif" font-size="13.5" fill="#15181d">Own it responsibly</text>
+            <text x="400" y="274" font-family="monospace" font-size="11.5" fill="#5b626c">creation — choosing the tool</text>
+            <text x="400" y="294" font-family="monospace" font-size="11.5" fill="#5b626c">transparency — be open about AI</text>
+            <text x="400" y="314" font-family="monospace" font-size="11.5" fill="#5b626c">deployment — you're accountable</text>
+
+            <!-- connecting loop arrows -->
+            <line x1="345" y1="95" x2="375" y2="95" stroke="#5b626c" stroke-width="1.5" marker-end="url(#lp)"/>
+            <line x1="540" y1="172" x2="540" y2="186" stroke="#5b626c" stroke-width="1.5" marker-end="url(#lp)"/>
+            <line x1="375" y1="265" x2="345" y2="265" stroke="#5b626c" stroke-width="1.5" marker-end="url(#lp)"/>
+            <line x1="180" y1="186" x2="180" y2="172" stroke="#5b626c" stroke-width="1.5" marker-end="url(#lp)"/>
+          </svg>
+          <div class="fig-cap">The four D's as a loop, not a checklist — you cycle through them on every real task.</div>
+        </div>
+
+        <h2>Why a framework beats a bag of prompt tips</h2>
+        <p>Prompt tips are tactics with no strategy behind them. They tell you <em>what to type</em> without telling you <em>when</em> or <em>why</em> — so you collect dozens of them and still feel like you're guessing. A framework does the opposite: it gives you a small number of questions that apply to every task, regardless of which model or tool you're using. The four D's are exactly that. Before, during and after each piece of AI-assisted work, they ask: should AI even do this? Have I said what I want clearly enough? Can I trust what came back? And am I willing to put my name on it?</p>
+
+        <div class="pullquote">A prompt tip helps you with one message. A framework helps you with every message you'll ever send.</div>
+
+        <h2>1 · Delegation — pick the right tasks</h2>
+        <p>Delegation is the decision <em>before</em> the prompt: what should a human do, what should AI do, and how do you divide the work between you? It sounds obvious, and it's the step people skip most. The trap is handing AI the parts that need human judgement — defining the business question, choosing which metric actually matters — and keeping for yourself the grinding parts a model does well.</p>
+        <p>In my own work the split is fairly stable. I delegate to AI the first draft of a SQL query, boilerplate transformation code, reshaping a messy CSV, drafting documentation, or summarising a long thread of stakeholder emails. I keep for myself the framing — what we're actually trying to learn, which definition of "active customer" we're using, whether this number is even the right number to report. Good delegation is knowing that line and not letting convenience blur it.</p>
+
+        <h2>2 · Description — say what you actually mean</h2>
+        <p>Description is communicating intent so the AI can act on it. The course breaks it into three useful angles, and naming them changed how I write prompts. <strong>Product</strong> description is the output you want — the shape, format and content of the result. <strong>Process</strong> description is how you'd like it produced — the method, the steps, the constraints. <strong>Performance</strong> description is the manner — tone, role, level of detail, how the model should behave while it works.</p>
+        <p>Most weak prompts fail because they only do the first one. "Write me a SQL query for monthly active users" is a product request floating without context. The version that works adds process and performance: here's the schema and how a session is defined, exclude internal test accounts, use a CTE rather than nested subqueries, and explain any assumption you had to make. Description is just the discipline of supplying the context that lives in your head but not in the model's.</p>
+
+        <div class="callout">
+          <span class="lab">The pattern I use</span>
+          For anything non-trivial I write the prompt as three lines in my head: <strong>what</strong> I want (product), <strong>how</strong> I want it built (process), and <strong>how</strong> it should sound or behave (performance). If a result disappoints, it's almost always because I left one of the three unsaid.
+        </div>
+
+        <h2>3 · Discernment — judge what comes back</h2>
+        <p>Discernment is the critical eye: evaluating outputs instead of accepting them at face value. It mirrors Description with the same three lenses. <strong>Product</strong> discernment asks whether the answer itself is accurate, complete and fit for purpose. <strong>Process</strong> discernment looks past the answer to the reasoning — is the logic sound, the method appropriate, the evidence real? <strong>Performance</strong> discernment watches the interaction itself — is the model actually helping, following instructions, behaving sensibly?</p>
+        <p>For a data analyst this is the non-negotiable D. A model will hand you a query that runs perfectly and quietly joins on the wrong key, double-counting half your revenue. The SQL is syntactically flawless; the <em>logic</em> is wrong. Product discernment alone would pass it. Process discernment catches it — you read the join, you sanity-check the row counts, you reconcile the total against a number you already trust. Confident output is not correct output, and the gap between them is exactly where discernment earns its keep.</p>
+
+        <div class="compare">
+          <div class="col bad">
+            <h4>Low discernment</h4>
+            <ul>
+              <li>"The query runs, ship it."</li>
+              <li>Trusts the explanation because it sounds fluent</li>
+              <li>Copies the chart without checking the totals</li>
+              <li>Finds out at the board meeting</li>
+            </ul>
+          </div>
+          <div class="col good">
+            <h4>High discernment</h4>
+            <ul>
+              <li>Reads the join keys and grain</li>
+              <li>Reconciles against a known-good number</li>
+              <li>Asks the model to show its assumptions</li>
+              <li>Catches the error before anyone sees it</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2>4 · Diligence — own the outcome</h2>
+        <p>Diligence is the responsibility wrapped around everything else: using AI ethically, safely and accountably. It also comes in three parts. <strong>Creation</strong> diligence is choosing the right system in the first place — does this tool suit the task, and is it appropriate for the data I'm about to put into it? <strong>Transparency</strong> diligence is being honest about where AI was involved, so colleagues and stakeholders can weigh the work fairly. <strong>Deployment</strong> diligence is accepting that the output is yours: if an AI-assisted report goes out under my name, the responsibility for it is mine, full stop.</p>
+        <p>In practice this is where data work gets serious. I don't paste customer-identifying data into a tool that isn't approved for it — that's creation diligence and data governance meeting in the same decision. When a dashboard's commentary was drafted with AI help, I'm comfortable saying so. And I never let "the model wrote it" become an excuse for a number that turned out wrong. Accountability doesn't get delegated.</p>
+
+        <div class="pullquote">You can delegate the typing. You cannot delegate the accountability.</div>
+
+        <h2>Putting the four together</h2>
+        <p>The D's aren't a one-time checklist; they're a loop you run on every real task. A typical analysis cycle looks like this:</p>
+        <ul class="steps">
+          <li><strong>Delegate</strong> — decide which parts of the analysis are mine to frame and which the model can draft, and resist handing over the judgement calls.</li>
+          <li><strong>Describe</strong> — give it the schema, the definitions, the method I want and the format I need, covering product, process and performance.</li>
+          <li><strong>Discern</strong> — read the output and the reasoning, reconcile against numbers I already trust, and push back where it's thin or wrong.</li>
+          <li><strong>Diligence</strong> — confirm the tool was right for the data, note where AI helped, and stand behind the result before it ships.</li>
+        </ul>
+
+        <p>What I like about the four D's is that they're tool-agnostic and they age well. Models will keep getting better; the prompt tricks that matter today will be obsolete in a year. But "decide the right split, describe clearly, judge critically, own the outcome" is durable. It's the difference between someone who can coax a clever answer out of a chatbot and someone who can fold AI into serious work without quietly breaking trust in the data.</p>
+
+        <p>If you want the full version from the source, the framework lives on Anthropic's <a href="https://www.anthropic.com/ai-fluency/conclusion?id=6116" target="_blank" rel="noopener">AI Fluency</a> site, with the original course also available <a href="https://www.coursera.org/learn/ai-fluency-framework-foundations" target="_blank" rel="noopener">on Coursera</a>. I completed it earlier this year — it sits with my other certificates on my <a href="../credentials.html">Learning page</a> — and I'd recommend the few hours to anyone whose job is starting to involve a model in the loop. Not because it teaches new tricks, but because it gives the tricks somewhere to hang.</p>
+      </div>
+
+      <div class="post-foot">
+        <div class="by">
+          <img src="https://avatars.githubusercontent.com/u/43398608?v=4" alt="Oleksandr Tverdokhlieb" />
+          <div>
+            <div class="n">Oleksandr Tverdokhlieb</div>
+            <div class="r">Data Analytics Manager · Dubai — building data platforms, automation and applied AI.</div>
+          </div>
+        </div>
+        <div class="post-cta">
+          <a class="primary" href="index.html">More writing →</a>
+          <a href="../credentials.html">My Learning page</a>
+          <a href="https://www.linkedin.com/in/tverd" target="_blank" rel="noopener">Connect on LinkedIn ↗</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-in">
+      <div class="c">© <span data-year></span> Oleksandr Tverdokhlieb · Dubai, UAE</div>
+      <div class="foot-links">
+        <a href="https://www.linkedin.com/in/tverd" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6 1.12 6 0 4.88 0 3.5 0 2.12 1.12 1 2.49 1c1.38 0 2.49 1.12 2.49 2.5zM.24 8h4.5v14H.24V8zm7.5 0h4.31v1.92h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V22h-4.5v-6.6c0-1.57-.03-3.6-2.19-3.6-2.2 0-2.53 1.71-2.53 3.48V22h-4.5V8z"/></svg></a>
+        <a href="https://github.com/scripts-and-tables" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.05-.02-2.06-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22 0 1.61-.01 2.9-.01 3.29 0 .32.21.7.82.58A12.01 12.01 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"/></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/site.js"></script>
+</body>
+</html>

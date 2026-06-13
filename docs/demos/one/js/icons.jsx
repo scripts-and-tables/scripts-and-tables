@@ -1,0 +1,88 @@
+/* Lightweight icon set (Lucide-style paths, stroke-based). */
+(function () {
+  const P = {
+    sparkles: 'M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9L12 3zM19 14l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2zM5 15l.7 1.7L7.4 17.4l-1.7.7L5 19.8l-.7-1.7L2.6 18.1l1.7-.7L5 15z',
+    target: 'M12 22a10 10 0 100-20 10 10 0 000 20zM12 18a6 6 0 100-12 6 6 0 000 12zM12 14a2 2 0 100-4 2 2 0 000 4z',
+    clipboardCheck: 'M9 4h6a1 1 0 011 1v1h1a2 2 0 012 2v11a2 2 0 01-2 2H7a2 2 0 01-2-2V8a2 2 0 012-2h1V5a1 1 0 011-1zM9 6h6V5H9v1zM9.5 13.5l1.8 1.8 3.5-3.6',
+    percent: 'M19 5L5 19M7.5 5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM16.5 14a2.5 2.5 0 100 5 2.5 2.5 0 000-5z',
+    book: 'M5 4h11a2 2 0 012 2v14a2 2 0 00-2-2H5V4zM5 18a2 2 0 00-2 2V6a2 2 0 012-2M16 4v14',
+    calculator: 'M7 3h10a2 2 0 012 2v14a2 2 0 01-2 2H7a2 2 0 01-2-2V5a2 2 0 012-2zM8 7h8v3H8V7zM8.5 14h0M12 14h0M15.5 14h0M8.5 17.5h0M12 17.5h0M15.5 17.5h0',
+    fileText: 'M7 3h7l5 5v11a2 2 0 01-2 2H7a2 2 0 01-2-2V5a2 2 0 012-2zM14 3v5h5M9 13h6M9 17h6',
+    box: 'M21 8l-9-5-9 5 9 5 9-5zM3 8v8l9 5 9-5V8M12 13v8',
+    idCard: 'M4 5h16a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V7a2 2 0 012-2zM9 11a2 2 0 100-4 2 2 0 000 4zM6 16c.5-1.6 1.8-2.5 3-2.5s2.5.9 3 2.5M15 9h4M15 13h4',
+    sitemap: 'M9 3h6v4H9V3zM3 17h6v4H3v-4zM15 17h6v4h-6v-4zM12 7v4M6 17v-3a1 1 0 011-1h10a1 1 0 011 1v3',
+    mail: 'M4 5h16a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V6a1 1 0 011-1zM3.5 6.5l8.5 6 8.5-6',
+    flow: 'M5 4h5v5H5V4zM14 15h5v5h-5v-5zM7.5 9v3a2 2 0 002 2h4',
+    chartLine: 'M4 4v16h16M8 14l3-4 3 2 4-6',
+    wrench: 'M14.5 6.5a3.5 3.5 0 00-4.6 4.6L4 17l3 3 5.9-5.9a3.5 3.5 0 004.6-4.6l-2.3 2.3-2-2 2.3-2.3z',
+    code: 'M9 8l-4 4 4 4M15 8l4 4-4 4',
+    grid: 'M4 4h6v6H4V4zM14 4h6v6h-6V4zM4 14h6v6H4v-6zM14 14h6v6h-6v-6z',
+    moon: 'M21 12.8A8.5 8.5 0 1111.2 3a6.5 6.5 0 109.8 9.8z',
+    sun: 'M12 7a5 5 0 100 10 5 5 0 000-10zM12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19',
+    chevDown: 'M6 9l6 6 6-6',
+    chevRight: 'M9 6l6 6-6 6',
+    chevLeft: 'M15 6l-6 6 6 6',
+    search: 'M11 4a7 7 0 100 14 7 7 0 000-14zM20 20l-3.5-3.5',
+    users: 'M16 19v-1.5a3.5 3.5 0 00-3.5-3.5h-5A3.5 3.5 0 004 17.5V19M10 11a3.5 3.5 0 100-7 3.5 3.5 0 000 7zM20 19v-1.5a3.5 3.5 0 00-2.6-3.4M15 4.1a3.5 3.5 0 010 6.8',
+    pencil: 'M16.5 4.5l3 3L8 19l-4 1 1-4L16.5 4.5z',
+    eye: 'M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7zM12 15a3 3 0 100-6 3 3 0 000 6z',
+    lock: 'M7 10V8a5 5 0 0110 0v2M5 10h14a1 1 0 011 1v8a1 1 0 01-1 1H5a1 1 0 01-1-1v-8a1 1 0 011-1z',
+    upload: 'M12 16V4M7 9l5-5 5 5M5 20h14',
+    clock: 'M12 22a10 10 0 100-20 10 10 0 000 20zM12 7v5l3 2',
+    refresh: 'M21 12a9 9 0 11-3-6.7M21 4v5h-5',
+    trending: 'M3 17l6-6 4 4 7-8M21 7v4h-4',
+    hourglass: 'M7 3h10M7 21h10M8 3c0 4 3 5 4 7 1-2 4-3 4-7M8 21c0-4 3-5 4-7 1 2 4 3 4 7',
+    dashboard: 'M4 4h7v7H4V4zM13 4h7v4h-7V4zM13 11h7v9h-7v-9zM4 14h7v6H4v-6z',
+    barChart: 'M5 21V10M12 21V4M19 21v-7',
+    check: 'M5 13l4 4L19 7',
+    x: 'M6 6l12 12M18 6L6 18',
+    plus: 'M12 5v14M5 12h14',
+    arrowLeft: 'M19 12H5M11 18l-6-6 6-6',
+    arrowRight: 'M5 12h14M13 6l6 6-6 6',
+    building: 'M4 21V5a1 1 0 011-1h9a1 1 0 011 1v16M15 21V9h4a1 1 0 011 1v11M7 8h2M7 12h2M7 16h2M19 13h0M19 17h0',
+    userCheck: 'M14 19v-1.5a3.5 3.5 0 00-3.5-3.5h-4A3.5 3.5 0 003 17.5V19M8.5 11a3.5 3.5 0 100-7 3.5 3.5 0 000 7zM16 12l2 2 4-4',
+    briefcase: 'M4 8h16a1 1 0 011 1v9a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1zM8 8V6a2 2 0 012-2h4a2 2 0 012 2v2M3 13h18',
+    play: 'M8 5l11 7-11 7V5z',
+    package: 'M21 8l-9-5-9 5 9 5 9-5zM3 8v8l9 5 9-5V8M12 13v8M7.5 5.5l9 5',
+    filter: 'M3 5h18l-7 8v6l-4-2v-4L3 5z',
+    cart: 'M3 4h2l2.4 12.5a1 1 0 001 .8h9.2a1 1 0 001-.8L21 8H6M9 21a1 1 0 100-2 1 1 0 000 2zM18 21a1 1 0 100-2 1 1 0 000 2z',
+    history: 'M3 12a9 9 0 109-9 9 9 0 00-7 3.3M3 4v4h4M12 7v5l3 2',
+    alert: 'M12 9v4M12 17h0M10.3 3.9l-8 14A2 2 0 004 21h16a2 2 0 001.7-3l-8-14a2 2 0 00-3.4 0z',
+    download: 'M12 4v12M7 11l5 5 5-5M5 20h14',
+    info: 'M12 22a10 10 0 100-20 10 10 0 000 20zM12 11v5M12 8h0',
+    copy: 'M9 9h9a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1v-9a1 1 0 011-1zM5 15H4a1 1 0 01-1-1V5a1 1 0 011-1h9a1 1 0 011 1v1',
+    database: 'M12 3c4.4 0 8 1.3 8 3s-3.6 3-8 3-8-1.3-8-3 3.6-3 8-3zM4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6',
+    store: 'M4 9h16l-1-5H5L4 9zM4 9v10a1 1 0 001 1h14a1 1 0 001-1V9M4 9h16M9 20v-6h6v6',
+    folder: 'M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V7z',
+    fingerprint: 'M12 11a2 2 0 012 2v1a6 6 0 01-1 3M7 19a8 8 0 01-1-4v-2a6 6 0 0110-4.5M5 11a8 8 0 0112-7M9.5 21a12 12 0 01-1-5v-3a3.5 3.5 0 016-2.4M14 21a16 16 0 01-1-6',
+    link: 'M9 15l6-6M10.5 6.5l1.8-1.8a4 4 0 015.7 5.7L15.5 12M13.5 17.5l-1.8 1.8a4 4 0 01-5.7-5.7L8.5 12',
+    calendarPlus: 'M5 5h14a1 1 0 011 1v13a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1zM4 9h16M8 3v4M16 3v4M12 13v4M10 15h4',
+    calendarCheck: 'M5 5h14a1 1 0 011 1v13a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1zM4 9h16M8 3v4M16 3v4M9.5 14.5l1.7 1.7 3.3-3.4',
+    mapPin: 'M12 21s7-5.6 7-11a7 7 0 10-14 0c0 5.4 7 11 7 11zM12 12a2.5 2.5 0 100-5 2.5 2.5 0 000 5z',
+    tag: 'M3 11.5V5a2 2 0 012-2h6.5a2 2 0 011.4.6l8 8a2 2 0 010 2.8l-6.5 6.5a2 2 0 01-2.8 0l-8-8a2 2 0 01-.6-1.4zM7.5 7.5h.01',
+    leaf: 'M5 21c0-9 6-15 16-15 0 11-7 16-16 15zM5 21c3-7 8-10 13-11',
+    robot: 'M12 7V4M9 4h6M5 9h14a1 1 0 011 1v8a1 1 0 01-1 1H5a1 1 0 01-1-1v-8a1 1 0 011-1zM9 13h.01M15 13h.01M2 13v3M22 13v3',
+    shield: 'M12 3l8 3v5.5c0 5-3.4 7.8-8 9-4.6-1.2-8-4-8-9V6l8-3z',
+    gear: 'M12 9a3 3 0 100 6 3 3 0 000-6zM19.5 12a7.5 7.5 0 00-.1-1.2l2-1.5-2-3.4-2.3 1a7.6 7.6 0 00-2-1.2L16.7 2h-4l-.4 2.5a7.6 7.6 0 00-2 1.2l-2.3-1-2 3.4 2 1.5a7.5 7.5 0 000 2.4l-2 1.5 2 3.4 2.3-1c.6.5 1.3.9 2 1.2l.4 2.5h4l.4-2.5c.7-.3 1.4-.7 2-1.2l2.3 1 2-3.4-2-1.5c.1-.4.1-.8.1-1.2z',
+    layers: 'M12 3l9 5-9 5-9-5 9-5zM3 12l9 5 9-5M3 16l9 5 9-5',
+    inbox: 'M4 13h4l1.2 2.5h5.6L16 13h4M4 13l2.2-8.2A1 1 0 017.2 4h9.6a1 1 0 011 .8L21 13v5a1 1 0 01-1 1H5a1 1 0 01-1-1v-5z',
+    dot: '',
+  };
+  const FILLED = { play: 1, dot: 1 };
+  function Icon({ name, size = 22, stroke = 2, className = '', style = {}, color }) {
+    const d = P[name];
+    if (name === 'dot') {
+      return React.createElement('svg', { width: size, height: size, viewBox: '0 0 24 24', className, style },
+        React.createElement('circle', { cx: 12, cy: 12, r: 5, fill: color || 'currentColor' }));
+    }
+    const filled = FILLED[name];
+    return React.createElement('svg', {
+      width: size, height: size, viewBox: '0 0 24 24', className,
+      fill: filled ? (color || 'currentColor') : 'none',
+      stroke: filled ? 'none' : (color || 'currentColor'),
+      strokeWidth: stroke, strokeLinecap: 'round', strokeLinejoin: 'round',
+      style,
+    }, React.createElement('path', { d }));
+  }
+  window.Icon = Icon;
+})();

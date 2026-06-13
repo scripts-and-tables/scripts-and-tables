@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Human-in-the-loop: where judgement still belongs — Oleksandr Tverdokhlieb</title>
+<meta name="description" content="Not everything should run end-to-end on autopilot. A practical framework for deciding where to keep a human in the loop — gating high-stakes, irreversible, and ambiguous actions while letting AI run the low-stakes, reversible work." />
+<meta name="theme-color" content="#11161f" />
+<link rel="icon" href="https://avatars.githubusercontent.com/u/43398608?v=4" />
+<link rel="stylesheet" href="../assets/site.css?v=12" />
+<link rel="stylesheet" href="blog.css?v=1" />
+  <link rel="canonical" href="https://oleks.devapp24.com/blog/human-in-the-loop.html" />
+  <meta name="author" content="Oleksandr Tverdokhlieb" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Oleksandr Tverdokhlieb" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Human-in-the-loop: where judgement still belongs" />
+  <meta property="og:description" content="A practical framework for deciding where to keep a human in the loop — gate the consequences, automate the work." />
+  <meta property="og:url" content="https://oleks.devapp24.com/blog/human-in-the-loop.html" />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/43398608?v=4" />
+  <meta property="article:published_time" content="2025-12-18" />
+  <meta property="article:author" content="Oleksandr Tverdokhlieb" />
+  <meta property="article:section" content="AI" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Human-in-the-loop: where judgement still belongs" />
+  <meta name="twitter:description" content="A practical framework for deciding where to keep a human in the loop — gate the consequences, automate the work." />
+  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/43398608?v=4" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://oleks.devapp24.com/#person","name":"Oleksandr Tverdokhlieb","jobTitle":"Data Analytics Manager","url":"https://oleks.devapp24.com/","image":"https://avatars.githubusercontent.com/u/43398608?v=4","sameAs":["https://www.linkedin.com/in/tverd","https://github.com/scripts-and-tables"]},{"@type":"BlogPosting","@id":"https://oleks.devapp24.com/blog/human-in-the-loop.html#post","headline":"Human-in-the-loop: where judgement still belongs","description":"A practical framework for deciding where to keep a human in the loop — gate the consequences, automate the work.","datePublished":"2025-12-18","dateModified":"2025-12-18","author":{"@id":"https://oleks.devapp24.com/#person"},"image":"https://avatars.githubusercontent.com/u/43398608?v=4","articleSection":"AI","keywords":"human in the loop, AI judgement, risk, governance, automation, accountability, agents","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https://oleks.devapp24.com/blog/human-in-the-loop.html"},"publisher":{"@id":"https://oleks.devapp24.com/#person"}}]}</script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-in">
+      <a class="nav-brand" href="../index.html"><img src="https://avatars.githubusercontent.com/u/43398608?v=4" alt="" />Oleksandr&nbsp;Tverdokhlieb</a>
+      <div class="nav-spacer"></div>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog/" class="active">Blog</a>
+        <a href="../about.html">About</a>
+        <a href="../cv.html">CV</a>
+        <a href="../ai.html">AI</a>
+        <a href="../training.html">Training</a>
+        <a href="../credentials.html">Learning</a>
+        <a href="../game/">Games</a>
+      </nav>
+      <a class="nav-cta" href="../contact.html">Contact</a>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="nav-mobile">
+      <a href="../index.html">Home</a><a href="../projects.html">Projects</a><a href="../blog/">Blog</a><a href="../about.html">About</a><a href="../cv.html">CV</a><a href="../ai.html">AI</a><a href="../training.html">Training</a><a href="../credentials.html">Learning</a><a href="../game/">Games</a><a href="../contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="wrap page">
+    <article class="post-wrap">
+      <a class="backlink" href="index.html">← All writing</a>
+      <div class="page-head" style="padding-bottom:6px;">
+        <h1 style="margin-top:8px;font-size:clamp(27px,4.6vw,38px);line-height:1.16;">Human-in-the-loop: where judgement still belongs</h1>
+        <div class="post-meta"><span class="cat">AI</span><span>18 December 2025</span><span>· 6 min read</span></div>
+        <div class="post-tags"><span class="tag">AI</span><span class="tag">Judgement</span><span class="tag">Risk</span><span class="tag">Governance</span></div>
+      </div>
+
+      <div class="post-body">
+        <p class="lede">"Human-in-the-loop" gets thrown around like a safety blanket — a phrase you say to make stakeholders feel better. But used carelessly it's either a bottleneck that buries someone in rubber-stamps, or a fig leaf over a system that was never really supervised. The useful question isn't <em>whether</em> to keep a human in the loop. It's <em>where</em>.</p>
+
+        <p>I build data platforms and automation for a living, and my default is to automate aggressively. Most analytics work is repetitive, low-stakes, and easy to check — exactly the kind of thing a machine should own. But I've also learned the hard way that some actions should never run unattended, no matter how confident the model sounds. The trick is having a rule for telling the two apart before you ship, not after something breaks.</p>
+
+        <h2>The principle: automate the work, gate the consequences</h2>
+        <p>This is the design rule I keep coming back to. The <em>work</em> — drafting, querying, summarising, classifying, transforming, proposing — is where AI earns its keep, and you should let it run as fast as it can. The <em>consequence</em> — the moment an action becomes real in the world — is where a human belongs if the stakes are high enough. Separating those two ideas is most of the job. You're not slowing the AI down; you're putting a gate in front of the one step that's expensive to undo.</p>
+
+        <p>So what makes a step "expensive to undo"? Two axes do almost all the work: how much is at stake, and whether you can take it back.</p>
+
+        <div class="fig">
+          <svg viewBox="0 0 720 340" role="img" aria-label="Decision matrix: stakes versus reversibility, showing where a human gate belongs">
+            <defs>
+              <marker id="ar" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#5b626c"/></marker>
+            </defs>
+            <!-- quadrant fills -->
+            <rect x="70" y="30" width="280" height="120" rx="8" fill="#fbeedd" stroke="#f0d9b8"/>
+            <rect x="350" y="30" width="280" height="120" rx="8" fill="#fdf2f0" stroke="#f0c9c4"/>
+            <rect x="70" y="150" width="280" height="120" rx="8" fill="#e4f5ee" stroke="#bfe6d3"/>
+            <rect x="350" y="150" width="280" height="120" rx="8" fill="#eaf0fd" stroke="#cfd8e6"/>
+
+            <!-- quadrant labels -->
+            <text x="210" y="80" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="14" font-weight="700" fill="#15181d">Review after</text>
+            <text x="210" y="100" text-anchor="middle" font-family="monospace" font-size="11" fill="#5b626c">high stakes · reversible</text>
+            <text x="210" y="118" text-anchor="middle" font-family="monospace" font-size="11" fill="#5b626c">log it, sample-check it</text>
+
+            <text x="490" y="74" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="14" font-weight="700" fill="#15181d">Human gate</text>
+            <text x="490" y="94" text-anchor="middle" font-family="monospace" font-size="11" fill="#5b626c">high stakes · irreversible</text>
+            <text x="490" y="112" text-anchor="middle" font-family="monospace" font-size="11" fill="#a23b2d">approve before it happens</text>
+
+            <text x="210" y="200" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="14" font-weight="700" fill="#15181d">Let it run</text>
+            <text x="210" y="220" text-anchor="middle" font-family="monospace" font-size="11" fill="#5b626c">low stakes · reversible</text>
+            <text x="210" y="238" text-anchor="middle" font-family="monospace" font-size="11" fill="#1f7a52">full automation</text>
+
+            <text x="490" y="200" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="14" font-weight="700" fill="#15181d">Automate, verify</text>
+            <text x="490" y="220" text-anchor="middle" font-family="monospace" font-size="11" fill="#5b626c">low stakes · irreversible</text>
+            <text x="490" y="238" text-anchor="middle" font-family="monospace" font-size="11" fill="#2459d6">add a quick check</text>
+
+            <!-- axes -->
+            <line x1="70" y1="300" x2="630" y2="300" stroke="#5b626c" stroke-width="1.5" marker-end="url(#ar)"/>
+            <line x1="48" y1="270" x2="48" y2="20" stroke="#5b626c" stroke-width="1.5" marker-end="url(#ar)"/>
+            <text x="350" y="324" text-anchor="middle" font-family="monospace" font-size="11.5" fill="#8b939d">reversible  →  irreversible</text>
+            <text x="20" y="150" text-anchor="middle" font-family="monospace" font-size="11.5" fill="#8b939d" transform="rotate(-90 20 150)">low stakes  →  high stakes</text>
+          </svg>
+          <div class="fig-cap">Two questions — how much is at stake, and can you take it back — sort almost every action. Only one quadrant truly needs a gate.</div>
+        </div>
+
+        <h2>The four actions that should always have a gate</h2>
+        <p>Across the systems I've built, the same short list keeps showing up. If an AI action <strong>deletes data, sends something to a customer, files something externally, moves money, or becomes the official number</strong>, it gets a human gate — full stop. Those five share a property: the moment they execute, you can't quietly fix it. The email is read. The filing is on record. The payment cleared. The figure is in the board pack. There's no undo button, only an apology.</p>
+
+        <div class="pullquote">A human gate isn't about distrusting the model. It's about respecting the actions you can't take back.</div>
+
+        <p>The cautionary tales here aren't hypothetical. Over the past year there've been several widely-reported incidents of autonomous coding agents going off the rails — in one case an AI assistant <a href="https://www.theregister.com/2025/07/21/replit_saastr_vibe_coding_incident/" target="_blank" rel="noopener">deleted a live production database</a> during a code freeze and then generated thousands of fake records, apparently misreading the situation and "panicking." Whatever the exact cause, the lesson is blunt: a system with the power to run destructive commands and no gate in front of them will, eventually, run one. The fix isn't a smarter model. It's not handing irreversible power to anything — human or machine — without a checkpoint.</p>
+
+        <h2>Three triggers for keeping a human in</h2>
+        <p>Stakes and reversibility are the backbone, but I add three more triggers. Any one of them is enough to keep a person on the hook:</p>
+
+        <ul class="steps">
+          <li><strong>Irreversibility.</strong> If the action can't be cleanly undone — a deletion, a send, an external filing, a payment — gate it, regardless of how routine it seems.</li>
+          <li><strong>Ambiguous judgement.</strong> If reasonable people would disagree on the right answer, or the call depends on context the model can't see, a human owns the decision. The AI can draft and argue both sides; it doesn't get the final vote.</li>
+          <li><strong>Accountability.</strong> If something goes wrong, someone has to be able to stand behind the decision — to a customer, an auditor, or a regulator. "The model did it" is not an answer anyone accepts. Where accountability is required, a named human signs.</li>
+        </ul>
+
+        <div class="callout">
+          <span class="lab">The test I actually use</span>
+          Before I let a step run unattended, I ask one question: <strong>if this fires wrong at 3am with no one watching, can we fix it by 9am without anyone outside the team noticing?</strong> If yes, automate it. If no, it gets a gate.
+        </div>
+
+        <h2>And where you should just let AI run</h2>
+        <p>The flip side matters just as much, because over-gating is its own failure mode. Put a human in front of everything and you teach them to click "approve" without reading — which is worse than no gate at all, because now you have the illusion of oversight. Reserve human attention for the moments that earn it.</p>
+
+        <div class="compare">
+          <div class="col good">
+            <h4>Let it run</h4>
+            <ul>
+              <li>Drafting a query, a summary, or a first-pass email <em>that a human still sends</em></li>
+              <li>Classifying or tagging records you can re-run</li>
+              <li>Reshaping data in a sandbox or a branch</li>
+              <li>Anything reversible, low-stakes, and easy to spot-check</li>
+            </ul>
+          </div>
+          <div class="col bad">
+            <h4>Gate it</h4>
+            <ul>
+              <li>Deleting or overwriting production data</li>
+              <li>Sending directly to customers or external parties</li>
+              <li>Filing, submitting, or paying anything</li>
+              <li>Publishing a number that becomes "official"</li>
+            </ul>
+          </div>
+        </div>
+
+        <p>Notice that "draft an email" and "send an email" live in different columns. That split is the whole game. The model can write the entire message, reason about tone, and propose the recipient list — all of that is reversible work you should automate. The single irreversible act, hitting send, is where the human belongs. Same logic for a report: let AI assemble it, but the figure only becomes <em>the</em> figure when a person signs it off.</p>
+
+        <h2>Making the gate real, not ceremonial</h2>
+        <p>A gate only helps if the person at it can actually judge. That means the AI has to present its work in a form a human can verify in seconds, not reverse-engineer over an hour: what it's about to do, why, what it's drawing on, and what it's unsure about. A gate where the reviewer can't see the reasoning isn't oversight — it's a liability with extra steps. If you can't make the decision reviewable, that's a signal the step isn't ready to be automated at all.</p>
+
+        <p>None of this is anti-AI. I want the machine doing as much as it possibly can, because that's where the leverage is. But leverage cuts both ways, and the same autonomy that makes automation valuable makes an unchecked mistake expensive. So I draw the line in a consistent place: <strong>automate the work, gate the consequences.</strong> Let AI run flat-out across everything reversible and low-stakes — and keep a human, with a name and a reason, in front of every action you can't take back.</p>
+      </div>
+
+      <div class="post-foot">
+        <div class="by">
+          <img src="https://avatars.githubusercontent.com/u/43398608?v=4" alt="Oleksandr Tverdokhlieb" />
+          <div>
+            <div class="n">Oleksandr Tverdokhlieb</div>
+            <div class="r">Data Analytics Manager · Dubai — building data platforms, automation and applied AI.</div>
+          </div>
+        </div>
+        <div class="post-cta">
+          <a class="primary" href="index.html">More writing →</a>
+          <a href="../ai.html">How I use AI</a>
+          <a href="https://www.linkedin.com/in/tverd" target="_blank" rel="noopener">Connect on LinkedIn ↗</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-in">
+      <div class="c">© <span data-year></span> Oleksandr Tverdokhlieb · Dubai, UAE</div>
+      <div class="foot-links">
+        <a href="https://www.linkedin.com/in/tverd" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6 1.12 6 0 4.88 0 3.5 0 2.12 1.12 1 2.49 1c1.38 0 2.49 1.12 2.49 2.5zM.24 8h4.5v14H.24V8zm7.5 0h4.31v1.92h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V22h-4.5v-6.6c0-1.57-.03-3.6-2.19-3.6-2.2 0-2.53 1.71-2.53 3.48V22h-4.5V8z"/></svg></a>
+        <a href="https://github.com/scripts-and-tables" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.05-.02-2.06-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22 0 1.61-.01 2.9-.01 3.29 0 .32.21.7.82.58A12.01 12.01 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"/></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/site.js"></script>
+</body>
+</html>

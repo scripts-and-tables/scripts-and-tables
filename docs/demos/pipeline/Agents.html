@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" data-density="regular">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Agents — Data Pipeline Automation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="pipeline.css" />
+</head>
+<body>
+
+<header class="topbar" data-screen-label="Top bar">
+  <div class="wrap topbar-inner">
+    <div class="topbar-brand"><span class="glyph">▸▸</span><span>Data Pipeline Automation</span></div>
+    <nav class="topbar-tabs">
+      <a href="index.html">Dashboard</a>
+      <a href="Agents.html" aria-current="page">Agents</a>
+      <a href="Jobs.html">Jobs</a>
+      <a href="About.html">About</a>
+    </nav>
+    <div class="topbar-right">
+      <span class="status-pill"><span class="dot"></span>OPERATIONAL · LAST RUN 08:00 UTC</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap page-head" data-screen-label="Agents header">
+  <h1>Agents</h1>
+  <p class="page-sub">The workers that execute pipeline jobs. Each agent reports a heartbeat every 5 minutes; the bar shows the last 2 hours of beats.</p>
+</div>
+
+<div class="wrap" data-screen-label="Agents summary">
+  <div class="summary-strip">
+    <span class="ss"><b>10</b> agents</span>
+    <span class="ss"><span class="dot"></span><b>8</b> healthy</span>
+    <span class="ss"><span class="dot warn"></span><b>1</b> degraded</span>
+    <span class="ss"><span class="dot" style="background: var(--line);"></span><b>1</b> offline · planned</span>
+  </div>
+</div>
+
+<section class="section" data-screen-label="Agents list" style="border-top: none; padding-top: 12px;">
+  <div class="wrap">
+    <div class="agents-grid">
+
+      <div class="agent-card">
+        <div class="agent-top"><span class="dot"></span><span class="agent-name mono">agent-db-01</span><span class="agent-badge badge ok">HEALTHY</span></div>
+        <div class="agent-role">Database connector · ERP, Finance</div>
+        <div class="agent-meta">
+          <div class="am"><div class="am-label">Last beat</div><div class="am-value">12s ago</div></div>
+          <div class="am"><div class="am-label">Host</div><div class="am-value">ip-10-2-4-11</div></div>
+          <div class="am"><div class="am-label">Version</div><div class="am-value">v2.4.1</div></div>
+          <div class="am"><div class="am-label">Jobs today</div><div class="am-value">8 / 8 ok</div></div>
+        </div>
+        <div class="beatbar" data-beats="oooooooooooooooooooooooo"></div>
+        <div class="beatbar-label"><span>−2h</span><span>now</span></div>
+      </div>
+
+      <div class="agent-card">
+        <div class="agent-top"><span class="dot"></span><span class="agent-name mono">agent-db-02</span><span class="agent-badge badge ok">HEALTHY</span></div>
+        <div class="agent-role">Database connector · CRM</div>
+        <div class="agent-meta">
+          <div class="am"><div class="am-label">Last beat</div><div class="am-value">8s ago</div></div>
+          <div class="am"><div class="am-label">Host</div><div class="am-value">ip-10-2-4-12</div></div>
+          <div class="am"><div class="am-label">Version</div><div class="am-value">v2.4.1</div></div>
+          <div class="am"><div class="am-label">Jobs today</div><div class="am-value">4 / 4 ok</div></div>
+        </div>
+        <div class="beatbar" data-beats="oooooooooooooooooooooooo"></div>
+        <div class="beatbar-label"><span>−2h</span><span>now</span></div>
+      </div>
+
+      <div class="agent-card">
+        <div class="agent-top"><span class="dot warn"></span><span class="agent-name mono">agent-files-01</span><span class="agent-badge badge warn">DEGRADED</span></div>
+        <div class="agent-role">File watcher · Excel workbooks on shared drives</div>
+        <div class="agent-meta">
+          <div class="am"><div class="am-label">Last beat</div><div class="am-value">31s ago</div></div>
+          <div class="am"><div class="am-label">Host</div><div class="am-value">ip-10-2-6-20</div></div>
+          <div class="am"><div class="am-label">Version</div><div class="am-value">v2.4.1</div></div>
+          <div class="am"><div class="am-label">Jobs today</div><div class="am-value warn">7 / 8 ok</div></div>
+        </div>
+        <div class="beatbar" data-beats="ooooooooooowwoooooooowoo"></div>
+        <div class="beatbar-label"><span>−2h</span><span>now</span></div>
+      </div>
+
+      <div class="agent-card">
+        <div class="agent-top"><span class="dot"></span><span class="agent-name mono">agent-files-02</span><span class="agent-badge badge ok">HEALTHY</span></div>
+        <div class="agent-role">SFTP poller · partner CSV exports</div>
+        <div class="agent-meta">
+          <div class="am"><div class="am-label">Last beat</div><div class="am-value">19s ago</div></div>
+          <div class="am"><div class="am-label">Host</div><div class="am-value">ip-10-2-6-21</div></div>
+          <div class="am"><div class="am-label">Version</div><div class="am-value">v2.4.1</div></div>
+          <div class="am"><div class="am-label">Jobs today</div><div class="am-value">4 / 4 ok</div></div>
+        </div>
+        <div class="beatbar" data-beats="oooooooooooooooooooooooo"></div>
+        <div class="beatbar-label"><span>−2h</span><span>now</span></div>
+      </div>
+
+      <div class="agent-card">
+        <div class="agent-top"><span class="dot"></span><span class="agent-name mono">agent-web-01</span><span class="agent-badge badge ok">HEALTHY</span></div>
+        <div class="agent-role">Scraper · market prices</div>
+        <div class="agent-meta">
+          <div class="am"><div class="am-label">Last beat</div><div class="am-value">5s ago</div></div>
+          <div class="am"><div class="am-label">Host</div><div class="am-value">ip-10-2-8-30</div></div>
+          <div class="am"><div class="am-label">Version</div><div class="am-value">v2.4.0</div></div>
+          <div class="am"><div class="am-label">Jobs today</div><div class="am-value">4 / 4 ok</div></div>
+        </div>
+        <div class="beatbar" data-beats="oooooooooooooooooooooooo"></div>
+        <div class="beatbar-label"><span>−2h</span><span>now</span></div>
+      </div>
+
+      <div class="agent-card">
+        <div class="agent-top"><span class="dot"></span><span class="agent-name mono">agent-web-02</span><span class="agent-badge badge ok">HEALTHY</span></div>
+        <div class="agent-role">API client · FX rates</div>
+        <div class="agent-meta">
+          <div class="am"><div class="am-label">Last beat</div><div class="am-value">14s ago</div></div>
+          <div class="am"><div class="am-label">Host</div><div class="am-value">ip-10-2-8-31</div></div>
+          <div class="am"><div class="am-label">Version</div><div class="am-value">v2.4.1</div></div>
+          <div class="am"><div class="am-label">Jobs today</div><div class="am-value">4 / 4 ok</div></div>
+        </div>
+        <div class="beatbar" data-beats="ooooffoooooooooooooooooo"></div>
+        <div class="beatbar-label"><span>−2h</span><span>now</span></div>
+      </div>
+
+      <div class="agent-card">
+        <div class="agent-top"><span class="dot"></span><span class="agent-name mono">agent-orch-01</span><span class="agent-badge badge ok">HEALTHY</span></div>
+        <div class="agent-role">Orchestrator · schedules runs, ingest &amp; staging load</div>
+        <div class="agent-meta">
+          <div class="am"><div class="am-label">Last beat</div><div class="am-value">3s ago</div></div>
+          <div class="am"><div class="am-label">Host</div><div class="am-value">ip-10-2-2-05</div></div>
+          <div class="am"><div class="am-label">Version</div><div class="am-value">v2.4.1</div></div>
+          <div class="am"><div class="am-label">Jobs today</div><div class="am-value">6 / 6 ok</div></div>
+        </div>
+        <div class="beatbar" data-beats="oooooooooooooooooooooooo"></div>
+        <div class="beatbar-label"><span>−2h</span><span>now</span></div>
+      </div>
+
+      <div class="agent-card">
+        <div class="agent-top"><span class="dot"></span><span class="agent-name mono">agent-report-01</span><span class="agent-badge badge ok">HEALTHY</span></div>
+        <div class="agent-role">Report refresher · BI dashboards &amp; models</div>
+        <div class="agent-meta">
+          <div class="am"><div class="am-label">Last beat</div><div class="am-value">22s ago</div></div>
+          <div class="am"><div class="am-label">Host</div><div class="am-value">ip-10-2-2-07</div></div>
+          <div class="am"><div class="am-label">Version</div><div class="am-value">v2.4.1</div></div>
+          <div class="am"><div class="am-label">Jobs today</div><div class="am-value">2 / 2 ok</div></div>
+        </div>
+        <div class="beatbar" data-beats="oooooooooooooooooooooooo"></div>
+        <div class="beatbar-label"><span>−2h</span><span>now</span></div>
+      </div>
+
+      <div class="agent-card">
+        <div class="agent-top"><span class="dot"></span><span class="agent-name mono">agent-submit-01</span><span class="agent-badge badge ok">HEALTHY</span></div>
+        <div class="agent-role">Submitter · portal filing, digest, archive</div>
+        <div class="agent-meta">
+          <div class="am"><div class="am-label">Last beat</div><div class="am-value">9s ago</div></div>
+          <div class="am"><div class="am-label">Host</div><div class="am-value">ip-10-2-2-09</div></div>
+          <div class="am"><div class="am-label">Version</div><div class="am-value">v2.4.1</div></div>
+          <div class="am"><div class="am-label">Jobs today</div><div class="am-value">6 / 6 ok</div></div>
+        </div>
+        <div class="beatbar" data-beats="oooooooooooooooooooooooo"></div>
+        <div class="beatbar-label"><span>−2h</span><span>now</span></div>
+      </div>
+
+      <div class="agent-card" style="opacity: 0.75;">
+        <div class="agent-top"><span class="dot" style="background: var(--line);"></span><span class="agent-name mono">agent-db-03</span><span class="agent-badge badge" style="background: var(--line-soft); color: var(--ink-3);">OFFLINE</span></div>
+        <div class="agent-role">Standby replica · takes over if agent-db-01/02 fail</div>
+        <div class="agent-meta">
+          <div class="am"><div class="am-label">Last beat</div><div class="am-value">May 28 · planned</div></div>
+          <div class="am"><div class="am-label">Host</div><div class="am-value">ip-10-2-4-13</div></div>
+          <div class="am"><div class="am-label">Version</div><div class="am-value">v2.4.1</div></div>
+          <div class="am"><div class="am-label">Jobs today</div><div class="am-value">—</div></div>
+        </div>
+        <div class="beatbar" data-beats="xxxxxxxxxxxxxxxxxxxxxxxx"></div>
+        <div class="beatbar-label"><span>−2h</span><span>now</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="foot" data-screen-label="Footer">
+  <div class="wrap" style="display: flex; gap: 48px; flex-wrap: wrap; padding-top: 8px;">
+    <div>
+      <div class="f-label">Heartbeat</div>
+      <div>Every 5 minutes · agent marked degraded after 2 missed beats, offline after 6</div>
+    </div>
+    <div>
+      <div class="f-label">On agent failure</div>
+      <div>Jobs re-queue to the standby replica · on-call paged</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Expand data-beats strings into heartbeat cells: o=ok, w=warn, f=fail, x=off
+  document.querySelectorAll(".beatbar").forEach(function (bar) {
+    var map = { o: "", w: "warn", f: "fail", x: "off" };
+    bar.dataset.beats.split("").forEach(function (ch) {
+      var i = document.createElement("i");
+      if (map[ch]) i.className = map[ch];
+      bar.appendChild(i);
+    });
+  });
+</script>
+
+</body>
+</html>

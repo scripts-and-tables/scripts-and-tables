@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Building a personal app with AI: my stack and what I'd keep — Oleksandr Tverdokhlieb</title>
+<meta name="description" content="Building a side project with an AI coding assistant as pair-programmer: the pragmatic stack I landed on — Django, PostgreSQL and Railway — what the AI accelerated, what I still had to own, and what I'd keep next time." />
+<meta name="theme-color" content="#11161f" />
+<link rel="icon" href="https://avatars.githubusercontent.com/u/43398608?v=4" />
+<link rel="stylesheet" href="../assets/site.css?v=12" />
+<link rel="stylesheet" href="blog.css?v=1" />
+  <link rel="canonical" href="https://oleks.devapp24.com/blog/building-a-personal-app-with-ai.html" />
+  <meta name="author" content="Oleksandr Tverdokhlieb" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Oleksandr Tverdokhlieb" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Building a personal app with AI: my stack and what I'd keep" />
+  <meta property="og:description" content="A side project built with an AI coding assistant: the pragmatic Django + PostgreSQL + Railway stack, what the AI accelerated, what I still owned, and what I'd keep." />
+  <meta property="og:url" content="https://oleks.devapp24.com/blog/building-a-personal-app-with-ai.html" />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/43398608?v=4" />
+  <meta property="article:published_time" content="2026-02-19" />
+  <meta property="article:author" content="Oleksandr Tverdokhlieb" />
+  <meta property="article:section" content="Engineering" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Building a personal app with AI: my stack and what I'd keep" />
+  <meta name="twitter:description" content="A side project built with an AI coding assistant: the stack I landed on and what I'd keep next time." />
+  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/43398608?v=4" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://oleks.devapp24.com/#person","name":"Oleksandr Tverdokhlieb","jobTitle":"Data Analytics Manager","url":"https://oleks.devapp24.com/","image":"https://avatars.githubusercontent.com/u/43398608?v=4","sameAs":["https://www.linkedin.com/in/tverd","https://github.com/scripts-and-tables"]},{"@type":"BlogPosting","@id":"https://oleks.devapp24.com/blog/building-a-personal-app-with-ai.html#post","headline":"Building a personal app with AI: my stack and what I'd keep","description":"Building a side project with an AI coding assistant as pair-programmer: the pragmatic stack I landed on — Django, PostgreSQL and Railway — what the AI accelerated, what I still had to own, and what I'd keep next time.","datePublished":"2026-02-19","dateModified":"2026-02-19","author":{"@id":"https://oleks.devapp24.com/#person"},"image":"https://avatars.githubusercontent.com/u/43398608?v=4","articleSection":"Engineering","keywords":"AI, side project, Railway, Django, PostgreSQL, solo builder, deployment","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https://oleks.devapp24.com/blog/building-a-personal-app-with-ai.html"},"publisher":{"@id":"https://oleks.devapp24.com/#person"}}]}</script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-in">
+      <a class="nav-brand" href="../index.html"><img src="https://avatars.githubusercontent.com/u/43398608?v=4" alt="" />Oleksandr&nbsp;Tverdokhlieb</a>
+      <div class="nav-spacer"></div>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog/" class="active">Blog</a>
+        <a href="../about.html">About</a>
+        <a href="../cv.html">CV</a>
+        <a href="../ai.html">AI</a>
+        <a href="../training.html">Training</a>
+        <a href="../credentials.html">Learning</a>
+        <a href="../game/">Games</a>
+      </nav>
+      <a class="nav-cta" href="../contact.html">Contact</a>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="nav-mobile">
+      <a href="../index.html">Home</a><a href="../projects.html">Projects</a><a href="../blog/">Blog</a><a href="../about.html">About</a><a href="../cv.html">CV</a><a href="../ai.html">AI</a><a href="../training.html">Training</a><a href="../credentials.html">Learning</a><a href="../game/">Games</a><a href="../contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="wrap page">
+    <article class="post-wrap">
+      <a class="backlink" href="index.html">← All writing</a>
+      <div class="page-head" style="padding-bottom:6px;">
+        <h1 style="margin-top:8px;font-size:clamp(27px,4.6vw,38px);line-height:1.16;">Building a personal app with AI: my stack and what I'd keep</h1>
+        <div class="post-meta"><span class="cat">Engineering</span><span>19 February 2026</span><span>· 8 min read</span></div>
+        <div class="post-tags"><span class="tag">AI</span><span class="tag">Side project</span><span class="tag">Railway</span><span class="tag">Django</span></div>
+      </div>
+
+      <div class="post-body">
+        <p class="lede">I build data platforms by day, but the apps that teach me the most are the ones I build for myself in the evenings. The latest is <a href="../p/mails-manager.html">Mails Manager</a> — a small web app that unifies a pile of email inboxes into one view. I built it with an AI coding assistant sitting beside me the whole way. Here's the stack we landed on, what the AI was genuinely good for, and what I'd absolutely keep next time.</p>
+
+        <p>Let me be honest about the starting point: I'm comfortable with Python and data, but I'm not a career web engineer. Deployment, environment variables, secret management, the IMAP plumbing for talking to mailboxes — a fair bit of that was unfamiliar territory. Which is exactly the situation where an AI pair-programmer earns its keep, and also exactly the situation where it can quietly lead you off a cliff. Both happened. Here's the balanced version.</p>
+
+        <h2>Picking a stack you can actually finish</h2>
+        <p>The most useful thing the AI did early wasn't writing code — it was helping me <em>argue out</em> the stack and then commit to it. For a solo builder, the right stack is the boring one you can ship and maintain alone, not the trendiest one. We settled on a deliberately small set of pieces:</p>
+
+        <ul>
+          <li><strong>Django</strong> for the backend — batteries-included, an admin panel for free, an ORM, sane auth, and a huge body of documentation the AI could lean on accurately.</li>
+          <li><strong>PostgreSQL</strong> for storage — a real relational database from day one, so I'd never have to migrate off a toy.</li>
+          <li><strong>Railway</strong> for hosting — deploy straight from a git push, with managed Postgres and environment variables built in. (Railway is a platform-as-a-service that builds and runs your app from your repo; see their <a href="https://docs.railway.com/" target="_blank" rel="noopener">docs</a>.)</li>
+          <li>A plain server-rendered front end — Django templates with a little CSS, no SPA build step to babysit.</li>
+        </ul>
+
+        <p>None of this is exotic, and that's the point. Every piece had two things going for it: a low operational burden for one person, and enough public documentation that the AI's suggestions were usually grounded rather than hallucinated. When I asked it to scaffold a model or wire up a view, it was working in well-trodden territory, so its output needed editing rather than rescuing.</p>
+
+        <div class="fig">
+          <svg viewBox="0 0 720 230" role="img" aria-label="Mails Manager architecture: browser to Django app to Postgres, deployed on Railway, with an AI assistant guiding the build">
+            <defs>
+              <marker id="ar" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#5b626c"/></marker>
+            </defs>
+            <!-- Railway platform boundary -->
+            <rect x="172" y="20" width="402" height="120" rx="12" fill="#f4f7fd" stroke="#cfd8e6" stroke-dasharray="5 4"/>
+            <text x="373" y="40" text-anchor="middle" font-family="monospace" font-size="11" fill="#2459d6">deployed on Railway · git push to deploy</text>
+
+            <!-- Browser -->
+            <rect x="14" y="58" width="132" height="64" rx="10" fill="#eaf0fd" stroke="#cfd8e6"/>
+            <text x="80" y="86" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="15" font-weight="700" fill="#15181d">Browser</text>
+            <text x="80" y="105" text-anchor="middle" font-family="monospace" font-size="11" fill="#5b626c">one inbox view</text>
+
+            <!-- Django app -->
+            <rect x="196" y="50" width="158" height="80" rx="10" fill="#fff" stroke="#e6e4df"/>
+            <text x="275" y="80" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="15" font-weight="700" fill="#15181d">Django app</text>
+            <text x="275" y="99" text-anchor="middle" font-family="monospace" font-size="11" fill="#5b626c">views · ORM · IMAP</text>
+            <text x="275" y="115" text-anchor="middle" font-family="monospace" font-size="11" fill="#5b626c">secrets via env vars</text>
+
+            <!-- Postgres -->
+            <rect x="408" y="58" width="150" height="64" rx="10" fill="#e4f5ee" stroke="#bfe6d3"/>
+            <text x="483" y="82" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="15" font-weight="700" fill="#15181d">PostgreSQL</text>
+            <text x="483" y="101" text-anchor="middle" font-family="monospace" font-size="11" fill="#5b626c">encrypted credentials</text>
+
+            <line x1="146" y1="90" x2="190" y2="90" stroke="#5b626c" stroke-width="1.5" marker-end="url(#ar)"/>
+            <line x1="354" y1="90" x2="402" y2="90" stroke="#5b626c" stroke-width="1.5" marker-end="url(#ar)"/>
+
+            <!-- AI assistant alongside -->
+            <rect x="196" y="170" width="362" height="44" rx="10" fill="#fbeedd" stroke="#f0d9b8"/>
+            <text x="377" y="190" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="14" font-weight="700" fill="#15181d">AI coding assistant</text>
+            <text x="377" y="206" text-anchor="middle" font-family="monospace" font-size="10.5" fill="#8b6a3a">scaffolds · explains · drafts config — I review every line</text>
+            <line x1="275" y1="170" x2="275" y2="132" stroke="#c9a76a" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#ar)"/>
+          </svg>
+          <div class="fig-cap">The whole app: browser → Django → Postgres, deployed on Railway. The AI sat alongside the build — it never sat in the request path.</div>
+        </div>
+
+        <h2>Where the AI genuinely accelerated me</h2>
+        <p>Scaffolding was the obvious win. Models, migrations, a first set of views and templates — the kind of typing that's necessary but not interesting — came together in an afternoon instead of a weekend. But the bigger value was getting <em>unstuck on the unfamiliar</em>. Configuring environment variables on Railway, understanding why a secret belongs in the platform and never in the repo, working out how to connect to a mailbox with an <strong>application password</strong> rather than a real account password — these were the moments where I'd normally lose hours to scattered forum threads. Asking targeted questions and getting an explanation I could verify was a real speed-up.</p>
+
+        <div class="pullquote">The AI was at its best as a tutor I could interrogate, not as an oracle I could obey. The moment I treated its output as finished rather than as a first draft, I got bitten.</div>
+
+        <p>It was also a good rubber duck. Talking through a design decision — "should encrypted credentials live in the same table or a separate one?" — and getting a reasoned answer back kept my momentum up on evenings when I'd otherwise have stalled. Momentum, for a side project, is most of the battle.</p>
+
+        <h2>What I still had to own</h2>
+        <p>Here's the part the hype skips. The AI accelerated the typing; it did not take over the <em>thinking</em>. Several decisions were mine to make and mine to be accountable for:</p>
+
+        <ul>
+          <li><strong>Architecture.</strong> What the data model should be, where boundaries sat, what stayed simple on purpose — that's judgement, and judgement doesn't outsource cleanly.</li>
+          <li><strong>Security decisions.</strong> Encrypting stored mailbox credentials at rest, never touching a user's primary password, keeping secrets out of the codebase — I had to decide these were non-negotiable and then check they were actually true in the code, not just asserted in a chat reply.</li>
+          <li><strong>Reviewing everything.</strong> I read every generated line before it shipped. Not because the AI was usually wrong, but because "usually right" is exactly the failure mode that lulls you.</li>
+        </ul>
+
+        <h2>The pitfalls — said plainly</h2>
+        <p>Two traps caught me, and I suspect they catch most solo builders working this way.</p>
+
+        <p><strong>Over-trusting generated configuration.</strong> Application code gets reviewed because it's obviously yours. Config — Dockerfiles, deploy settings, the small YAML and env scaffolding — slips through because it "looks like boilerplate." That's precisely where a confidently generated but slightly wrong setting can sit unnoticed until it bites in production. I started reviewing config with the same suspicion I give code.</p>
+
+        <p><strong>Secrets hygiene.</strong> The most dangerous suggestion an assistant can make is the convenient one: drop the key inline, hardcode it just to test. It's tempting because it works immediately. The discipline is to push every secret into Railway's environment variables from the very first commit, so a credential never lands in git history — because once it's in history, it's effectively public. (Application passwords help here too: they're scoped and revocable, so a leak is contained rather than catastrophic.)</p>
+
+        <div class="callout tip">
+          <span class="lab">If you take one thing from this</span>
+          Treat generated <strong>config and anything touching secrets</strong> with more suspicion than generated application code — not less. It's the stuff that looks boring, gets skimmed, and fails in production. Review it line by line, and keep every secret in your host's environment variables, never in the repo.
+        </div>
+
+        <h2>The build workflow that worked</h2>
+        <p>Stripped down, the loop I kept returning to looked like this:</p>
+
+        <ul class="steps">
+          <li><strong>Decide the slice.</strong> Pick one small, shippable capability — "connect one mailbox and list its mail" — before touching the keyboard.</li>
+          <li><strong>Let the AI scaffold it.</strong> Have it draft the model, view and template for that slice, with me steering the shape.</li>
+          <li><strong>Review every line.</strong> Read it as if a junior engineer wrote it — especially the config and anything near a secret.</li>
+          <li><strong>Run it locally, then push.</strong> Verify on my machine, commit, and let Railway build and deploy from the git push.</li>
+          <li><strong>Check it live and repeat.</strong> Confirm the slice works on the deployed app, then start the next one.</li>
+        </ul>
+
+        <p>A deploy, in practice, was about as ceremonious as this:</p>
+
+        <div class="codeblock"><span class="c"># a connected mailbox is just a Django model —</span>
+<span class="c"># the credential is encrypted before it's ever stored</span>
+<span class="k">class</span> Mailbox(models.Model):
+    address  = models.EmailField()
+    app_pass = EncryptedField()   <span class="c"># never plaintext, never in git</span>
+
+<span class="c"># secrets come from the environment, not the code:</span>
+SECRET_KEY = os.environ[<span class="s">"DJANGO_SECRET_KEY"</span>]
+DATABASES  = {<span class="s">"default"</span>: dj_database_url.config()}
+
+<span class="c"># then shipping is one push — Railway builds &amp; deploys:</span>
+$ git push        <span class="c"># → build → release → live</span></div>
+
+        <p>The shape that mattered most: a tiny unit of work, scaffolded fast, reviewed slowly, shipped immediately. Fast where speed is cheap, slow where mistakes are expensive.</p>
+
+        <h2>What I'd keep next time</h2>
+        <p>Plenty. The <strong>Django + Postgres + Railway</strong> combination is genuinely good for a solo builder — cheap, quick to deploy from a git push, managed database, and few moving parts to maintain alone. I'd reach for it again without hesitating. I'd keep the <strong>AI as a momentum engine</strong> too: for scaffolding, for explaining unfamiliar ground, and as a tireless rubber duck on quiet evenings.</p>
+
+        <p>What I'd keep most deliberately, though, is the <strong>rigour</strong>. Review every line. Be most suspicious of the config and the secrets, not the application logic. Own the architecture and the security calls yourself, because those are the parts that fail loudly and the parts an assistant can't be accountable for. <a href="../p/mails-manager.html">Mails Manager</a> is live, open source, and running on Railway today — not because the AI built it, but because I let it move me fast on the cheap parts while I stayed slow and careful on the expensive ones. That's the balance I'd recommend to any solo builder.</p>
+      </div>
+
+      <div class="post-foot">
+        <div class="by">
+          <img src="https://avatars.githubusercontent.com/u/43398608?v=4" alt="Oleksandr Tverdokhlieb" />
+          <div>
+            <div class="n">Oleksandr Tverdokhlieb</div>
+            <div class="r">Data Analytics Manager · Dubai — building data platforms, automation and applied AI.</div>
+          </div>
+        </div>
+        <div class="post-cta">
+          <a class="primary" href="index.html">More writing →</a>
+          <a href="../p/mails-manager.html">See Mails Manager</a>
+          <a href="https://www.linkedin.com/in/tverd" target="_blank" rel="noopener">Connect on LinkedIn ↗</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-in">
+      <div class="c">© <span data-year></span> Oleksandr Tverdokhlieb · Dubai, UAE</div>
+      <div class="foot-links">
+        <a href="https://www.linkedin.com/in/tverd" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6 1.12 6 0 4.88 0 3.5 0 2.12 1.12 1 2.49 1c1.38 0 2.49 1.12 2.49 2.5zM.24 8h4.5v14H.24V8zm7.5 0h4.31v1.92h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V22h-4.5v-6.6c0-1.57-.03-3.6-2.19-3.6-2.2 0-2.53 1.71-2.53 3.48V22h-4.5V8z"/></svg></a>
+        <a href="https://github.com/scripts-and-tables" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.05-.02-2.06-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22 0 1.61-.01 2.9-.01 3.29 0 .32.21.7.82.58A12.01 12.01 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"/></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/site.js"></script>
+</body>
+</html>

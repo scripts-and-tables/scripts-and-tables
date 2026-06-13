@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Building an in-house data platform that runs the reporting cycle by itself — Oleksandr Tverdokhlieb</title>
+<meta name="description" content="How I replaced a manual daily reporting cycle with one orchestrated platform — ingesting ~100 sources, building a governed warehouse, and delivering reports to email, Power BI, Excel and PDF, with retries and monitoring." />
+<meta name="theme-color" content="#11161f" />
+<link rel="icon" href="https://avatars.githubusercontent.com/u/43398608?v=4" />
+<link rel="stylesheet" href="../assets/site.css?v=12" />
+  <link rel="canonical" href="https://oleks.devapp24.com/blog/automated-data-platform.html" />
+  <meta name="author" content="Oleksandr Tverdokhlieb" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Oleksandr Tverdokhlieb" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Building an in-house data platform that runs the reporting cycle by itself" />
+  <meta property="og:description" content="Replacing a manual daily reporting cycle with one orchestrated platform — ingest, governed warehouse, and multi-channel delivery, with retries and monitoring." />
+  <meta property="og:url" content="https://oleks.devapp24.com/blog/automated-data-platform.html" />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/43398608?v=4" />
+  <meta property="article:published_time" content="2023-10-03" />
+  <meta property="article:author" content="Oleksandr Tverdokhlieb" />
+  <meta property="article:section" content="Data Engineering" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Building an in-house data platform that runs the reporting cycle by itself" />
+  <meta name="twitter:description" content="Replacing a manual daily reporting cycle with one orchestrated platform — ingest, warehouse, multi-channel delivery, retries and monitoring." />
+  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/43398608?v=4" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://oleks.devapp24.com/#person","name":"Oleksandr Tverdokhlieb","jobTitle":"Data Analytics Manager","url":"https://oleks.devapp24.com/","image":"https://avatars.githubusercontent.com/u/43398608?v=4","sameAs":["https://www.linkedin.com/in/tverd","https://github.com/scripts-and-tables"]},{"@type":"BlogPosting","@id":"https://oleks.devapp24.com/blog/automated-data-platform.html#post","headline":"Building an in-house data platform that runs the reporting cycle by itself","description":"How I replaced a manual daily reporting cycle with one orchestrated platform — ingest, governed warehouse, and multi-channel delivery, with retries and monitoring.","datePublished":"2023-10-03","dateModified":"2023-10-03","author":{"@id":"https://oleks.devapp24.com/#person"},"image":"https://avatars.githubusercontent.com/u/43398608?v=4","articleSection":"Data Engineering","keywords":"data engineering, data pipeline, orchestration, data warehouse, Power BI, Python, report automation","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https://oleks.devapp24.com/blog/automated-data-platform.html"},"publisher":{"@id":"https://oleks.devapp24.com/#person"}}]}</script>
+<style>
+  .post-wrap{max-width:760px;}
+  .post-meta{font-family:var(--mono);font-size:13px;color:var(--slate);display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:16px;}
+  .post-meta .cat{color:var(--accent);font-weight:600;}
+  .post-body{margin-top:6px;}
+  .post-body h2{font-family:var(--display);font-weight:600;font-size:23px;letter-spacing:-.012em;margin:34px 0 12px;color:var(--ink);}
+  .post-body h3{font-size:17px;font-weight:600;margin:22px 0 8px;color:var(--ink);}
+  .post-body p{font-size:17px;line-height:1.75;margin:0 0 16px;color:#34393f;}
+  .post-body ul,.post-body ol{margin:2px 0 18px;padding-left:22px;}
+  .post-body li{font-size:17px;line-height:1.7;margin-bottom:8px;color:#34393f;}
+  .post-body strong{color:var(--ink);font-weight:600;}
+  .post-body a{color:var(--accent);text-decoration:underline;text-underline-offset:2px;}
+  .pullquote{border-left:3px solid var(--accent);padding:2px 0 2px 20px;margin:26px 0;font-family:var(--display);
+    font-size:20px;line-height:1.5;color:var(--ink);font-weight:500;}
+  .callout{background:var(--accent-soft);border:1px solid #d9e4fb;border-radius:var(--radius-sm);padding:15px 18px;
+    margin:24px 0;font-size:15.5px;line-height:1.6;color:var(--ink-2);}
+  .post-foot{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);}
+  .post-foot .by{display:flex;align-items:center;gap:12px;}
+  .post-foot .by img{width:44px;height:44px;border-radius:50%;}
+  .post-foot .by .n{font-family:var(--display);font-weight:600;color:var(--ink);}
+  .post-foot .by .r{font-size:13.5px;color:var(--slate);}
+  .post-cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;}
+  .post-cta a{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:600;text-decoration:none;
+    padding:9px 16px;border-radius:10px;border:1px solid var(--line);color:var(--ink);background:var(--card);}
+  .post-cta a.primary{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .post-cta a:hover{border-color:#cfd8e6;}
+  .backlink{display:inline-flex;gap:7px;font-family:var(--mono);font-size:13px;color:var(--slate);text-decoration:none;margin-bottom:4px;}
+  .backlink:hover{color:var(--ink);}
+</style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-in">
+      <a class="nav-brand" href="../index.html"><img src="https://avatars.githubusercontent.com/u/43398608?v=4" alt="" />Oleksandr&nbsp;Tverdokhlieb</a>
+      <div class="nav-spacer"></div>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog/" class="active">Blog</a>
+        <a href="../about.html">About</a>
+        <a href="../cv.html">CV</a>
+        <a href="../ai.html">AI</a>
+        <a href="../training.html">Training</a>
+        <a href="../credentials.html">Learning</a>
+        <a href="../game/">Games</a>
+      </nav>
+      <a class="nav-cta" href="../contact.html">Contact</a>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="nav-mobile">
+      <a href="../index.html">Home</a><a href="../projects.html">Projects</a><a href="../blog/">Blog</a><a href="../about.html">About</a><a href="../cv.html">CV</a><a href="../ai.html">AI</a><a href="../training.html">Training</a><a href="../credentials.html">Learning</a><a href="../game/">Games</a><a href="../contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="wrap page">
+    <article class="post-wrap">
+      <a class="backlink" href="index.html">← All writing</a>
+      <div class="page-head" style="padding-bottom:6px;">
+        <h1 style="margin-top:8px;font-size:clamp(27px,4.6vw,38px);line-height:1.16;">Building an in-house data platform that runs the reporting cycle by itself</h1>
+        <div class="post-meta"><span class="cat">Data Engineering</span><span>3 October 2023</span><span>· 7 min read</span></div>
+      </div>
+
+      <div class="post-body">
+        <p>Most reporting doesn't fail because the analysis is hard. It fails because the <em>plumbing</em> is manual. Someone downloads an export, reconciles it against last month's spreadsheet, refreshes a dashboard, attaches a workbook, and emails the same five people the same report they got yesterday. Multiply that by dozens of reports and you have a team that spends its mornings assembling numbers instead of acting on them.</p>
+
+        <p>So I built the thing that does the plumbing. This is a write-up of an automated data analytics platform I designed, built and operate end to end as Data Analytics Manager at an FMCG distributor — what it does, how it's put together, and the few decisions that made it reliable enough to trust without watching it.</p>
+
+        <h2>The problem, stated plainly</h2>
+        <p>The business produced data in every shape a real company produces: manual Excel uploads, vendor CSV drops, REST APIs, and operational databases. Reporting meant a human stitching those together on a schedule. That's slow, it doesn't scale, and — the part people underrate — it's <strong>fragile in a way nobody notices until it breaks</strong>. A late file or a renamed column quietly corrupts a number, and the first person to spot it is a stakeholder, not the team.</p>
+        <p>The goal wasn't a prettier dashboard. It was to take the entire loop — collect, validate, model, deliver — and make it run on its own, on a schedule, and tell us the moment something looked wrong.</p>
+
+        <h2>The shape of the solution</h2>
+        <p>The platform is an orchestrated pipeline with three stages. Every stage is scheduled, retried on failure, and observable from one console — the same operating model production tools like Apache Airflow use to run workflows reliably.</p>
+        <ul>
+          <li><strong>Ingest</strong> — pull from files, APIs, line-of-business systems and operational databases through one ingestion layer.</li>
+          <li><strong>Consolidate</strong> — validate and clean, then stage and load into a governed warehouse as modelled fact and dimension tables.</li>
+          <li><strong>Deliver</strong> — generate reports from those governed datasets and ship them to wherever each audience lives.</li>
+        </ul>
+
+        <h2>Ingestion and the warehouse</h2>
+        <p>The hardest part of ingestion is that real sources are heterogeneous and badly behaved. The answer was a single ingestion layer that treats files, APIs and databases uniformly, so a new source plugs in through configuration rather than a bespoke script each time.</p>
+        <p>Before anything touches the warehouse it passes data-quality gates — type, range and completeness checks. Rows that fail are <strong>quarantined, not silently dropped</strong>, which matters: a dropped row is an invisible error; a quarantined one is a visible decision. Clean data lands in versioned warehouse tables that become the single, auditable source of truth for every downstream report. Shape the fact and dimension tables once, reuse them everywhere.</p>
+
+        <div class="pullquote">A dropped row is an invisible error. A quarantined row is a visible decision. Design for the second one.</div>
+
+        <h2>Delivery: meet people where they already are</h2>
+        <p>A report nobody opens isn't a report. So rather than force one format, the platform generates from one set of governed datasets and delivers through whatever channel the audience prefers. A single run can email a summary, attach an Excel and a PDF, and refresh a Power BI dataset — no analyst assembling packs by hand.</p>
+        <ul>
+          <li><strong>Email</strong> — scheduled summaries that land before the working day starts.</li>
+          <li><strong>Power BI</strong> — refreshed datasets for the people who live in dashboards.</li>
+          <li><strong>Excel</strong> — workbooks for the people who, reasonably, still want to pivot it themselves.</li>
+          <li><strong>PDF</strong> — fixed documents for records and distribution.</li>
+        </ul>
+
+        <h2>Orchestration and monitoring — the part that earns trust</h2>
+        <p>Automation you can't see is automation you can't trust. Everything runs on a schedule and reports its own health to a built-in web console that shows every pipeline: when it last ran, how long it took, and whether it succeeded. The whole operation is observable at a glance, the way an orchestrator's run grid surfaces a failure the moment it happens.</p>
+        <p>Two design choices did most of the work here:</p>
+        <ul>
+          <li><strong>Idempotent, retryable stages.</strong> A run can fail halfway, retry, and not double-count or corrupt anything. Failure becomes routine and recoverable instead of a fire drill.</li>
+          <li><strong>Graceful degradation.</strong> If a source is late — say an inventory API doesn't respond — the run serves the last good load and flags it, so reports still ship while the team is alerted. Stale-but-flagged beats missing.</li>
+        </ul>
+        <div class="callout">The mindset shift that made this reliable: <strong>treat reporting as a product, not a task.</strong> Products have SLAs, health checks, and alerting. Tasks have a person who remembers to do them. Only one of those scales.</div>
+
+        <h2>What it runs at</h2>
+        <p>In production the platform ingests around <strong>100 data sources every day</strong> and executes roughly <strong>500 pipeline runs per day</strong>, feeding tens of reports across four delivery channels, monitored 24/7. Because every run is validated, scheduled and observed, reporting got both faster <em>and</em> more trustworthy at the same time — which usually pull in opposite directions.</p>
+
+        <h2>If you're attempting the same thing</h2>
+        <p>Three things I'd tell my earlier self:</p>
+        <ul>
+          <li><strong>Validate at the door.</strong> The cheapest place to catch bad data is before it enters the warehouse. Quarantine, don't drop.</li>
+          <li><strong>Make it observable on day one.</strong> A run grid that shows red the instant something breaks is worth more than a marginally cleverer transformation.</li>
+          <li><strong>Decouple delivery from computation.</strong> Compute the dataset once; let email, Excel, PDF and BI all read from it. New channels become config, not code.</li>
+        </ul>
+        <p>The payoff isn't really the time saved, though there's plenty of it. It's that the team's attention moves up the stack — from assembling reports to interpreting them. That's the whole point of analytics, and the plumbing is what frees you to do it.</p>
+      </div>
+
+      <div class="post-foot">
+        <div class="by">
+          <img src="https://avatars.githubusercontent.com/u/43398608?v=4" alt="Oleksandr Tverdokhlieb" />
+          <div>
+            <div class="n">Oleksandr Tverdokhlieb</div>
+            <div class="r">Data Analytics Manager · Dubai — building data platforms, automation and applied AI.</div>
+          </div>
+        </div>
+        <div class="post-cta">
+          <a class="primary" href="../p/data-analytics-platform.html">See the full project →</a>
+          <a href="index.html">More writing</a>
+          <a href="https://www.linkedin.com/in/tverd" target="_blank" rel="noopener">Discuss on LinkedIn ↗</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-in">
+      <div class="c">© <span data-year></span> Oleksandr Tverdokhlieb · Dubai, UAE</div>
+      <div class="foot-links">
+        <a href="https://www.linkedin.com/in/tverd" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6 1.12 6 0 4.88 0 3.5 0 2.12 1.12 1 2.49 1c1.38 0 2.49 1.12 2.49 2.5zM.24 8h4.5v14H.24V8zm7.5 0h4.31v1.92h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V22h-4.5v-6.6c0-1.57-.03-3.6-2.19-3.6-2.2 0-2.53 1.71-2.53 3.48V22h-4.5V8z"/></svg></a>
+        <a href="https://github.com/scripts-and-tables" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.05-.02-2.06-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22 0 1.61-.01 2.9-.01 3.29 0 .32.21.7.82.58A12.01 12.01 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"/></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/site.js"></script>
+</body>
+</html>

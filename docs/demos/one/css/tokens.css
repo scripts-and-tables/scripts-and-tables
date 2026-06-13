@@ -1,0 +1,180 @@
+/* ============================================================
+   One — design tokens (Bootstrap 5 derived)
+   ============================================================ */
+:root {
+  /* brand / theme */
+  --blue:        #0d6efd;
+  --blue-600:    #0b5ed7;
+  --blue-700:    #0a58ca;
+  --blue-300:    #6ea8fe;
+  --blue-100:    #cfe2ff;
+  --blue-050:    #e7f1ff;
+
+  /* tile/accent hues — deepened from stock Bootstrap for an enterprise read */
+  --indigo:      #4f57c4;
+  --purple:      #6b54b8;
+  --pink:        #c64f93;
+  --red:         #c4554d;
+  --orange:      #d4742a;
+  --amber:       #c0871f;
+  --yellow:      #c79a12;
+  --green:       #1f7a52;
+  --teal:        #1f9483;
+  --cyan:        #2a8aa6;
+  --black-tile:  #2b3340;
+  --gray-tile:   #66707c;
+
+  /* grays */
+  --gray-100: #f8f9fa;
+  --gray-200: #e9ecef;
+  --gray-300: #dee2e6;
+  --gray-400: #ced4da;
+  --gray-500: #adb5bd;
+  --gray-600: #6c757d;
+  --gray-700: #495057;
+  --gray-800: #343a40;
+  --gray-900: #212529;
+
+  /* semantic surfaces */
+  --bg:         #ffffff;
+  --canvas:     #f6f8fb;   /* SPA app canvas */
+  --surface:    #ffffff;
+  --surface-2:  #f8f9fa;
+  --border:     #dee2e6;
+  --border-2:   #e9ecef;
+
+  --ink:        #1c2230;   /* headings */
+  --body:       #41464f;
+  --muted:      #6c757d;
+  --faint:      #98a2b3;
+
+  /* subtle status fills */
+  --success-bg: #d1e7dd; --success-ink: #0a3622; --success-fg: #198754;
+  --danger-bg:  #f8d7da; --danger-ink:  #842029; --danger-fg:  #dc3545;
+  --warning-bg: #fff3cd; --warning-ink: #664d03;
+  --info-bg:    #cff4fc; --info-ink:    #055160;
+
+  /* radii + shadow */
+  --r-sm: 6px;
+  --r:    9px;
+  --r-lg: 12px;
+  --r-xl: 16px;
+  --r-pill: 999px;
+
+  --sh-sm: 0 1px 2px rgba(16,24,40,.04);
+  --sh:    0 1px 2px rgba(16,24,40,.05), 0 1px 1px rgba(16,24,40,.03);
+  --sh-md: 0 6px 16px rgba(16,24,40,.07), 0 1px 3px rgba(16,24,40,.05);
+  --sh-lg: 0 16px 40px rgba(16,24,40,.13), 0 4px 10px rgba(16,24,40,.05);
+
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+          "Noto Sans", "Liberation Sans", Arial, sans-serif;
+
+  --nav-h: 64px;
+}
+
+/* ---------- dark mode ---------- */
+.dark {
+  --bg:        #0f1419;
+  --canvas:    #0b0f14;
+  --surface:   #161b22;
+  --surface-2: #1b212b;
+  --border:    #2a313c;
+  --border-2:  #232a34;
+
+  --ink:   #f0f3f8;
+  --body:  #c4ccd6;
+  --muted:  #8b95a3;
+  --faint:  #6b7280;
+
+  --gray-100: #1b212b;
+  --gray-200: #232a34;
+
+  --success-bg:#0f3d2a; --success-ink:#75e0a7; --success-fg:#2dd082;
+  --danger-bg: #4a1d22; --danger-ink: #f5a7af; --danger-fg: #f06b78;
+  --warning-bg:#3d3210; --warning-ink:#ffe08a;
+  --info-bg:   #0c3a44; --info-ink:   #7fe0f0;
+
+  --sh-sm: 0 1px 2px rgba(0,0,0,.4);
+  --sh:    0 1px 3px rgba(0,0,0,.45);
+  --sh-md: 0 4px 12px rgba(0,0,0,.5);
+  --sh-lg: 0 14px 40px rgba(0,0,0,.6);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-size: 16px;
+  line-height: 1.5;
+}
+#root { min-height: 100vh; }
+
+h1,h2,h3,h4 { color: var(--ink); margin: 0; line-height: 1.15; letter-spacing: -.01em; }
+a { color: var(--blue); text-decoration: none; }
+button { font-family: inherit; }
+::selection { background: var(--blue-100); color: var(--ink); }
+
+/* scrollbars */
+*::-webkit-scrollbar { width: 11px; height: 11px; }
+*::-webkit-scrollbar-thumb { background: var(--gray-400); border-radius: 99px; border: 3px solid transparent; background-clip: content-box; }
+.dark *::-webkit-scrollbar-thumb { background: #3a424e; background-clip: content-box; }
+
+/* utility */
+.tm-wordmark { font-weight: 800; letter-spacing: .01em; font-size: 22px; display: inline-flex; align-items: baseline; }
+.tm-wordmark .t { color: var(--blue-300); }
+.tm-wordmark .dot { color: var(--blue-300); margin: 0 1px; }
+.tm-wordmark .nm { color: var(--blue); }
+
+.uplabel { font-size: 12px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
+
+.fadein { animation: fadein .3s ease; }
+@keyframes fadein { from { transform: translateY(6px); } to { transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}
+
+/* ---------- responsive grids & layout ---------- */
+.grid-pinned { display: grid; gap: 16px; grid-template-columns: repeat(4, 1fr); }
+.grid-all    { display: grid; gap: 14px; grid-template-columns: repeat(6, 1fr); }
+.grid-2      { display: grid; gap: 16px; grid-template-columns: 1fr 1fr; }
+
+@media (max-width: 860px) {
+  .grid-all { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 620px) {
+  .tm-page    { padding: 24px 16px 60px !important; }
+  .tm-topnav  { padding: 0 14px !important; }
+  .apps-label { display: none !important; }
+  .grid-pinned { grid-template-columns: repeat(2, 1fr); }
+  .grid-all    { grid-template-columns: repeat(3, 1fr); }
+  .grid-2      { grid-template-columns: 1fr; }
+  h1 { letter-spacing: -.01em; }
+}
+@media (max-width: 440px) {
+  .grid-all { grid-template-columns: repeat(2, 1fr); }
+}
+.grid-po { display: grid; grid-template-columns: minmax(0,1.7fr) minmax(0,1fr); gap: 18px; align-items: start; }
+@media (max-width: 760px) { .grid-po { grid-template-columns: 1fr; } }
+
+.epos-row { transition: background .12s; }
+.epos-row:hover { background: var(--surface-2); }
+.epos-actions { opacity: 0; transition: opacity .12s; }
+.epos-row:hover .epos-actions { opacity: 1; }
+@media (hover: none) { .epos-actions { opacity: 1; } }
+.epos-drawer { background: var(--surface); animation: epos-slide .22s cubic-bezier(.2,.7,.3,1); }
+@keyframes epos-slide { from { transform: translateX(40px); opacity: .4; } to { transform: none; opacity: 1; } }
+
+.cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(216px, 1fr)); gap: 16px; }
+@media (max-width: 620px) { .cat-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 400px) { .cat-grid { grid-template-columns: 1fr; } }
+
+.grid-rows    { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.grid-compact { display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 10px; }
+@media (max-width: 620px) {
+  .grid-rows { grid-template-columns: 1fr; }
+}

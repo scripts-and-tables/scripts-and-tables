@@ -1,0 +1,2566 @@
+[
+ {
+  "id": "data-analytics-platform",
+  "featured": true,
+  "title": "Automated Data Analytics Platform",
+  "description": "Automated data analytics, end to end — ingests a company's files, APIs, and systems, builds the data warehouse, and delivers governed reports on schedule to email, Power BI, Excel, and PDF.",
+  "icon": "bi-diagram-3-fill",
+  "tags": [
+   "private"
+  ],
+  "status": {
+   "label": "Private",
+   "variant": "private"
+  },
+  "stack": [
+   "Python",
+   "PostgreSQL",
+   "Power BI",
+   "REST APIs",
+   "Excel",
+   "Automation"
+  ],
+  "actions": [
+   {
+    "type": "live",
+    "url": "/demos/",
+    "label": "Open demo"
+   },
+   {
+    "type": "pages",
+    "url": "https://scripts-and-tables.github.io/py-autorefresh/"
+   }
+  ],
+  "detail": {
+   "tagline": "Automated data analytics, end to end: it ingests a company's files, APIs, and systems, builds the data warehouse, and delivers governed reports on schedule — to inboxes, Power BI, Excel, and PDF.",
+   "role": "Designed, built, and operate it end-to-end as Data Analytics Manager at an FMCG distributor.",
+   "highlights": [
+    {
+     "value": "~100",
+     "label": "Data sources ingested daily"
+    },
+    {
+     "value": "~500",
+     "label": "Scheduled runs per day"
+    },
+    {
+     "value": "4",
+     "label": "Delivery channels"
+    },
+    {
+     "value": "24/7",
+     "label": "Scheduled & monitored"
+    }
+   ],
+   "sections": [
+    {
+     "heading": "Executive summary",
+     "icon": "bi-bullseye",
+     "accent": "accent-2",
+     "variant": "lead",
+     "body": [
+      "This is the engine behind a company's automated data analytics. It replaces the manual reporting cycle — downloading exports, reconciling spreadsheets, refreshing dashboards, and emailing the same reports to the same people — with a single system that runs the whole loop on its own.",
+      "Every day it pulls data from across the business, consolidates it into a governed data warehouse, and turns it into decision-ready reports that land in the right place at the right time: an inbox, a Power BI dataset, an Excel workbook, or a PDF. Routine reporting that used to take a team's mornings now runs itself — and flags the moment something looks wrong."
+     ]
+    },
+    {
+     "heading": "How it works",
+     "icon": "bi-diagram-3",
+     "accent": "accent",
+     "type": "pipeline",
+     "body": [
+      "The platform is built as an orchestrated pipeline. Each stage is scheduled, retried on failure, and observable from a central console — the same model production data tools like Apache Airflow use to run workflows reliably."
+     ],
+     "stages": [
+      {
+       "title": "Ingest",
+       "icon": "bi-cloud-download-fill",
+       "items": [
+        "Excel & CSV files",
+        "REST & web APIs",
+        "Line-of-business systems",
+        "Operational databases"
+       ]
+      },
+      {
+       "title": "Consolidate",
+       "icon": "bi-database-fill-gear",
+       "items": [
+        "Validation & cleaning rules",
+        "Warehouse staging & load",
+        "Modeled fact / dimension tables"
+       ]
+      },
+      {
+       "title": "Deliver",
+       "icon": "bi-send-fill",
+       "items": [
+        "Scheduled email reports",
+        "Power BI datasets",
+        "Excel workbooks",
+        "PDF documents"
+       ]
+      }
+     ]
+    },
+    {
+     "heading": "Ingestion & the warehouse",
+     "icon": "bi-database-fill-down",
+     "accent": "accent-3",
+     "body": [
+      "Source data arrives in every shape a real business produces — manual Excel uploads, vendor CSV drops, REST APIs, and direct database reads. The platform normalizes all of it before anything touches the warehouse."
+     ],
+     "list": [
+      {
+       "title": "Heterogeneous connectors",
+       "text": "One ingestion layer for files, APIs, and databases, so new sources plug in without bespoke scripts."
+      },
+      {
+       "title": "Validation & data quality",
+       "text": "Type, range, and completeness checks reject or quarantine bad rows before they corrupt downstream reports."
+      },
+      {
+       "title": "Governed warehouse",
+       "text": "Cleaned data lands in versioned warehouse tables — a single, auditable source of truth for every report."
+      },
+      {
+       "title": "Modeled datasets",
+       "text": "Fact and dimension tables are shaped once and reused across reports, email, and Power BI."
+      }
+     ]
+    },
+    {
+     "heading": "Reporting & delivery",
+     "icon": "bi-envelope-paper-fill",
+     "accent": "accent",
+     "type": "email",
+     "body": [
+      "From one set of governed datasets the platform generates and ships reports through whatever channel each audience prefers — no analyst assembling packs by hand. A single run can email a summary, attach an Excel and a PDF, and refresh a Power BI dataset."
+     ],
+     "emails": [
+      {
+       "from": "Data Platform",
+       "to": "Sales Leadership",
+       "time": "06:00",
+       "icon": "bi-envelope-fill",
+       "subject": "Daily Sales Report — Mon 16 Jun",
+       "body": [
+        "Good morning — your daily sales report is ready.",
+        "Revenue is up 4.2% versus the same day last week, with the East region driving most of the lift. Full breakdown in the attached workbook, or open the live dashboard in Power BI.",
+        "Generated automatically at 06:00."
+       ],
+       "attachments": [
+        "Sales_Daily.xlsx",
+        "Sales_Daily.pdf"
+       ]
+      },
+      {
+       "variant": "alert",
+       "from": "Data Platform",
+       "to": "Data Team",
+       "time": "05:34",
+       "icon": "bi-exclamation-triangle-fill",
+       "subject": "Pipeline alert — Inventory feed delayed",
+       "body": [
+        "The Inventory API did not respond during the 05:30 run.",
+        "Today's inventory dataset is being served from the last successful load (yesterday, 05:30), so reports still deliver. The run has been retried automatically and is being monitored.",
+        "No action needed unless the next retry also fails."
+       ]
+      }
+     ],
+     "caption": "Illustrative mock-ups of the automated report and alert emails the platform sends."
+    },
+    {
+     "heading": "Orchestration & monitoring",
+     "icon": "bi-speedometer2",
+     "accent": "accent-2",
+     "type": "console",
+     "body": [
+      "Everything runs on a schedule and reports its own health. A built-in web console shows every pipeline, when it last ran, how long it took, and whether it succeeded — so the whole operation is observable at a glance, the way an orchestrator's run grid surfaces failures the moment they happen."
+     ],
+     "runs": [
+      {
+       "name": "Sales warehouse load",
+       "schedule": "Daily · 05:00",
+       "lastRun": "05:00",
+       "duration": "4m 12s",
+       "status": "success"
+      },
+      {
+       "name": "Daily sales report",
+       "schedule": "Daily · 06:00",
+       "lastRun": "06:00",
+       "duration": "38s",
+       "status": "success"
+      },
+      {
+       "name": "Power BI refresh",
+       "schedule": "Daily · 06:30",
+       "lastRun": "06:30",
+       "duration": "1m 02s",
+       "status": "running"
+      },
+      {
+       "name": "Inventory sync",
+       "schedule": "Every 30 min",
+       "lastRun": "05:30",
+       "duration": "—",
+       "status": "failed",
+       "statusLabel": "retrying"
+      },
+      {
+       "name": "Finance month-end",
+       "schedule": "Monthly · 1st",
+       "lastRun": "—",
+       "duration": "—",
+       "status": "queued"
+      }
+     ],
+     "caption": "Representative view of the monitoring console — pipeline health at a glance."
+    },
+    {
+     "heading": "Tech stack",
+     "icon": "bi-stack",
+     "accent": "accent-3",
+     "chips": [
+      "Python",
+      "PostgreSQL",
+      "SQLite",
+      "Power BI",
+      "Power Automate",
+      "REST APIs",
+      "pandas",
+      "Excel",
+      "PDF generation",
+      "Scheduling"
+     ]
+    },
+    {
+     "heading": "Outcome",
+     "icon": "bi-graph-up-arrow",
+     "accent": "accent-2",
+     "body": [
+      "The platform turns a recurring, manual reporting workload into a hands-off service. Around 100 data sources are ingested and roughly 500 pipeline runs are executed every day, feeding tens of reports across email, Power BI, Excel, and PDF.",
+      "Because every run is validated, scheduled, and monitored, reporting is both faster and more trustworthy — analysts move from assembling reports to acting on them."
+     ]
+    }
+   ]
+  },
+  "category": "Data Engineering",
+  "roleTag": "Built & operated in-house"
+ },
+ {
+  "id": "internal-operations-platform",
+  "featured": true,
+  "title": "Internal Operations Platform",
+  "description": "Secure in-house Django platform that brings the company's internal apps under one roof — automating target submission, distribution, and points submission, with role-based access for every employee.",
+  "icon": "bi-building-fill-gear",
+  "tags": [
+   "private"
+  ],
+  "status": {
+   "label": "Private",
+   "variant": "private"
+  },
+  "stack": [
+   "Django",
+   "Python",
+   "REST API",
+   "Role-based access"
+  ],
+  "detail": {
+   "tagline": "A secure in-house Django platform that brings the company's internal apps under one roof — automating core processes and giving every employee role-appropriate access from a single login.",
+   "role": "Designed and developed the platform and its core apps.",
+   "highlights": [
+    {
+     "value": "In-house",
+     "label": "Built for the company on Django"
+    },
+    {
+     "value": "Role-based",
+     "label": "Access gated by security level"
+    },
+    {
+     "value": "REST API",
+     "label": "Programmatic access & integration"
+    }
+   ],
+   "sections": [
+    {
+     "heading": "Executive summary",
+     "icon": "bi-bullseye",
+     "accent": "accent-2",
+     "variant": "lead",
+     "body": [
+      "The Internal Operations Platform is the company's in-house web application — a single, secure home for the internal apps employees use to get work done. Instead of scattered spreadsheets, email threads, and one-off tools, the day-to-day processes live in one place, behind one login.",
+      "Built on Django, it automates core internal workflows, exposes a REST API for integration, and gives each employee access scoped to their security level. New apps are added to the suite over time, so it grows with the business."
+     ]
+    },
+    {
+     "heading": "What it automates",
+     "icon": "bi-gear-wide-connected",
+     "accent": "accent",
+     "body": [
+      "The platform takes recurring internal processes that used to run on manual forms and follow-ups, and turns them into structured, trackable flows."
+     ],
+     "list": [
+      {
+       "title": "Target submission",
+       "text": "Submit and manage targets through the platform instead of manual spreadsheets and email."
+      },
+      {
+       "title": "Distribution",
+       "text": "Capture and process distribution centrally, in one consistent place."
+      },
+      {
+       "title": "Points submission",
+       "text": "Submit, record, and track points without the manual back-and-forth."
+      }
+     ]
+    },
+    {
+     "heading": "Security & access",
+     "icon": "bi-shield-lock-fill",
+     "accent": "accent-3",
+     "body": [
+      "Because the platform handles internal company data, access control and account security are first-class."
+     ],
+     "list": [
+      {
+       "title": "Role-based access",
+       "text": "Employees see only the apps and data their security level permits."
+      },
+      {
+       "title": "Account security",
+       "text": "Secure login with password reset and forgot-password flows built in."
+      },
+      {
+       "title": "REST API",
+       "text": "A REST API exposes platform capabilities for integration with other systems."
+      }
+     ]
+    },
+    {
+     "heading": "Tech stack",
+     "icon": "bi-stack",
+     "accent": "accent",
+     "chips": [
+      "Django",
+      "Python",
+      "JavaScript",
+      "REST API",
+      "Role-based access control"
+     ]
+    },
+    {
+     "heading": "Outcome",
+     "icon": "bi-graph-up-arrow",
+     "accent": "accent-2",
+     "body": [
+      "The platform consolidates the company's internal tooling into one secure system: employees log in once, see exactly the apps they're cleared for, and run core processes — target submission, distribution, points submission — without manual spreadsheets or email chains.",
+      "Designed as a growing suite, it already references the company's data-orchestration monitoring and will expand to include the in-house workflow engine and project-management apps as dedicated modules."
+     ]
+    }
+   ],
+   "subprojectsHeading": "Apps in the suite",
+   "subprojects": [
+    {
+     "title": "Orchestration monitoring",
+     "icon": "bi-speedometer2",
+     "id": "data-analytics-platform",
+     "description": "Watch the company's data pipelines and report generation in one place — powered by the Automated Data Analytics Platform.",
+     "stack": [
+      "Monitoring",
+      "Pipelines"
+     ]
+    },
+    {
+     "title": "Workflow Automation",
+     "icon": "bi-arrow-repeat",
+     "id": "workflow-automation",
+     "description": "An in-house, Kissflow-style workflow engine that powers submission and approval processes without code — wired into company structure and data.",
+     "stack": [
+      "No-code",
+      "Approvals"
+     ]
+    },
+    {
+     "title": "Project Management",
+     "icon": "bi-kanban-fill",
+     "id": "project-management",
+     "description": "Plan, track, and manage the data analytics team's projects and tasks — a hybrid of agile and traditional, with team statistics.",
+     "stack": [
+      "Projects",
+      "Tracking"
+     ]
+    }
+   ]
+  },
+  "category": "Platforms",
+  "roleTag": "Designed & built in-house",
+  "actions": [
+   {
+    "type": "live",
+    "url": "/demos/",
+    "label": "Open demo"
+   }
+  ]
+ },
+ {
+  "id": "crm-analytics",
+  "featured": true,
+  "title": "CRM Analytics Tool",
+  "description": "End-to-end CRM analytics that turn millions of raw transaction rows into clear monthly decisions — value tiers, lifecycle events, and churn signals driven by transparent, brand-configurable rules.",
+  "icon": "bi-people-fill",
+  "tags": [
+   "opensource"
+  ],
+  "status": {
+   "label": "Open source",
+   "variant": "opensource"
+  },
+  "stack": [
+   "Python",
+   "SQL",
+   "SQLite",
+   "Plotly.js"
+  ],
+  "actions": [
+   {
+    "type": "live",
+    "url": "/demos/",
+    "label": "Open demo"
+   },
+   {
+    "type": "github",
+    "url": "https://github.com/scripts-and-tables/crm-analytics-system"
+   }
+  ],
+  "detail": {
+   "tagline": "An end-to-end customer-analytics system that turns millions of raw transaction rows into monthly segmentation, lifecycle, and churn signals — driven by transparent, brand-configurable rules.",
+   "role": "Designed and built the system, modeled on CRM analytics I delivered for a Nespresso distributor.",
+   "highlights": [
+    {
+     "value": "Millions",
+     "label": "Transaction rows summarized into snapshots"
+    },
+    {
+     "value": "RFMT",
+     "label": "Recency · Frequency · Monetary · Tenure"
+    },
+    {
+     "value": "12-mo",
+     "label": "Monthly segmentation snapshots"
+    },
+    {
+     "value": "Rules-first",
+     "label": "Auditable, brand-configurable logic"
+    }
+   ],
+   "sections": [
+    {
+     "heading": "Executive summary",
+     "icon": "bi-bullseye",
+     "accent": "accent-2",
+     "variant": "lead",
+     "body": [
+      "CRM Analytics is a complete customer-analytics system: feed it raw customer, product, and transaction data — millions of rows — and it returns monthly, decision-ready segmentation, lifecycle, and churn signals for every customer.",
+      "It replaces the usual cycle of exporting CSVs and hand-building one-off pivot tables with a reproducible, auditable pipeline. Every number traces back to a documented rule, so the business and the code agree on exactly what \"a Gold customer\" or \"a churn risk\" means."
+     ]
+    },
+    {
+     "heading": "What it looks like",
+     "type": "uimock",
+     "kind": "analytics",
+     "url": "crm-analytics · monthly snapshot",
+     "kpis": [
+      {
+       "v": "1.2M",
+       "l": "Customers"
+      },
+      {
+       "v": "AED 84M",
+       "l": "12-mo value"
+      },
+      {
+       "v": "18%",
+       "l": "At-risk"
+      },
+      {
+       "v": "4",
+       "l": "RFM tiers"
+      }
+     ],
+     "bars": [
+      40,
+      58,
+      52,
+      74,
+      68,
+      86,
+      80,
+      100
+     ],
+     "segments": [
+      {
+       "name": "Champions · 22%",
+       "color": "#0f9d6e"
+      },
+      {
+       "name": "Loyal · 28%",
+       "color": "#2459d6"
+      },
+      {
+       "name": "At-risk · 18%",
+       "color": "#c2691b"
+      },
+      {
+       "name": "Dormant · 32%",
+       "color": "#6b7280"
+      }
+     ],
+     "caption": "Illustrative mock-up of the CRM analytics dashboard — KPIs, monthly trend and RFM segments."
+    },
+    {
+     "heading": "The analytics it produces",
+     "icon": "bi-graph-up-arrow",
+     "accent": "accent",
+     "body": [
+      "Each month, every customer is scored on independent dimensions built on an RFMT model (Recency, Frequency, Monetary, Tenure), where consumable purchases drive engagement and device or accessory sales are deliberately excluded from the segmentation."
+     ],
+     "list": [
+      {
+       "title": "Value tier",
+       "text": "Five tiers — Diamond, Platinum, Gold, Silver, Bronze — derived from average monthly consumption, order size, and six-month order frequency, with a passive state for inactive customers."
+      },
+      {
+       "title": "Activity status",
+       "text": "Active vs. inactive, based on whether a customer purchased within the trailing 12 months."
+      },
+      {
+       "title": "Lifecycle events",
+       "text": "New, Lost, and Reactivated flags, recomputed every month from cumulative purchase windows."
+      },
+      {
+       "title": "Churn risk",
+       "text": "At-risk high-value customers are flagged for intervention before they lapse."
+      },
+      {
+       "title": "Trends",
+       "text": "Value-tier mix and lifecycle shifts tracked across rolling 12-month periods."
+      }
+     ]
+    },
+    {
+     "heading": "Brand-configurable rules & documentation",
+     "icon": "bi-sliders",
+     "accent": "accent-3",
+     "body": [
+      "The segmentation logic is defined as data, not buried in code. A single business-logic specification is the source of truth for every threshold and definition — the project's principle is \"rules first, code second.\"",
+      "Because the rules are parameterized, each brand can tune its own thresholds — what counts as Diamond, what window defines churn — and the entire history recalculates deterministically. The specification is published as documentation alongside the dashboard, so anyone can audit exactly how a number was produced."
+     ],
+     "list": [
+      {
+       "title": "Business-logic spec",
+       "text": "Segmentation rules and KPI definitions in one authoritative document."
+      },
+      {
+       "title": "Source & schema specs",
+       "text": "Input file formats and the normalized database schema, fully documented."
+      },
+      {
+       "title": "Rendered with the app",
+       "text": "Specs are rendered to HTML and shipped beside the dashboard for easy auditing."
+      }
+     ]
+    },
+    {
+     "heading": "Backend & data pipeline",
+     "icon": "bi-diagram-3",
+     "accent": "accent",
+     "type": "pipeline",
+     "body": [
+      "The backend is a deterministic, three-stage pipeline: raw data goes in, and pre-computed monthly snapshots plus a static dashboard come out — with no server required at runtime."
+     ],
+     "stages": [
+      {
+       "title": "Ingest",
+       "icon": "bi-filetype-csv",
+       "items": [
+        "Customers, products & transactions CSVs",
+        "Or a seeded synthetic-data generator",
+        "Loaded into normalized SQLite tables"
+       ]
+      },
+      {
+       "title": "Compute",
+       "icon": "bi-database-fill-gear",
+       "items": [
+        "Parameterized, set-based SQL",
+        "12-month orchestrator (build.py)",
+        "Per-customer monthly snapshots"
+       ]
+      },
+      {
+       "title": "Publish",
+       "icon": "bi-bar-chart-line-fill",
+       "items": [
+        "Snapshot JSON exports",
+        "Plotly.js + Bootstrap dashboard",
+        "Specs rendered to HTML, screenshots"
+       ]
+      }
+     ]
+    },
+    {
+     "heading": "Built for millions of rows",
+     "icon": "bi-layers-fill",
+     "accent": "accent-2",
+     "body": [
+      "Rather than querying transactions live, the system pre-aggregates them into monthly per-customer snapshots. Millions of transaction rows collapse into compact, query-ready summaries, so the dashboard stays instant no matter how large the underlying history grows.",
+      "Calculations run as plain, set-based SQL over SQLite, and the Python orchestrator replays them month by month to build a full 12-month history in one reproducible build."
+     ]
+    },
+    {
+     "heading": "The dashboard",
+     "icon": "bi-clipboard-data-fill",
+     "accent": "accent-3",
+     "type": "gallery",
+     "body": [
+      "The output is a static, mobile-friendly dashboard: a 12-month value-tier trend, lifecycle-event charts, and headline KPIs such as new customers, churn risk, and high-value accounts at risk — with filtering and CSV export, and no signup or backend to run."
+     ],
+     "images": [
+      {
+       "src": "assets/img/crm-dashboard.png",
+       "alt": "CRM Analytics dashboard with KPI cards, a value-tier donut, lifecycle-event bars, and a per-tier KPI table",
+       "caption": "Live dashboard from the open-source demo — all figures are synthetic."
+      }
+     ]
+    },
+    {
+     "heading": "Tech stack",
+     "icon": "bi-stack",
+     "accent": "accent",
+     "chips": [
+      "Python",
+      "SQL",
+      "SQLite",
+      "pandas",
+      "Plotly.js",
+      "Bootstrap 5",
+      "Jinja2",
+      "GitHub Pages"
+     ]
+    },
+    {
+     "heading": "Outcome",
+     "icon": "bi-trophy-fill",
+     "accent": "accent-2",
+     "body": [
+      "The result is a transparent customer-analytics engine that any team can run on its own data with three commands. Segmentation, lifecycle, and churn signals that once took manual spreadsheet work are produced automatically every month, with every figure traceable to a published rule.",
+      "The whole system is open source and ships with a live, synthetic-data demo — so the logic can be inspected end to end without exposing any real customer data."
+     ]
+    }
+   ]
+  },
+  "category": "Analytics",
+  "roleTag": "Sole developer"
+ },
+ {
+  "id": "subscription-erp",
+  "featured": true,
+  "title": "Subscription ERP",
+  "description": "A functional admin ERP for subscription-style digital services — customers, accounts with primary/secondary hierarchy, orders, payments, a voucher ledger and a sync/API layer, in one clean dual-theme console.",
+  "icon": "bi-box-seam",
+  "tags": [
+   "opensource"
+  ],
+  "status": {
+   "label": "Live demo",
+   "variant": "opensource"
+  },
+  "category": "Platforms",
+  "roleTag": "Designed & built",
+  "stack": [
+   "React",
+   "JavaScript",
+   "REST API",
+   "SaaS UI"
+  ],
+  "actions": [
+   {
+    "type": "live",
+    "url": "/demos/",
+    "label": "Open demo"
+   }
+  ],
+  "detail": {
+   "tagline": "An admin ERP for subscription-style digital services: customers and hierarchical accounts, orders and payments, a voucher/redemption ledger, synced emails and a documented API — in one fast, responsive, dual-theme console.",
+   "role": "Designed and built the full admin UI, navigation and data model.",
+   "highlights": [
+    {
+     "value": "7 modules",
+     "label": "Customers, accounts, orders, payments, ledger, emails, API"
+    },
+    {
+     "value": "Primary / secondary",
+     "label": "Hierarchical account billing"
+    },
+    {
+     "value": "Voucher ledger",
+     "label": "Redemptions, ping in/out, buy-backs, corrections"
+    },
+    {
+     "value": "Dual-theme",
+     "label": "Light & dark, mobile to desktop"
+    }
+   ],
+   "sections": [
+    {
+     "heading": "Executive summary",
+     "icon": "bi-bullseye",
+     "accent": "accent-2",
+     "variant": "lead",
+     "body": [
+      "A complete admin console for a business that sells subscription-style digital services: manage customers, the accounts they own (with a primary → secondary billing hierarchy), their orders and card payments, and a separate ledger for vouchers, redemptions and balance transfers.",
+      "Built as a fully clickable product — real navigation, search, filters, modals, an auth flow with OTP, a synced email inbox, and a documented sync/API layer — with a light/dark theme and layouts that hold from mobile to desktop."
+     ]
+    },
+    {
+     "heading": "What's inside",
+     "list": [
+      {
+       "title": "Customers & accounts",
+       "text": "Searchable customer base; accounts arranged as primary workspaces with attached secondaries that inherit billing."
+      },
+      {
+       "title": "Orders & payments",
+       "text": "Filterable orders with line-item detail; a payments view with gross/fees/net and per-transaction breakdowns."
+      },
+      {
+       "title": "Voucher ledger",
+       "text": "Redemptions, ping in/out, buy-backs and corrections — with VIP vouchers highlighted across the system."
+      },
+      {
+       "title": "Emails & API",
+       "text": "An inbox synced from an external mailbox, plus a documented API with auth, endpoints, webhooks and rate limits."
+      }
+     ]
+    }
+   ]
+  }
+ },
+ {
+  "id": "excel-101-salesmen",
+  "title": "Excel 101 for Salesmen",
+  "description": "Hands-on Excel course for sales professionals — turn raw CRM/ERP sales exports into clean analysis, PivotTables, KPIs, and a one-page dashboard. Free and open source.",
+  "icon": "bi-briefcase-fill",
+  "tags": [
+   "opensource"
+  ],
+  "status": {
+   "label": "Open source",
+   "variant": "opensource"
+  },
+  "stack": [
+   "Excel",
+   "Sales",
+   "Free course"
+  ],
+  "actions": [
+   {
+    "type": "github",
+    "url": "https://github.com/scripts-and-tables/Excel-101"
+   },
+   {
+    "type": "pages",
+    "url": "https://scripts-and-tables.github.io/Excel-101/",
+    "label": "Open course"
+   }
+  ],
+  "detail": {
+   "tagline": "A hands-on Excel course that turns raw sales exports into clear, decision-ready analysis — built for sales professionals who want to read their own numbers without waiting on anyone.",
+   "role": "Created the full course — curriculum, workbooks, and capstone.",
+   "highlights": [
+    {
+     "value": "~5 hrs",
+     "label": "Self-paced, hands-on"
+    },
+    {
+     "value": "5 stages",
+     "label": "Clean → enrich → analyze → pivot → present"
+    },
+    {
+     "value": "Free",
+     "label": "Open source, synthetic data"
+    }
+   ],
+   "sections": [
+    {
+     "heading": "Executive summary",
+     "icon": "bi-bullseye",
+     "accent": "accent-2",
+     "variant": "lead",
+     "body": [
+      "Excel 101 for Salesmen is a dedicated Excel course for sales professionals — account managers, reps, and sales-ops people — who regularly receive raw data exports from CRM or ERP systems and need to turn them into answers on their own.",
+      "It teaches the 80% of Excel a sales team actually uses day to day: cleaning messy exports, enriching them, summarising the numbers, and presenting them. The goal is simple — make each salesperson faster, more independent, and sharper at reading their own performance."
+     ]
+    },
+    {
+     "heading": "What you'll learn",
+     "icon": "bi-list-check",
+     "accent": "accent",
+     "body": [
+      "The course follows one real sales export all the way from a messy file to a finished dashboard, across five practical stages."
+     ],
+     "list": [
+      {
+       "title": "1 · Receive & clean (50 min)",
+       "text": "Table formatting, TRIM/CLEAN, Find & Replace, VALUE/DATEVALUE, text functions, deduplication, and Paste Special."
+      },
+      {
+       "title": "2 · Structure & enrich (45 min)",
+       "text": "VLOOKUP for reference lookups, an XLOOKUP introduction, and the common ways lookups fail."
+      },
+      {
+       "title": "3 · Explore & summarise (60 min)",
+       "text": "AutoFilter, SUBTOTAL, SUMIFS/COUNTIFS/AVERAGEIFS, and core KPIs like net sales, return rate, and AOV."
+      },
+      {
+       "title": "4 · Pivot & rank (40 min)",
+       "text": "PivotTables, grouping, slicers, and building leaderboards."
+      },
+      {
+       "title": "5 · Present & capstone (70 min)",
+       "text": "Conditional formatting, a one-page KPI dashboard, and a capstone assessment."
+      }
+     ]
+    },
+    {
+     "heading": "How it's delivered",
+     "icon": "bi-easel-fill",
+     "accent": "accent-3",
+     "body": [
+      "Everything runs in the browser and in Excel — no signup, no cost."
+     ],
+     "list": [
+      {
+       "title": "Self-paced lessons",
+       "text": "About five hours of step-by-step lessons you take at your own pace."
+      },
+      {
+       "title": "Practice workbooks",
+       "text": "Downloadable starter and solution files for every stage."
+      },
+      {
+       "title": "Quizzes with instant feedback",
+       "text": "In-browser quizzes with automatic scoring to check understanding."
+      },
+      {
+       "title": "Synthetic data",
+       "text": "Fully fictional, confidential-free datasets — safe to share and reuse."
+      },
+      {
+       "title": "Free & compatible",
+       "text": "Free and open source, in English, working in Excel 2016 and later."
+      }
+     ]
+    },
+    {
+     "heading": "Skills & tools",
+     "icon": "bi-stack",
+     "accent": "accent",
+     "chips": [
+      "Excel 2016+",
+      "VLOOKUP / XLOOKUP",
+      "SUMIFS / COUNTIFS",
+      "PivotTables",
+      "Slicers",
+      "Conditional formatting",
+      "KPI dashboards"
+     ]
+    },
+    {
+     "heading": "Outcome",
+     "icon": "bi-trophy-fill",
+     "accent": "accent-2",
+     "body": [
+      "By the end, learners can take a fresh sales export and answer real business questions on their own — the capstone has them work through around eleven, producing KPIs such as net sales, gross profit, return rate, average order value, and quota attainment.",
+      "It's free and open source, so any salesperson or team can pick it up and start turning their own data into decisions."
+     ]
+    }
+   ]
+  },
+  "featured": true,
+  "category": "Courses",
+  "roleTag": "Course creator"
+ },
+ {
+  "id": "mails-manager",
+  "title": "Mails Manager Platform",
+  "description": "Connect multiple email accounts under one unified inbox — manage, search, and reply across providers without juggling separate clients.",
+  "icon": "bi-envelope-paper-fill",
+  "tags": [
+   "opensource",
+   "demo"
+  ],
+  "status": {
+   "label": "Open source",
+   "variant": "opensource"
+  },
+  "stack": [
+   "Python",
+   "IMAP",
+   "SMTP"
+  ],
+  "actions": [
+   {
+    "type": "github",
+    "url": "https://github.com/scripts-and-tables/emails-manager"
+   },
+   {
+    "type": "pages",
+    "url": "https://scripts-and-tables.github.io/emails-manager/"
+   },
+   {
+    "type": "live",
+    "url": "https://m-m.up.railway.app",
+    "label": "Visit live app"
+   }
+  ],
+  "detail": {
+   "tagline": "One inbox for all your email accounts — connect ten, twenty, fifty mailboxes and read everything that arrives from a single place.",
+   "role": "Built end-to-end — full-stack development and live deployment.",
+   "highlights": [
+    {
+     "value": "Live",
+     "label": "Deployed on Railway"
+    },
+    {
+     "value": "Open API",
+     "label": "Programmatic access"
+    },
+    {
+     "value": "MIT",
+     "label": "Open-source"
+    }
+   ],
+   "sections": [
+    {
+     "heading": "Executive summary",
+     "icon": "bi-bullseye",
+     "accent": "accent-2",
+     "variant": "lead",
+     "body": [
+      "Most people — and plenty of small businesses — end up with several email accounts: personal, work, support, signups. Mails Manager brings them together so you can read what's arriving across all of them from one place, instead of logging in and out of separate inboxes all day.",
+      "Add as many accounts as you like — ten, twenty, fifty mailboxes — and see recent mail from every one of them in a single unified inbox. Less context-switching, nothing missed."
+     ]
+    },
+    {
+     "heading": "What it looks like",
+     "type": "uimock",
+     "kind": "inbox",
+     "url": "app.mailsmanager.io",
+     "accounts": [
+      {
+       "name": "Work · Gmail",
+       "color": "#ea4335"
+      },
+      {
+       "name": "Outlook",
+       "color": "#0a66c2"
+      },
+      {
+       "name": "iCloud",
+       "color": "#0f9d6e"
+      },
+      {
+       "name": "Yahoo",
+       "color": "#6001d2"
+      }
+     ],
+     "messages": [
+      {
+       "from": "Stripe",
+       "subject": "Your payout is on the way",
+       "preview": "AED 4,200 will arrive in your account in 2 days.",
+       "time": "09:12",
+       "unread": true
+      },
+      {
+       "from": "GitHub",
+       "subject": "[scripts-and-tables] CI passed",
+       "preview": "All checks have passed on main.",
+       "time": "08:40",
+       "unread": true
+      },
+      {
+       "from": "LinkedIn",
+       "subject": "5 people viewed your profile",
+       "preview": "See who's been looking at your profile this week.",
+       "time": "Yesterday"
+      },
+      {
+       "from": "Noon",
+       "subject": "Order delivered",
+       "preview": "Your order #A1928 has been delivered.",
+       "time": "Mon"
+      }
+     ],
+     "caption": "Illustrative mock-up — every mailbox unified into one inbox."
+    },
+    {
+     "heading": "Technical implementation",
+     "icon": "bi-diagram-3",
+     "accent": "accent",
+     "body": [
+      "Accounts connect through application passwords, so the app links to a mailbox securely without ever handling a user's primary password, and the stored credential is encrypted at rest.",
+      "It's built as a Django application, deployed live on Railway where it runs efficiently, and it exposes an open API for programmatic access."
+     ],
+     "list": [
+      {
+       "title": "Application-password connections",
+       "text": "Each mailbox is linked using an application password, stored encrypted — never in plaintext."
+      },
+      {
+       "title": "Live on Railway",
+       "text": "Deployed and running on Railway as a working, efficient hosted service."
+      },
+      {
+       "title": "Open API",
+       "text": "An API exposes the app's capabilities for integration and automation."
+      },
+      {
+       "title": "Self-hostable & open source",
+       "text": "An MIT-licensed Django app you can also run yourself."
+      }
+     ]
+    },
+    {
+     "heading": "Front-end capabilities",
+     "icon": "bi-window-desktop",
+     "accent": "accent-3",
+     "body": [
+      "From one dashboard you manage every connected mailbox and read across all of them."
+     ],
+     "list": [
+      {
+       "title": "Add accounts",
+       "text": "Connect new mailboxes and manage them all from one place."
+      },
+      {
+       "title": "Unified inbox",
+       "text": "See recent mail from every connected account — 10, 20, 50 mailboxes — in a single view."
+      },
+      {
+       "title": "Read & manage",
+       "text": "Open, mark, and delete messages across accounts without switching clients."
+      },
+      {
+       "title": "Per-account controls",
+       "text": "Test a connection, enable or disable an account, or update its credential."
+      }
+     ]
+    },
+    {
+     "heading": "Tech stack",
+     "icon": "bi-stack",
+     "accent": "accent",
+     "chips": [
+      "Django",
+      "Python",
+      "IMAP",
+      "REST API",
+      "PostgreSQL",
+      "Railway"
+     ]
+    },
+    {
+     "heading": "Outcome",
+     "icon": "bi-trophy-fill",
+     "accent": "accent-2",
+     "body": [
+      "Mails Manager turns the chaos of multiple inboxes into one calm, unified view — deployed, live, and open source.",
+      "It runs on Railway today and is self-hostable for anyone who wants to run their own."
+     ]
+    }
+   ]
+  },
+  "category": "Apps",
+  "roleTag": "Built end-to-end"
+ },
+ {
+  "id": "salesforce-promo-automation",
+  "title": "Salesforce Promo Automation",
+  "description": "Turns supplier promo spreadsheets into validated, Salesforce-ready fact sheets — freeing sales coordinators from days of manual data entry, with built-in validation and audit trails.",
+  "icon": "bi-megaphone-fill",
+  "tags": [
+   "private"
+  ],
+  "status": {
+   "label": "Private",
+   "variant": "private"
+  },
+  "stack": [
+   "Salesforce",
+   "Aforza",
+   "Python",
+   "Automation"
+  ],
+  "actions": [
+   {
+    "type": "pages",
+    "url": "https://scripts-and-tables.github.io/aforza-factsheets-automation/index.html"
+   }
+  ],
+  "detail": {
+   "tagline": "An automation that turns supplier promo spreadsheets into validated, Salesforce-ready fact sheets — freeing sales coordinators from days of manual data entry.",
+   "role": "Designed and built the automation.",
+   "highlights": [
+    {
+     "value": "60+ hrs/wk",
+     "label": "Freed across a coordinator team"
+    },
+    {
+     "value": "~0 errors",
+     "label": "Automated reference lookups"
+    },
+    {
+     "value": "Minutes",
+     "label": "From supplier file to approval-ready"
+    }
+   ],
+   "sections": [
+    {
+     "heading": "Executive summary",
+     "icon": "bi-bullseye",
+     "accent": "accent-2",
+     "variant": "lead",
+     "body": [
+      "At CPG distributors, sales coordinators lose around a third of every week re-typing supplier Excel files into Salesforce — slow, error-prone work that pulls expensive sales talent away from selling.",
+      "This tool closes the gap between the spreadsheet and the system: drop a supplier file in, and it produces a clean, validated, Salesforce-ready promo fact sheet for approval in minutes."
+     ]
+    },
+    {
+     "heading": "How it works",
+     "icon": "bi-ui-checks",
+     "accent": "accent",
+     "body": [
+      "Three steps replace the manual transcription entirely."
+     ],
+     "list": [
+      {
+       "title": "1 · Drop the supplier file",
+       "text": "A coordinator drops an Excel file in a shared folder; the system reads the rows and matches items against the internal stock master in seconds."
+      },
+      {
+       "title": "2 · Review the preview",
+       "text": "A styled summary shows clean records, decision points, and flagged issues — missing SKUs, off-quarter dates, channel problems."
+      },
+      {
+       "title": "3 · Approve & push",
+       "text": "The coordinator resolves flags with brand teams, then batch-publishes to Salesforce."
+      }
+     ]
+    },
+    {
+     "heading": "What it automates",
+     "icon": "bi-gear-wide-connected",
+     "accent": "accent-3",
+     "list": [
+      {
+       "title": "Lookups & mapping",
+       "text": "Barcode-to-SKU lookups, currency conversion, and customer-channel assignment."
+      },
+      {
+       "title": "Validation",
+       "text": "Data validation and error detection before anything reaches Salesforce."
+      },
+      {
+       "title": "Audit trail",
+       "text": "Preserves the original file, intermediates, and timestamped outputs for compliance."
+      },
+      {
+       "title": "Native fit",
+       "text": "Built on existing tools — Salesforce/Aforza, Excel, stock masters, current approval flows — with no new platform to onboard."
+      }
+     ]
+    },
+    {
+     "heading": "Tech stack",
+     "icon": "bi-stack",
+     "accent": "accent",
+     "chips": [
+      "Salesforce / Aforza",
+      "Python",
+      "Excel",
+      "Automation"
+     ]
+    },
+    {
+     "heading": "Outcome",
+     "icon": "bi-trophy-fill",
+     "accent": "accent-2",
+     "body": [
+      "For one customer it freed 60+ hours a week across five coordinators — roughly 3,000 hours a year — and redeployed about 1.5 full-time roles from data entry back to sales and customer relationships, with near-zero transcription errors.",
+      "Supplier files that used to take half a day to process turn into approval-ready fact sheets in minutes."
+     ]
+    }
+   ]
+  },
+  "category": "Automation",
+  "roleTag": "Designed & built in-house"
+ },
+ {
+  "id": "pyleaflet-analyzer",
+  "title": "Leaflet Analyzer",
+  "description": "Retail promotional-intelligence pipeline that turns weekly promo leaflets into structured product, price, and discount data — so pricing and trade teams see competitor moves while they still matter.",
+  "icon": "bi-tags-fill",
+  "tags": [
+   "private"
+  ],
+  "status": {
+   "label": "Private",
+   "variant": "private"
+  },
+  "stack": [
+   "Python",
+   "Vision AI",
+   "SQLite"
+  ],
+  "actions": [
+   {
+    "type": "pages",
+    "url": "https://scripts-and-tables.github.io/py-leaflets/"
+   }
+  ],
+  "detail": {
+   "tagline": "A retail promotional-intelligence pipeline that turns weekly promo leaflets into structured product, price, and discount data — so pricing and trade teams see competitor moves while they still matter.",
+   "role": "Designed and built the extraction pipeline.",
+   "highlights": [
+    {
+     "value": "PDF → rows",
+     "label": "Unstructured leaflets to structured data"
+    },
+    {
+     "value": "5-stage",
+     "label": "Capture → archive → extract → normalize → deliver"
+    },
+    {
+     "value": "Resumable",
+     "label": "Idempotent, restartable pipeline"
+    }
+   ],
+   "sections": [
+    {
+     "heading": "Executive summary",
+     "icon": "bi-bullseye",
+     "accent": "accent-2",
+     "variant": "lead",
+     "body": [
+      "Around 70% of trade-promotion spend fails to pay off, and competitive promo data usually arrives too late to react to. The teams who see competitors' prices first are the ones who rebalance fastest.",
+      "pyLeaflet Analyzer closes that gap: it ingests retailers' weekly promo leaflets and turns them into clean, queryable data — products, brands, current and previous prices, discount percentages, validity dates, and categories — ready for competitive analytics."
+     ]
+    },
+    {
+     "heading": "Technical implementation",
+     "icon": "bi-diagram-3",
+     "accent": "accent",
+     "body": [
+      "The system runs as a five-stage, resumable pipeline. Each stage keeps SQL views of what's left to do, so processing is idempotent — it can stop and restart without redoing work."
+     ],
+     "list": [
+      {
+       "title": "Capture",
+       "text": "Pulls leaflets from aggregator sites and retailer microsites."
+      },
+      {
+       "title": "Archive",
+       "text": "Stores source images and records in SQLite with versioned image storage."
+      },
+      {
+       "title": "Extract",
+       "text": "Claude vision AI with structured outputs parses PDFs and images into normalized rows."
+      },
+      {
+       "title": "Normalize",
+       "text": "Brand and category tagging plus deduplication."
+      },
+      {
+       "title": "Deliver",
+       "text": "Outputs to a database, an API, and dashboards."
+      }
+     ]
+    },
+    {
+     "heading": "Who it's for",
+     "icon": "bi-people-fill",
+     "accent": "accent-3",
+     "body": [
+      "Distribution companies tracking retailer positioning, CPG brand managers auditing promo compliance, pricing teams feeding competitor data into forecasts, and category managers benchmarking merchandising. It currently ships as a self-hostable Python package with UAE retail-aggregator integration; a managed service, multi-region sources, and price-change alerts are on the roadmap."
+     ]
+    },
+    {
+     "heading": "Tech stack",
+     "icon": "bi-stack",
+     "accent": "accent",
+     "chips": [
+      "Python",
+      "Claude vision AI",
+      "SQLite",
+      "REST API",
+      "Structured outputs"
+     ]
+    },
+    {
+     "heading": "Outcome",
+     "icon": "bi-trophy-fill",
+     "accent": "accent-2",
+     "body": [
+      "Promo intelligence that used to take days of manual collation becomes a near-real-time data feed — turning a pile of weekly leaflets into a competitive-pricing dataset teams can actually act on."
+     ]
+    }
+   ]
+  },
+  "category": "Automation",
+  "roleTag": "Designed & built"
+ },
+ {
+  "id": "workflow-automation",
+  "title": "FlowForge",
+  "description": "In-house, Kissflow-style no-code workflow engine — forms, processes, and approvals — wired directly into the company's own structure, datasets, and tools for deeper integration and automation than an off-the-shelf platform.",
+  "icon": "bi-arrow-repeat",
+  "tags": [
+   "private"
+  ],
+  "status": {
+   "label": "Private",
+   "variant": "private"
+  },
+  "stack": [
+   "Django",
+   "Python",
+   "No-code",
+   "REST API"
+  ],
+  "detail": {
+   "tagline": "An in-house, Kissflow-style workflow engine — forms, processes, and approvals without code — but wired directly into the company's own structure, data, and tools for deeper automation than an off-the-shelf platform can offer.",
+   "role": "Designed and built the in-house workflow engine.",
+   "highlights": [
+    {
+     "value": "No-code",
+     "label": "Forms, processes & approvals without code"
+    },
+    {
+     "value": "Native",
+     "label": "Wired into company structure & datasets"
+    },
+    {
+     "value": "In-suite",
+     "label": "Part of the Internal Operations Platform"
+    }
+   ],
+   "sections": [
+    {
+     "heading": "Executive summary",
+     "icon": "bi-bullseye",
+     "accent": "accent-2",
+     "variant": "lead",
+     "body": [
+      "Workflow Automation is the company's in-house answer to tools like Kissflow: a no-code engine for turning manual, form-and-approval-driven processes into structured digital workflows — submissions, sign-offs, routing, and tracking — without writing code for each one.",
+      "The difference is that it isn't a generic SaaS product bolted on from outside. It's built into the Internal Operations Platform, so it speaks the company's own language: its org structure, its security levels, and its live datasets. That lets it automate deeper and integrate tighter than an off-the-shelf tool."
+     ]
+    },
+    {
+     "heading": "What it does",
+     "icon": "bi-ui-checks-grid",
+     "accent": "accent",
+     "body": [
+      "At its core it covers the same ground as a commercial workflow platform — the familiar building blocks teams expect."
+     ],
+     "list": [
+      {
+       "title": "Forms",
+       "text": "Design the inputs for any process with a visual form builder — no code required."
+      },
+      {
+       "title": "Processes & routing",
+       "text": "Define steps and conditional routing so each request flows to the right person automatically."
+      },
+      {
+       "title": "Approvals",
+       "text": "Multi-step approvals and sign-offs with clear ownership at every stage."
+      },
+      {
+       "title": "Boards & tracking",
+       "text": "Track requests on boards and see status, owners, and history at a glance."
+      }
+     ]
+    },
+    {
+     "heading": "Why in-house, not off-the-shelf",
+     "icon": "bi-stars",
+     "accent": "accent-3",
+     "body": [
+      "Commercial tools like Kissflow, Power Automate, and Nintex are powerful but generic — they sit outside the business and integrate through thin connectors. Building it in-house unlocks things those tools can't easily do."
+     ],
+     "list": [
+      {
+       "title": "Deep integration with company structure",
+       "text": "Workflows use the platform's real org and security model — departments, roles, and access levels — instead of a separate, duplicated user directory."
+      },
+      {
+       "title": "Native access to company datasets",
+       "text": "Processes read and write the company's own data warehouse and operational data directly, so workflows act on real, live figures rather than re-keyed copies."
+      },
+      {
+       "title": "Deeper automation",
+       "text": "Because it lives inside the platform, a workflow can trigger and consume the company's data pipelines and other internal apps end to end."
+      },
+      {
+       "title": "Functionality beyond Kissflow",
+       "text": "Custom capabilities tailored to the company's own processes that a generic platform doesn't offer out of the box."
+      }
+     ]
+    },
+    {
+     "heading": "Under the hood",
+     "icon": "bi-diagram-3",
+     "accent": "accent",
+     "body": [
+      "Workflow Automation is a Django module inside the Internal Operations Platform, so it inherits secure login and role-based access automatically and shares the platform's REST API.",
+      "Workflow definitions — forms, steps, routing rules, and approvals — are stored as configurable data rather than hard-coded, so new processes are built by configuration, not redeployment. Because it runs next to the company's datasets, steps can query and update real data as part of a flow."
+     ],
+     "list": [
+      {
+       "title": "Shared platform foundation",
+       "text": "A Django app inside the Internal Operations Platform — one login, role-based access, shared REST API."
+      },
+      {
+       "title": "Config-driven workflows",
+       "text": "Forms, steps, routing, and approvals are defined as data, so processes change without code changes."
+      },
+      {
+       "title": "Direct data access",
+       "text": "Steps can read from and write to the company's warehouse and operational data during a run."
+      }
+     ]
+    },
+    {
+     "heading": "Tech stack",
+     "icon": "bi-stack",
+     "accent": "accent-3",
+     "chips": [
+      "Django",
+      "Python",
+      "No-code workflows",
+      "REST API",
+      "Role-based access",
+      "JavaScript"
+     ]
+    },
+    {
+     "heading": "Outcome",
+     "icon": "bi-trophy-fill",
+     "accent": "accent-2",
+     "body": [
+      "The company gets the convenience of a Kissflow-style no-code workflow tool without the limits of an external platform: processes are built quickly, but they run on the company's real structure and data.",
+      "As a module of the Internal Operations Platform, it powers the platform's submission and approval processes and connects to the wider suite of internal tools."
+     ]
+    }
+   ],
+   "subprojectsHeading": "Part of the suite",
+   "subprojects": [
+    {
+     "title": "Internal Operations Platform",
+     "icon": "bi-building-fill-gear",
+     "id": "internal-operations-platform",
+     "description": "Workflow Automation ships as one of the apps inside the company's secure internal platform.",
+     "stack": [
+      "Parent platform"
+     ]
+    },
+    {
+     "title": "Automated Data Analytics Platform",
+     "icon": "bi-diagram-3-fill",
+     "id": "data-analytics-platform",
+     "description": "Workflows tap into the company's data warehouse and pipelines for deeper, data-aware automation.",
+     "stack": [
+      "Data & pipelines"
+     ]
+    }
+   ]
+  },
+  "category": "Platforms",
+  "roleTag": "Built in-house"
+ },
+ {
+  "id": "project-management",
+  "title": "Planboard",
+  "description": "In-house project-management app for the data analytics team — a hybrid of agile and traditional methods to plan projects, track tasks and rates, and surface team-wide statistics, built into the Internal Operations Platform.",
+  "icon": "bi-kanban-fill",
+  "tags": [
+   "private"
+  ],
+  "status": {
+   "label": "Private",
+   "variant": "private"
+  },
+  "stack": [
+   "Django",
+   "Python",
+   "JavaScript",
+   "REST API"
+  ],
+  "detail": {
+   "tagline": "An in-house project-management app for the data analytics team — a hybrid of agile and traditional methods to plan projects, track tasks and rates, and surface team-wide statistics, built into the Internal Operations Platform.",
+   "role": "Designed and built it as a module of the internal platform.",
+   "highlights": [
+    {
+     "value": "Hybrid",
+     "label": "Agile + traditional in one workflow"
+    },
+    {
+     "value": "Team-wide",
+     "label": "Statistics across the analytics team"
+    },
+    {
+     "value": "In-suite",
+     "label": "Part of the Internal Operations Platform"
+    }
+   ],
+   "sections": [
+    {
+     "heading": "Executive summary",
+     "icon": "bi-bullseye",
+     "accent": "accent-2",
+     "variant": "lead",
+     "body": [
+      "This is the project-management app the data analytics team runs on. Built as part of the Internal Operations Platform, it gives the team one place to plan projects, break them into tasks, track progress, and see how the whole team is performing.",
+      "It deliberately sits between agile and traditional project management: the day-to-day flexibility of boards and tasks, combined with the structure and oversight of classic project planning — so work stays both adaptable and accountable."
+     ]
+    },
+    {
+     "heading": "How it looks — the board",
+     "icon": "bi-kanban",
+     "accent": "accent",
+     "type": "board",
+     "body": [
+      "Active work lives on a board. Each project's tasks move across stages, so anyone can see what's planned, in motion, under review, and done at a glance."
+     ],
+     "columns": [
+      {
+       "title": "Backlog",
+       "cards": [
+        {
+         "title": "Q3 churn model refresh",
+         "tag": "Project",
+         "meta": "AT"
+        },
+        {
+         "title": "Define new value-tier thresholds",
+         "tag": "Spec",
+         "meta": "MK"
+        }
+       ]
+      },
+      {
+       "title": "In progress",
+       "cards": [
+        {
+         "title": "Rebuild sales warehouse load",
+         "tag": "Pipeline",
+         "meta": "AT",
+         "accent": "accent-2"
+        },
+        {
+         "title": "Leaflet OCR accuracy fixes",
+         "tag": "Task",
+         "meta": "MK",
+         "accent": "accent-2"
+        }
+       ]
+      },
+      {
+       "title": "Review",
+       "cards": [
+        {
+         "title": "Daily report email template",
+         "tag": "Report",
+         "meta": "AT",
+         "accent": "accent-3"
+        }
+       ]
+      },
+      {
+       "title": "Done",
+       "cards": [
+        {
+         "title": "Power BI refresh automation",
+         "tag": "Done",
+         "meta": "AT"
+        },
+        {
+         "title": "CRM spec documentation",
+         "tag": "Docs",
+         "meta": "MK"
+        }
+       ]
+      }
+     ],
+     "caption": "Illustrative board — task names are representative."
+    },
+    {
+     "heading": "Agile meets traditional",
+     "icon": "bi-shuffle",
+     "accent": "accent-3",
+     "body": [
+      "The tool blends two ways of working, so the team gets the structure of a plan without losing day-to-day flexibility."
+     ],
+     "list": [
+      {
+       "title": "Agile side",
+       "text": "Boards, tasks, and quick status changes keep execution flexible and visible."
+      },
+      {
+       "title": "Traditional side",
+       "text": "Projects carry plans, ownership, and timelines for structure and oversight."
+      },
+      {
+       "title": "One workflow",
+       "text": "Tasks roll up to projects, and projects roll up to team-level views — no switching tools."
+      }
+     ]
+    },
+    {
+     "heading": "Tracking & team statistics",
+     "icon": "bi-bar-chart-line-fill",
+     "accent": "accent-2",
+     "type": "stats",
+     "body": [
+      "Every task and project feeds a live picture of how the team is doing — workload, progress, and completion rates across people and projects."
+     ],
+     "stats": [
+      {
+       "value": "24",
+       "label": "Active tasks"
+      },
+      {
+       "value": "6",
+       "label": "Projects in flight"
+      },
+      {
+       "value": "82%",
+       "label": "On-time completion"
+      },
+      {
+       "value": "4",
+       "label": "Analysts tracked"
+      }
+     ],
+     "caption": "Representative team-statistics snapshot — figures are illustrative."
+    },
+    {
+     "heading": "Under the hood",
+     "icon": "bi-diagram-3",
+     "accent": "accent",
+     "body": [
+      "The app runs on the same Django foundation as the rest of the Internal Operations Platform, so it inherits secure login and role-based access out of the box — people see the projects and team data their level allows.",
+      "At its core is a relational model: projects contain tasks, tasks carry status, ownership, and progress, and an aggregation layer rolls those up into the rates and team statistics shown on the dashboards. The same data is reachable through the platform's REST API."
+     ],
+     "list": [
+      {
+       "title": "Shared platform foundation",
+       "text": "A Django app inside the Internal Operations Platform — one login, role-based access."
+      },
+      {
+       "title": "Relational project model",
+       "text": "Projects → tasks → status, owner, and progress, stored in a normalized schema."
+      },
+      {
+       "title": "Statistics engine",
+       "text": "Aggregations turn raw task activity into completion rates and team-wide metrics."
+      },
+      {
+       "title": "API access",
+       "text": "Project and task data is available through the platform's REST API."
+      }
+     ]
+    },
+    {
+     "heading": "Tech stack",
+     "icon": "bi-stack",
+     "accent": "accent-3",
+     "chips": [
+      "Django",
+      "Python",
+      "JavaScript",
+      "REST API",
+      "Role-based access"
+     ]
+    },
+    {
+     "heading": "Outcome",
+     "icon": "bi-trophy-fill",
+     "accent": "accent-2",
+     "body": [
+      "The data analytics team plans, runs, and reviews its work in one place instead of scattered spreadsheets and chat threads. Projects and tasks stay visible, progress is tracked as it happens, and team statistics make workload and delivery easy to see.",
+      "As a module of the Internal Operations Platform, it shares the platform's security and API and links back to the wider suite of internal tools."
+     ]
+    }
+   ],
+   "subprojectsHeading": "Part of the suite",
+   "subprojects": [
+    {
+     "title": "Internal Operations Platform",
+     "icon": "bi-building-fill-gear",
+     "id": "internal-operations-platform",
+     "description": "This tool ships as one of the apps inside the company's secure internal platform.",
+     "stack": [
+      "Parent platform"
+     ]
+    }
+   ]
+  },
+  "category": "Platforms",
+  "roleTag": "Built in-house"
+ },
+ {
+  "id": "synthetic-data",
+  "title": "Synthetic data generation",
+  "description": "A configurable generator for realistic, referentially-consistent ERP/retail datasets — millions of rows with seasonality, customer cohorts, promotions, and returns — so you can demo, test, and prototype without touching real data.",
+  "icon": "bi-magic",
+  "tags": [
+   "opensource"
+  ],
+  "status": {
+   "label": "Open source",
+   "variant": "opensource"
+  },
+  "stack": [
+   "Python",
+   "pandas",
+   "numpy",
+   "Faker"
+  ],
+  "actions": [
+   {
+    "type": "github",
+    "url": "https://github.com/scripts-and-tables/erp-synthetic-data-generator"
+   },
+   {
+    "type": "pages",
+    "url": "https://scripts-and-tables.github.io/erp-synthetic-data-generator/"
+   }
+  ],
+  "detail": {
+   "tagline": "A configurable generator for realistic, referentially-consistent ERP/retail datasets — millions of rows with seasonality, customer cohorts, promotions, and returns — so you can demo, test, and prototype without touching real data.",
+   "role": "Sole author — designed the generator and its verification suite.",
+   "highlights": [
+    {
+     "value": "100k+",
+     "label": "Transactions from one sample run"
+    },
+    {
+     "value": "6 tables",
+     "label": "Relational dimensions + facts"
+    },
+    {
+     "value": "Seeded",
+     "label": "Same seed → byte-identical output"
+    }
+   ],
+   "sections": [
+    {
+     "heading": "Executive summary",
+     "icon": "bi-bullseye",
+     "accent": "accent-2",
+     "variant": "lead",
+     "body": [
+      "Good demos, tests, and prototypes need realistic data — but real customer and sales data usually can't be shared, and public datasets are either tiny or behaviourally flat. This generator fills the gap: it produces large, believable ERP/retail datasets that look and behave like the real thing, with none of the privacy or legal baggage.",
+      "It's built for analytics and BI teams, data scientists, and ERP consultants who need production-like data on demand — to build churn models, cohort analyses, dashboards, or sandbox environments."
+     ]
+    },
+    {
+     "heading": "Technical implementation",
+     "icon": "bi-diagram-3",
+     "accent": "accent",
+     "body": [
+      "The generator emits six relational CSV tables — dimensions (items, customers, stores, promotions) and facts (invoice headers, sales lines) — on an AdventureWorks-style schema with full money decomposition and line-item margins."
+     ],
+     "list": [
+      {
+       "title": "Behavioural realism",
+       "text": "Seasonality (Black Friday, Ramadan, Eid → 2–3× spikes), six sticky customer cohorts, inflation-driven price drift, demographics, promotions, and ~3% linked returns."
+      },
+      {
+       "title": "Referential integrity & reconciliation",
+       "text": "Foreign keys validated, returns linked to their originals, and every invoice's totals reconciled to the cent."
+      },
+      {
+       "title": "Fully reproducible",
+       "text": "A single --seed drives all randomness, so the same seed produces byte-identical CSVs every run."
+      },
+      {
+       "title": "Multi-market",
+       "text": "US / GCC / EU locales swap currency, VAT, payment methods, weekends, and holiday calendars."
+      },
+      {
+       "title": "Built for scale",
+       "text": "Streaming CSV writes keep memory flat — 1,000 customers across 11 years (100k+ transactions) in about 70 seconds."
+      }
+     ],
+     "type": "gallery",
+     "images": [
+      {
+       "src": "assets/img/synth-revenue.png",
+       "alt": "Line chart of synthetic monthly revenue across 11 years showing seasonal spikes",
+       "caption": "Generated output: 11 years of monthly revenue (seed 42, 1,000 customers) — note the seasonal spikes."
+      }
+     ]
+    },
+    {
+     "heading": "Using it",
+     "icon": "bi-terminal-fill",
+     "accent": "accent-3",
+     "body": [
+      "It runs as a CLI: pick a seed, market, customer count, and date range, and it streams out the CSVs. A verification script validates integrity and a chart script renders showcase visuals; a pre-built sample dataset is included so you can explore the output immediately — no generation required."
+     ]
+    },
+    {
+     "heading": "Tech stack",
+     "icon": "bi-stack",
+     "accent": "accent",
+     "chips": [
+      "Python 3.10+",
+      "pandas",
+      "numpy",
+      "Faker",
+      "CSV",
+      "CLI"
+     ]
+    },
+    {
+     "heading": "Outcome",
+     "icon": "bi-trophy-fill",
+     "accent": "accent-2",
+     "body": [
+      "The result is production-like retail data on tap: statistically rich across seasonality, cohorts, demographics, promotions, and returns, yet fully synthetic and reproducible.",
+      "Its behaviour model is grounded in established academic frameworks (buy-till-you-die models, discrete-choice theory), and its verification checklist mirrors published synthetic-data evaluation standards — so the realism is principled, not guesswork."
+     ]
+    }
+   ]
+  },
+  "category": "Tooling",
+  "roleTag": "Sole author"
+ },
+ {
+  "id": "wordpress-content-manager",
+  "title": "WordPress Content Manager",
+  "description": "AI-assisted content-refresh tool that audits a WordPress site for stale facts, broken links, and SEO drift — and proposes fixes for human approval, never changing live content by surprise.",
+  "icon": "bi-newspaper",
+  "tags": [
+   "private"
+  ],
+  "status": {
+   "label": "Private",
+   "variant": "private"
+  },
+  "stack": [
+   "WordPress",
+   "Python",
+   "REST API",
+   "AI"
+  ],
+  "actions": [
+   {
+    "type": "pages",
+    "url": "https://scripts-and-tables.github.io/wp-article-cleaner/"
+   }
+  ],
+  "detail": {
+   "tagline": "An AI-assisted content-refresh tool that audits a WordPress site for stale facts, broken links, and SEO drift — and proposes fixes for human approval, never touching live content by surprise.",
+   "role": "Designed and built the tool.",
+   "highlights": [
+    {
+     "value": "~106%",
+     "label": "Lift in organic leads from refreshing posts"
+    },
+    {
+     "value": "3.5×",
+     "label": "Cheaper than writing equivalent new content"
+    },
+    {
+     "value": "Review-first",
+     "label": "No change without human approval"
+    }
+   ],
+   "sections": [
+    {
+     "heading": "Executive summary",
+     "icon": "bi-bullseye",
+     "accent": "accent-2",
+     "variant": "lead",
+     "body": [
+      "Most publishers create faster than they edit, so older articles quietly rot — stale stats, broken links, outdated prices, drifting tone — and slowly lose the search traffic that drives leads. Reviewing an archive by hand doesn't scale.",
+      "WordPress Content Manager audits a site's back catalogue and proposes targeted fixes, so a small team can keep hundreds of articles fresh, consistent, and ranking — without manually re-reading every one."
+     ]
+    },
+    {
+     "heading": "Technical implementation",
+     "icon": "bi-diagram-3",
+     "accent": "accent",
+     "body": [
+      "It connects through the native WordPress REST API using an Application Password — a two-minute setup with no plugin to install and no admin login required; credentials stay local as environment variables.",
+      "Articles are reviewed by a frontier large language model orchestrated through a purpose-built editorial harness and checked against the site's own style guides."
+     ],
+     "list": [
+      {
+       "title": "What it audits",
+       "text": "Outdated stats and pricing, broken internal/external links, tone drift, missing CTAs, SEO issues (titles, meta, alt text, internal links), heading hierarchy, and compliance."
+      },
+      {
+       "title": "Review-first, by design",
+       "text": "It audits and proposes — but never updates content by surprise. Every change needs explicit human approval."
+      },
+      {
+       "title": "Safe scope",
+       "text": "Skips page-builder content (Elementor, Divi) to avoid unsafe edits; approved changes land as drafts or revisions with versioned snapshots."
+      }
+     ]
+    },
+    {
+     "heading": "How it works",
+     "icon": "bi-ui-checks",
+     "accent": "accent-3",
+     "list": [
+      {
+       "title": "1 · Connect",
+       "text": "Link the site via a WordPress Application Password — no plugin."
+      },
+      {
+       "title": "2 · Audit",
+       "text": "The AI reviews articles against your style guides."
+      },
+      {
+       "title": "3 · Review",
+       "text": "Proposed changes appear as clean diffs to accept or reject."
+      },
+      {
+       "title": "4 · Publish",
+       "text": "Approved updates flow back as drafts or revisions, with versioned snapshots."
+      }
+     ]
+    },
+    {
+     "heading": "Tech stack",
+     "icon": "bi-stack",
+     "accent": "accent",
+     "chips": [
+      "Python",
+      "WordPress REST API",
+      "Application Password",
+      "LLM editorial harness"
+     ]
+    },
+    {
+     "heading": "Outcome",
+     "icon": "bi-trophy-fill",
+     "accent": "accent-2",
+     "body": [
+      "Teams refresh old content at a fraction of the cost of writing new — around 3.5× cheaper by one measure — while recovering search traffic that older posts had been bleeding (roughly a 106% lift in organic leads from refreshes).",
+      "Since about 30% of organic traffic typically comes from posts over a year old, keeping the archive healthy is some of the highest-ROI editorial work there is."
+     ]
+    }
+   ]
+  },
+  "category": "Automation",
+  "roleTag": "Designed & built"
+ },
+ {
+  "id": "excel-expert-mo211",
+  "title": "Excel Expert (MO-211) course",
+  "description": "Free, hands-on prep course for the Microsoft Excel Expert (MO-211) certification — modules mapped to every official exam objective, with practice files and solutions.",
+  "icon": "bi-mortarboard-fill",
+  "tags": [
+   "opensource"
+  ],
+  "status": {
+   "label": "Open source",
+   "variant": "opensource"
+  },
+  "stack": [
+   "Excel",
+   "Microsoft 365",
+   "Free course"
+  ],
+  "actions": [
+   {
+    "type": "github",
+    "url": "https://github.com/scripts-and-tables/excel-expert-course-mo-211"
+   },
+   {
+    "type": "pages",
+    "url": "https://scripts-and-tables.github.io/excel-expert-course-mo-211",
+    "label": "Open course"
+   }
+  ],
+  "detail": {
+   "tagline": "A free, hands-on prep course for the Microsoft Excel Expert (MO-211) certification — every exam objective, taught by doing, with practice files and worked solutions.",
+   "role": "Created the full course — curriculum, lessons, and practice files.",
+   "highlights": [
+    {
+     "value": "MO-211",
+     "label": "Microsoft Excel Expert exam"
+    },
+    {
+     "value": "4 areas",
+     "label": "Aligned to official skills measured"
+    },
+    {
+     "value": "Free",
+     "label": "Open source, hands-on"
+    }
+   ],
+   "sections": [
+    {
+     "heading": "Executive summary",
+     "icon": "bi-bullseye",
+     "accent": "accent-2",
+     "variant": "lead",
+     "body": [
+      "Excel Expert (MO-211) is a free, hands-on bootcamp for anyone aiming to earn the Microsoft Office Specialist: Excel Expert credential. It mirrors Microsoft's official 'Skills Measured' outline, so studying the course is studying the exam.",
+      "It's built for professionals who want to prove advanced Excel proficiency with a recognised certification — and genuinely learn the skills, not just memorise them."
+     ]
+    },
+    {
+     "heading": "What you'll learn",
+     "icon": "bi-list-check",
+     "accent": "accent",
+     "body": [
+      "Four modules map one-to-one to the exam's competency areas and their weightings."
+     ],
+     "list": [
+      {
+       "title": "Manage workbook options & settings (10–15%)",
+       "text": "Workbook configuration, references, and preparation settings."
+      },
+      {
+       "title": "Manage & format data (30–35%)",
+       "text": "Advanced data management and formatting — the largest exam area."
+      },
+      {
+       "title": "Advanced formulas & macros (25–30%)",
+       "text": "Complex formula construction and macro basics."
+      },
+      {
+       "title": "Advanced charts & tables (25–30%)",
+       "text": "Sophisticated visualisation with advanced charts and tables."
+      }
+     ]
+    },
+    {
+     "heading": "How it's delivered",
+     "icon": "bi-easel-fill",
+     "accent": "accent-3",
+     "body": [
+      "A text-based, learn-by-doing format — no fluff, lots of practice."
+     ],
+     "list": [
+      {
+       "title": "Modular lessons",
+       "text": "Four folders aligned to the exam, each with step-by-step README lessons."
+      },
+      {
+       "title": "Practice & solution files",
+       "text": "Scenario-based starter .xlsx files with worked solutions."
+      },
+      {
+       "title": "Exam-day prep",
+       "text": "Companion guides on the test environment, keyboard shortcuts, and exam tips."
+      },
+      {
+       "title": "Free & open",
+       "text": "Entirely free and open on GitHub."
+      }
+     ]
+    },
+    {
+     "heading": "Skills & tools",
+     "icon": "bi-stack",
+     "accent": "accent",
+     "chips": [
+      "Excel (Microsoft 365)",
+      "Advanced formulas",
+      "Macros",
+      "Advanced charts",
+      "Data management",
+      "MO-211"
+     ]
+    },
+    {
+     "heading": "Outcome",
+     "icon": "bi-trophy-fill",
+     "accent": "accent-2",
+     "body": [
+      "Work through the four modules and you'll have practised every skill the MO-211 exam measures, with the reference material to walk in confident on test day.",
+      "Pass, and you hold the Microsoft Office Specialist: Excel Expert (Microsoft 365 Apps) credential."
+     ]
+    }
+   ]
+  },
+  "category": "Courses",
+  "roleTag": "Course creator"
+ },
+ {
+  "id": "excel-basics-ua",
+  "title": "Excel basics course (UA)",
+  "description": "Free, beginner-friendly Excel course in Ukrainian — 16 bite-size YouTube lessons that take you from your first cell to lookups and conditional formulas.",
+  "icon": "bi-play-btn-fill",
+  "tags": [
+   "opensource"
+  ],
+  "status": {
+   "label": "Open source",
+   "variant": "opensource"
+  },
+  "stack": [
+   "Excel",
+   "YouTube",
+   "Ukrainian",
+   "Free course"
+  ],
+  "actions": [
+   {
+    "type": "github",
+    "url": "https://github.com/scripts-and-tables/excel-course-ua"
+   },
+   {
+    "type": "pages",
+    "url": "https://scripts-and-tables.github.io/excel-course-ua/",
+    "label": "Open course"
+   }
+  ],
+  "detail": {
+   "tagline": "A free, beginner-friendly Excel course in Ukrainian — 16 bite-size YouTube lessons that take you from your first cell to lookups and conditional formulas.",
+   "role": "Created and presented all 16 lessons.",
+   "highlights": [
+    {
+     "value": "16",
+     "label": "Sequential video lessons"
+    },
+    {
+     "value": "UA",
+     "label": "Taught in Ukrainian"
+    },
+    {
+     "value": "Free",
+     "label": "On YouTube & GitHub"
+    }
+   ],
+   "sections": [
+    {
+     "heading": "Executive summary",
+     "icon": "bi-bullseye",
+     "accent": "accent-2",
+     "variant": "lead",
+     "body": [
+      "Excel basics (UA) is a free Excel course for absolute beginners, taught in Ukrainian — removing the language barrier that keeps many newcomers from getting comfortable with spreadsheets.",
+      "Across sixteen short, sequential lessons it takes a complete beginner from opening Excel for the first time to writing useful formulas and looking up data."
+     ]
+    },
+    {
+     "heading": "What you'll learn",
+     "icon": "bi-list-check",
+     "accent": "accent",
+     "body": [
+      "Sixteen lessons build up in order, from the interface to real formulas."
+     ],
+     "list": [
+      {
+       "title": "Getting started (lessons 1–10)",
+       "text": "What Excel is, core terminology and components, creating and saving files, navigation, and the quick-access tools."
+      },
+      {
+       "title": "Data & formulas (lessons 11–16)",
+       "text": "Entering data, the formula bar and context menus, core functions (SUM, MIN, MAX, AVERAGE), conditional formulas (SUMIF, COUNTIF), and VLOOKUP."
+      }
+     ]
+    },
+    {
+     "heading": "How it's delivered",
+     "icon": "bi-youtube",
+     "accent": "accent-3",
+     "body": [
+      "Each lesson is a short YouTube video paired with practice, free and publicly available."
+     ],
+     "list": [
+      {
+       "title": "Bite-size videos",
+       "text": "Sixteen focused lessons hosted on YouTube."
+      },
+      {
+       "title": "Practical exercises",
+       "text": "Hands-on practice alongside each lesson."
+      },
+      {
+       "title": "Free & open",
+       "text": "Free on YouTube, with the course material on GitHub."
+      }
+     ]
+    },
+    {
+     "heading": "Skills & tools",
+     "icon": "bi-stack",
+     "accent": "accent",
+     "chips": [
+      "Excel",
+      "SUM / AVERAGE",
+      "SUMIF / COUNTIF",
+      "VLOOKUP",
+      "Ukrainian",
+      "Beginner"
+     ]
+    },
+    {
+     "heading": "Outcome",
+     "icon": "bi-trophy-fill",
+     "accent": "accent-2",
+     "body": [
+      "By the end, a complete beginner can confidently navigate Excel, enter and manage data, and use everyday functions — including conditional logic and lookups — in their own spreadsheets."
+     ]
+    }
+   ]
+  },
+  "category": "Courses",
+  "roleTag": "Course creator"
+ },
+ {
+  "id": "dxb-discounts",
+  "title": "Khazm — Dubai Discount Aggregator",
+  "description": "Dubai directory for loyalty and membership discounts — find which venues accept Fazaa, Esaad, Entertainer, Zomato, and more, filtered by area, experience, and discount.",
+  "icon": "bi-tag-fill",
+  "tags": [
+   "private",
+   "demo"
+  ],
+  "status": {
+   "label": "Private",
+   "variant": "private"
+  },
+  "stack": [
+   "Web",
+   "Directory",
+   "Dubai"
+  ],
+  "actions": [
+   {
+    "type": "live",
+    "url": "https://khazm.devapp24.com/",
+    "label": "Visit live app"
+   }
+  ],
+  "detail": {
+   "tagline": "A Dubai directory that shows where your loyalty cards and membership programs actually get you a discount — searchable by venue, area, and deal type.",
+   "role": "Built and deployed the platform.",
+   "highlights": [
+    {
+     "value": "Many programs",
+     "label": "Fazaa, Esaad, Entertainer, Zomato & more"
+    },
+    {
+     "value": "8,000+",
+     "label": "Places with live offers"
+    },
+    {
+     "value": "Live",
+     "label": "Deployed on Railway"
+    }
+   ],
+   "sections": [
+    {
+     "heading": "Executive summary",
+     "icon": "bi-bullseye",
+     "accent": "accent-2",
+     "variant": "lead",
+     "body": [
+      "Dubai residents and visitors often hold a stack of loyalty and membership cards — Fazaa, Esaad, Entertainer, Zomato, ADCB TouchPoints, Skywards — but rarely know where each one actually earns a discount.",
+      "Khazm answers that: a directory of venues across the UAE showing which loyalty programs each one accepts, so people get real value from memberships they already have."
+     ]
+    },
+    {
+     "heading": "What it looks like",
+     "type": "uimock",
+     "kind": "search",
+     "url": "khazm.devapp24.com",
+     "query": "All Dubai offers · Dining",
+     "results": [
+      {
+       "store": "Burger King",
+       "meta": "The Entertainer · Fazaa · ADCB · Dining",
+       "price": "2-for-1",
+       "best": true
+      },
+      {
+       "store": "Caribou Coffee",
+       "meta": "Esaad · Fazaa · ADCB · Dining",
+       "price": "30% off"
+      },
+      {
+       "store": "Asha's, Wafi Mall",
+       "meta": "The Entertainer · ADCB · Dining",
+       "price": "2-for-1"
+      },
+      {
+       "store": "JA Hatta Fort Hotel",
+       "meta": "Elite Club · Fazaa · Hotels & Travel",
+       "price": "35% off"
+      }
+     ],
+     "caption": "Illustrative mock-up — live Dubai offers aggregated across The Entertainer, Fazaa, ADCB TouchPoints, Esaad & more."
+    },
+    {
+     "heading": "What it offers",
+     "icon": "bi-grid-1x2-fill",
+     "accent": "accent",
+     "list": [
+      {
+       "title": "Program coverage",
+       "text": "Aggregates live offers across major loyalty apps — The Entertainer, Fazaa, ADCB TouchPoints, Zomato, Esaad, Supper Club, Elite Club, and more."
+      },
+      {
+       "title": "Smart filtering",
+       "text": "Narrow by program, experience type (brunch, spa, staycation), discount type (% off, BOGO), and minimum discount."
+      },
+      {
+       "title": "Venue browsing",
+       "text": "Hundreds of venues organised by area (Dubai Marina, Downtown, Abu Dhabi…), searchable by brand or location."
+      },
+      {
+       "title": "Clear listings",
+       "text": "Each venue card shows the business, logo, number of offers, and which programs it accepts."
+      }
+     ]
+    },
+    {
+     "heading": "Tech & status",
+     "icon": "bi-stack",
+     "accent": "accent-3",
+     "body": [
+      "Khazm runs live as a working platform, helping users in the UAE turn the cards already in their wallet into real savings."
+     ],
+     "chips": [
+      "Web app",
+      "Search & filtering",
+      "Railway"
+     ]
+    }
+   ]
+  },
+  "category": "Apps",
+  "roleTag": "Built & deployed solo"
+ },
+ {
+  "id": "sukkan",
+  "title": "Property Management Portal",
+  "description": "Free, independent community information platform for residents of Dubai's newer master-planned communities — neighbourhood news, a public document library, construction photo galleries, and an optional private workspace for personal property notes.",
+  "icon": "bi-houses-fill",
+  "tags": [
+   "private",
+   "demo"
+  ],
+  "status": {
+   "label": "Private",
+   "variant": "private"
+  },
+  "stack": [
+   "HTML",
+   "CSS",
+   "JavaScript"
+  ],
+  "actions": [
+   {
+    "type": "live",
+    "url": "https://sukkan.up.railway.app",
+    "label": "Visit live app"
+   }
+  ],
+  "detail": {
+   "tagline": "A free, independent 'reading room' for residents of Dubai's newer master-planned communities — neighbourhood news, shared documents, and a private space to keep personal property notes.",
+   "role": "Built and deployed the platform.",
+   "highlights": [
+    {
+     "value": "Free",
+     "label": "Independent & resident-run"
+    },
+    {
+     "value": "Private",
+     "label": "Personal records visible only to you"
+    },
+    {
+     "value": "Live",
+     "label": "Deployed on Railway"
+    }
+   ],
+   "sections": [
+    {
+     "heading": "Executive summary",
+     "icon": "bi-bullseye",
+     "accent": "accent-2",
+     "variant": "lead",
+     "body": [
+      "Residents moving into Dubai's newer master-planned communities — The Pulse, Greenview, Urbana, Expo City, Saadiyat Reserve — often lack a neutral place to follow what's happening around them.",
+      "Sukkan is a free, independent community information platform: part reading room, part shared archive, with an optional private workspace where residents can keep their own property notes."
+     ]
+    },
+    {
+     "heading": "What it looks like",
+     "type": "uimock",
+     "kind": "dashboard",
+     "url": "portal.sukkan.ae / dashboard",
+     "stats": [
+      {
+       "v": "128",
+       "l": "Units"
+      },
+      {
+       "v": "94%",
+       "l": "Occupied"
+      },
+      {
+       "v": "AED 1.2M",
+       "l": "Monthly rent"
+      },
+      {
+       "v": "7",
+       "l": "Requests"
+      }
+     ],
+     "rows": [
+      {
+       "title": "Marina Tower · 1203",
+       "meta": "Ahmed K. · lease ends Aug 2026",
+       "tag": "Paid",
+       "tagKind": "ok"
+      },
+      {
+       "title": "JVC Residences · 305",
+       "meta": "Sara M. · rent due in 3 days",
+       "tag": "Due soon",
+       "tagKind": "warn"
+      },
+      {
+       "title": "Downtown Loft · 1810",
+       "meta": "Omar R. · overdue 5 days",
+       "tag": "Overdue",
+       "tagKind": "due"
+      },
+      {
+       "title": "Greens Park · 712",
+       "meta": "Vacant · listing active",
+       "tag": "Vacant",
+       "tagKind": "warn"
+      }
+     ],
+     "caption": "Illustrative mock-up of the property dashboard — units, tenants and payment status at a glance."
+    },
+    {
+     "heading": "What it offers",
+     "icon": "bi-grid-1x2-fill",
+     "accent": "accent",
+     "list": [
+      {
+       "title": "News desk",
+       "text": "Infrastructure and community stories written by neighbours."
+      },
+      {
+       "title": "Document library",
+       "text": "Public master plans, brochures, and RTA maps to download."
+      },
+      {
+       "title": "Photo gallery",
+       "text": "Visual records of construction progress across communities."
+      },
+      {
+       "title": "Weekly newsletter",
+       "text": "Optional Sunday recap emails."
+      },
+      {
+       "title": "Private workspace",
+       "text": "A personal account to track your own property details, payments, contacts, and issues — visible only to you."
+      }
+     ]
+    },
+    {
+     "heading": "Scope",
+     "icon": "bi-shield-check",
+     "accent": "accent-3",
+     "body": [
+      "By design, Sukkan keeps a clear boundary: it doesn't store sensitive documents like title deeds, bank statements, or Ejari agreements, and it isn't a broker, marketplace, or payments provider. It's a community information hub with optional, private record-keeping — focused on Dubai's south-corridor communities."
+     ]
+    },
+    {
+     "heading": "Tech & status",
+     "icon": "bi-stack",
+     "accent": "accent-2",
+     "body": [
+      "Sukkan runs live on Railway, giving residents one calm, independent place to stay informed about their neighbourhood and keep their own records in order."
+     ],
+     "chips": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Railway"
+     ]
+    }
+   ]
+  },
+  "category": "Apps",
+  "roleTag": "Built & deployed solo"
+ },
+ {
+  "id": "training-business",
+  "title": "Training Business",
+  "description": "Training and enablement venture currently in build — write-up, case study, and link will appear here once the offer is live.",
+  "icon": "bi-mortarboard",
+  "tags": [
+   "private"
+  ],
+  "status": {
+   "label": "Coming soon",
+   "variant": "soon"
+  },
+  "stack": [
+   "Training",
+   "Enablement"
+  ],
+  "locked": true,
+  "shieldIcon": "bi-hourglass-split",
+  "ariaLabel": "Training Business — coming soon",
+  "category": "Ventures",
+  "roleTag": "Founder"
+ },
+ {
+  "title": "More on GitHub",
+  "description": "Browse all public repositories — scripts, tables, and experiments.",
+  "icon": "bi-github",
+  "tags": [
+   "opensource"
+  ],
+  "status": {
+   "label": "Open source",
+   "variant": "opensource"
+  },
+  "stack": [
+   "All projects"
+  ],
+  "actions": [
+   {
+    "type": "github",
+    "url": "https://github.com/scripts-and-tables",
+    "label": "GitHub",
+    "ariaLabel": "All repositories on GitHub"
+   }
+  ]
+ }
+]

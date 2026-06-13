@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Bringing AI to an analytics team without losing rigour — Oleksandr Tverdokhlieb</title>
+<meta name="description" content="How I roll AI out to a data and analytics team so it raises output without eroding rigour, auditability or judgement — a traffic-light policy, a verification culture, data you don't paste, and measuring value honestly." />
+<meta name="theme-color" content="#11161f" />
+<link rel="icon" href="https://avatars.githubusercontent.com/u/43398608?v=4" />
+<link rel="stylesheet" href="../assets/site.css?v=12" />
+<link rel="stylesheet" href="blog.css?v=1" />
+  <link rel="canonical" href="https://oleks.devapp24.com/blog/ai-fluency-for-teams.html" />
+  <meta name="author" content="Oleksandr Tverdokhlieb" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Oleksandr Tverdokhlieb" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Bringing AI to an analytics team without losing rigour" />
+  <meta property="og:description" content="A practical, non-preachy playbook for giving a data team AI fluency — a traffic-light policy, a verification culture, protecting PII, and measuring value honestly." />
+  <meta property="og:url" content="https://oleks.devapp24.com/blog/ai-fluency-for-teams.html" />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/43398608?v=4" />
+  <meta property="article:published_time" content="2026-04-17" />
+  <meta property="article:author" content="Oleksandr Tverdokhlieb" />
+  <meta property="article:section" content="Data Analytics" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Bringing AI to an analytics team without losing rigour" />
+  <meta name="twitter:description" content="A practical playbook for giving a data team AI fluency without eroding rigour, auditability or judgement." />
+  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/43398608?v=4" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://oleks.devapp24.com/#person","name":"Oleksandr Tverdokhlieb","jobTitle":"Data Analytics Manager","url":"https://oleks.devapp24.com/","image":"https://avatars.githubusercontent.com/u/43398608?v=4","sameAs":["https://www.linkedin.com/in/tverd","https://github.com/scripts-and-tables"]},{"@type":"BlogPosting","@id":"https://oleks.devapp24.com/blog/ai-fluency-for-teams.html#post","headline":"Bringing AI to an analytics team without losing rigour","description":"How to roll AI out to a data and analytics team so it raises output without eroding rigour, auditability or judgement — a traffic-light policy, a verification culture, data you don't paste, and measuring value honestly.","datePublished":"2026-04-17","dateModified":"2026-04-17","author":{"@id":"https://oleks.devapp24.com/#person"},"image":"https://avatars.githubusercontent.com/u/43398608?v=4","articleSection":"Data Analytics","keywords":"AI, leadership, teams, governance, data analytics, AI fluency, verification, PII, prompting","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https://oleks.devapp24.com/blog/ai-fluency-for-teams.html"},"publisher":{"@id":"https://oleks.devapp24.com/#person"}}]}</script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-in">
+      <a class="nav-brand" href="../index.html"><img src="https://avatars.githubusercontent.com/u/43398608?v=4" alt="" />Oleksandr&nbsp;Tverdokhlieb</a>
+      <div class="nav-spacer"></div>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog/" class="active">Blog</a>
+        <a href="../about.html">About</a>
+        <a href="../cv.html">CV</a>
+        <a href="../ai.html">AI</a>
+        <a href="../training.html">Training</a>
+        <a href="../credentials.html">Learning</a>
+        <a href="../game/">Games</a>
+      </nav>
+      <a class="nav-cta" href="../contact.html">Contact</a>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="nav-mobile">
+      <a href="../index.html">Home</a><a href="../projects.html">Projects</a><a href="../blog/">Blog</a><a href="../about.html">About</a><a href="../cv.html">CV</a><a href="../ai.html">AI</a><a href="../training.html">Training</a><a href="../credentials.html">Learning</a><a href="../game/">Games</a><a href="../contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="wrap page">
+    <article class="post-wrap">
+      <a class="backlink" href="index.html">← All writing</a>
+      <div class="page-head" style="padding-bottom:6px;">
+        <h1 style="margin-top:8px;font-size:clamp(27px,4.6vw,38px);line-height:1.16;">Bringing AI to an analytics team without losing rigour</h1>
+        <div class="post-meta"><span class="cat">Data Analytics</span><span>17 April 2026</span><span>· 8 min read</span></div>
+        <div class="post-tags"><span class="tag">AI</span><span class="tag">Leadership</span><span class="tag">Teams</span><span class="tag">Governance</span></div>
+      </div>
+
+      <div class="post-body">
+        <p class="lede">My team writes SQL faster than we did a year ago, drafts documentation in minutes, and gets a running start on analysis we used to begin from a blank page. None of that is the point. The point is that the numbers we hand to the business are still right — and we can still explain how we got them. Here's how I try to keep both true at once.</p>
+
+        <p>There's a quiet trap in rolling AI out to a data team. The tools make everyone faster, and "faster" feels like progress, so it's tempting to declare victory and move on. But an analytics team's product isn't volume — it's trusted numbers and sound judgement. If AI raises throughput while quietly eroding the rigour underneath, you haven't improved the team. You've just industrialised the production of plausible-looking mistakes.</p>
+
+        <p>So when I think about AI for my team, I'm not optimising for "more AI". I'm optimising for better, faster analytics that is <em>still trustworthy</em>. That's a higher bar, and it changes how you introduce the tools. Below is the approach I've settled on — practical, not preachy, and very much a work in progress.</p>
+
+        <h2>Start with a traffic-light policy, not a ban list</h2>
+        <p>The first thing people want from leadership is clarity: where am I encouraged to use this, and where will I get in trouble? A long list of prohibitions kills enthusiasm and pushes usage into the shadows, where you have no visibility at all. So instead of a ban list, I use a simple traffic-light framing — green, amber, red — that anyone can recall without opening a document.</p>
+
+        <div class="fig">
+          <svg viewBox="0 0 720 250" role="img" aria-label="Traffic-light AI policy: green encouraged, amber review required, red off-limits">
+            <defs>
+              <marker id="ar" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#5b626c"/></marker>
+            </defs>
+            <!-- GREEN -->
+            <rect x="14" y="20" width="692" height="64" rx="10" fill="#e4f5ee" stroke="#bfe6d3"/>
+            <circle cx="46" cy="52" r="11" fill="#0f9d6e"/>
+            <text x="74" y="46" font-family="'Space Grotesk',sans-serif" font-size="15" font-weight="700" fill="#15181d">GREEN · go for it</text>
+            <text x="74" y="68" font-family="monospace" font-size="11.5" fill="#5b626c">drafting code · explaining errors · refactoring · docs · brainstorming · synthetic test data</text>
+            <!-- AMBER -->
+            <rect x="14" y="93" width="692" height="64" rx="10" fill="#fbeedd" stroke="#f0d9b8"/>
+            <circle cx="46" cy="125" r="11" fill="#c2691b"/>
+            <text x="74" y="119" font-family="'Space Grotesk',sans-serif" font-size="15" font-weight="700" fill="#15181d">AMBER · use, then verify</text>
+            <text x="74" y="141" font-family="monospace" font-size="11.5" fill="#5b626c">analysis logic · transformations · summaries of real data · anything that becomes a number</text>
+            <!-- RED -->
+            <rect x="14" y="166" width="692" height="64" rx="10" fill="#fdf2f0" stroke="#f0c9c4"/>
+            <circle cx="46" cy="198" r="11" fill="#cc3b30"/>
+            <text x="74" y="192" font-family="'Space Grotesk',sans-serif" font-size="15" font-weight="700" fill="#15181d">RED · off-limits</text>
+            <text x="74" y="214" font-family="monospace" font-size="11.5" fill="#5b626c">pasting PII or client data · prod credentials · final figures shipped without human review</text>
+          </svg>
+          <div class="fig-cap">One policy people can recall from memory: green encouraged, amber needs a human check, red never.</div>
+        </div>
+
+        <p>The lines that matter most are the red ones, and they're deliberately few. Nothing touching personally identifiable information or client data gets pasted into a tool we don't control. No production credentials. And no final number reaches a stakeholder on the strength of an AI output alone — a person has to have checked it. Everything green is genuinely encouraged; I want people leaning into it. Amber is the interesting middle, and it's where the real culture work happens.</p>
+
+        <h2>Every AI output is a draft until a human checks it</h2>
+        <p>If I could install one belief into the team, it would be this: an AI output is a <em>draft</em>, not an answer. It's a confident, well-formatted, occasionally completely wrong first pass that still needs a human to own it. Large language models are built to produce fluent, plausible text, which means a wrong answer arrives with exactly the same confidence as a right one — there's no tell in the tone. The well-documented tendency of these systems to <a href="https://en.wikipedia.org/wiki/Hallucination_(artificial_intelligence)" target="_blank" rel="noopener">generate fluent but false content</a> is precisely why verification can't be optional in an analytics setting.</p>
+
+        <div class="pullquote">The danger isn't that AI is wrong. It's that AI is wrong <em>confidently</em>, in clean prose, at the exact moment you're tired and the deadline is close.</div>
+
+        <p>Verification only sticks if it's cheap and habitual, so we try to make checking part of the workflow rather than a separate chore. A query the model wrote gets run against a known result before it's trusted. A summary of a dataset gets spot-checked against the raw rows. A number gets reconciled against a source the team already trusts. The standard I keep repeating is simple: if you couldn't defend this output to a sceptical colleague — or to an auditor — it isn't finished yet.</p>
+
+        <div class="callout">
+          <span class="lab">The rule that travels well</span>
+          You can use AI to <strong>get to an answer faster</strong>. You cannot use AI to <strong>avoid understanding the answer</strong>. If you can't explain why the output is correct, you don't ship it — you go back and understand it first.
+        </div>
+
+        <h2>Teach two skills: prompting with context, and spotting confident-wrong</h2>
+        <p>"AI fluency" gets thrown around loosely, but for a data team I think it comes down to two concrete, teachable skills — and they pull in opposite directions, which is the point.</p>
+
+        <p>The first is <strong>getting more out of the tool</strong>: giving it real context instead of a one-line ask. The schema, the business definitions, a sample of the data, the actual constraint you're working under. Most disappointing outputs aren't a model failure — they're a context failure. People who learn to front-load context get dramatically better drafts, and they get there faster.</p>
+
+        <p>The second is <strong>distrusting the tool well</strong>: developing a nose for the confident-wrong answer. The fabricated column that sounds like it belongs in the table. The join that silently changes the grain and inflates every total. The statistical claim stated with certainty and zero basis. This is the skill that protects rigour, and it's the harder one to teach — so we practise it deliberately, swapping real examples of plausible-but-wrong outputs we've each caught. Nothing builds healthy scepticism faster than watching a teammate nearly ship a beautifully formatted error.</p>
+
+        <div class="compare">
+          <div class="col good">
+            <h4>Fluency that helps</h4>
+            <ul>
+              <li>Pasting schema, definitions and a data sample as context</li>
+              <li>Asking the model to show its reasoning so you can audit it</li>
+              <li>Treating every output as a draft to verify</li>
+              <li>Using AI to learn a concept faster, then applying judgement</li>
+            </ul>
+          </div>
+          <div class="col bad">
+            <h4>Fluency that hurts</h4>
+            <ul>
+              <li>Copy-pasting output straight into a report unchecked</li>
+              <li>Trusting a number because it "looks about right"</li>
+              <li>Letting the tool define metrics instead of the business</li>
+              <li>Using AI to skip the understanding, not just the typing</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2>Protect the data: know what never goes in the box</h2>
+        <p>The fastest way to turn an AI rollout into an incident is a careless paste. For an analytics team this is the highest-stakes line, because we handle exactly the data that shouldn't leave the building: personal information, client records, commercially sensitive figures. The guidance here can't be a vague "be careful" — it has to be specific enough to act on under pressure.</p>
+
+        <p>Concretely, we don't paste personally identifiable information, customer or client data, credentials, or sensitive business figures into tools that aren't sanctioned and contractually covered for it. When someone genuinely needs the model's help on real data, the move is to work with structure and synthetic stand-ins — share the schema and a few fake rows that mirror the shape, not the live data — or use an approved, enterprise-controlled environment where the data-handling terms are clear. The mindset I try to instil: treat any external tool like a public channel until proven otherwise, and let the privacy and security of the data decide what's allowed, not convenience.</p>
+
+        <h2>A path, not a memo</h2>
+        <p>You don't get a verification culture by announcing one. It comes from giving people a sequence they can actually follow, so here's roughly the order I take a team through.</p>
+
+        <ul class="steps">
+          <li><strong>Publish the traffic lights.</strong> Make green/amber/red unambiguous and short enough to remember. Clarity beats a forty-page policy nobody reads.</li>
+          <li><strong>Make verification the default, not an extra step.</strong> Bake "is this checked?" into reviews and definitions of done, so the question gets asked every time without anyone being the bad cop.</li>
+          <li><strong>Train on context and on catching confident-wrong.</strong> Run real sessions on prompting with context and on spotting plausible errors, using examples from your own work.</li>
+          <li><strong>Lock down data handling.</strong> Be explicit about what never gets pasted and offer a sanctioned alternative, so people aren't choosing between productivity and safety.</li>
+          <li><strong>Measure value honestly.</strong> Track where AI genuinely helped and where it created rework, and be willing to say "this one didn't pay off."</li>
+        </ul>
+
+        <h2>Measure value honestly — including the costs</h2>
+        <p>It's easy to report AI wins and quietly skip the times it sent someone down a wrong path for an afternoon. If you only count the saves, you'll over-trust the tool and slowly lower your guard — which is the exact opposite of what an analytics team needs. So I try to keep the scoreboard honest: where did AI clearly speed us up, where did it create rework, and where did a near-miss get caught only because someone verified properly? That last column isn't a failure of the policy. It's the policy working as designed, and it's worth celebrating as loudly as the wins.</p>
+
+        <p>The honest accounting also keeps expectations grounded. Some tasks get dramatically faster with AI; others barely move, or get slower once you factor in the checking. Naming that out loud protects the team from the hype cycle and from each other's FOMO. We adopt the tool where it earns its place and we're relaxed about the places it doesn't.</p>
+
+        <h2>The goal was never "more AI"</h2>
+        <p>If I do this well, the team won't talk much about AI at all. It'll just be another capable tool in the kit — used heavily where it helps, set aside where it doesn't, and never trusted blindly. The deliverables that leave my team will be faster to produce and exactly as defensible as they were before: clean numbers, clear lineage, sound judgement, a human who can stand behind every figure.</p>
+
+        <p>That's the whole game. Not more AI — better, faster, still-trustworthy analytics. The rigour was always the product. AI is just a faster way to get there, as long as you never let it become a faster way to be wrong.</p>
+      </div>
+
+      <div class="post-foot">
+        <div class="by">
+          <img src="https://avatars.githubusercontent.com/u/43398608?v=4" alt="Oleksandr Tverdokhlieb" />
+          <div>
+            <div class="n">Oleksandr Tverdokhlieb</div>
+            <div class="r">Data Analytics Manager · Dubai — building data platforms, automation and applied AI.</div>
+          </div>
+        </div>
+        <div class="post-cta">
+          <a class="primary" href="index.html">More writing →</a>
+          <a href="../credentials.html">My learning</a>
+          <a href="https://www.linkedin.com/in/tverd" target="_blank" rel="noopener">Connect on LinkedIn ↗</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-in">
+      <div class="c">© <span data-year></span> Oleksandr Tverdokhlieb · Dubai, UAE</div>
+      <div class="foot-links">
+        <a href="https://www.linkedin.com/in/tverd" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6 1.12 6 0 4.88 0 3.5 0 2.12 1.12 1 2.49 1c1.38 0 2.49 1.12 2.49 2.5zM.24 8h4.5v14H.24V8zm7.5 0h4.31v1.92h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V22h-4.5v-6.6c0-1.57-.03-3.6-2.19-3.6-2.2 0-2.53 1.71-2.53 3.48V22h-4.5V8z"/></svg></a>
+        <a href="https://github.com/scripts-and-tables" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.05-.02-2.06-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22 0 1.61-.01 2.9-.01 3.29 0 .32.21.7.82.58A12.01 12.01 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"/></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/site.js"></script>
+</body>
+</html>

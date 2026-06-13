@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Arcade — Oleksandr Tverdokhlieb</title>
+<meta name="description" content="A tiny arcade of data-analytics themed browser games — Excel Invaders, Excel Ping Pong and Deadline Dash. Plain JavaScript, no dependencies, built by Oleksandr Tverdokhlieb." />
+<meta name="theme-color" content="#0c1018" />
+<link rel="icon" href="https://avatars.githubusercontent.com/u/43398608?v=4" />
+<link rel="canonical" href="https://oleks.devapp24.com/game/" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Arcade — data-analytics browser games" />
+<meta property="og:description" content="Excel Invaders, Excel Ping Pong & Deadline Dash. Plain-JS browser games with a data twist." />
+<meta property="og:url" content="https://oleks.devapp24.com/game/" />
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/43398608?v=4" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0c1018; --panel:#121826; --ink:#eef2f7; --ink-2:#9aa6b8;
+    --accent:#3b6fe0; --green:#22b07a; --amber:#e0a13b; --red:#e0584c;
+    --line:rgba(255,255,255,.10);
+    --display:'Space Grotesk',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{min-height:100%;}
+  body{ background:radial-gradient(900px 520px at 50% -10%, #1a2440 0%, transparent 60%), var(--bg);
+    color:var(--ink); font-family:var(--display); -webkit-font-smoothing:antialiased; min-height:100vh; }
+  a{color:inherit; text-decoration:none;}
+  .top{ display:flex; align-items:center; gap:12px; padding:12px 16px; border-bottom:1px solid var(--line);
+    background:rgba(10,13,20,.7); backdrop-filter:blur(8px); }
+  .brand{display:flex;align-items:center;gap:9px;font-weight:600;font-size:14px;letter-spacing:-.01em;}
+  .brand img{width:26px;height:26px;border-radius:7px;}
+  .brand .glyph{font-family:var(--mono);font-weight:700;color:var(--green);}
+  .top .sp{flex:1;}
+  .top a.lk{ font-family:var(--mono); font-size:12px; color:var(--ink-2);
+    padding:6px 11px; border:1px solid var(--line); border-radius:999px; }
+  .top a.lk:hover{color:var(--ink);border-color:rgba(255,255,255,.25);}
+
+  .wrap{max-width:920px; margin:0 auto; padding:40px 20px 64px;}
+  .head{ text-align:center; margin-bottom:32px; }
+  .eyebrow{ font-family:var(--mono); font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--green); }
+  .head h1{ font-size:clamp(28px,6vw,44px); font-weight:700; letter-spacing:-.02em; margin:10px 0 8px; }
+  .head p{ color:var(--ink-2); font-family:var(--mono); font-size:13.5px; max-width:60ch; margin:0 auto; line-height:1.6; }
+
+  .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  .card{ background:linear-gradient(180deg,#141b2b,#0e1422); border:1px solid var(--line);
+    border-radius:16px; overflow:hidden; display:flex; flex-direction:column;
+    transition:transform .15s ease, border-color .15s ease, box-shadow .15s ease; }
+  .card:hover{ transform:translateY(-4px); border-color:rgba(255,255,255,.22);
+    box-shadow:0 18px 40px rgba(0,0,0,.4); }
+  .art{ height:128px; position:relative; display:grid; place-items:center; overflow:hidden; }
+  .art .ico{ font-size:46px; filter:drop-shadow(0 6px 14px rgba(0,0,0,.4)); }
+  .art.invaders{ background:radial-gradient(120px 80px at 50% 120%, rgba(34,176,122,.30), transparent 70%), #0c1422; }
+  .art.pong{ background:radial-gradient(120px 80px at 50% 120%, rgba(224,161,59,.26), transparent 70%), #0c1422; }
+  .art.runner{ background:radial-gradient(120px 80px at 50% 120%, rgba(59,111,224,.30), transparent 70%), #0c1422; }
+  .card .body{ padding:16px 18px 18px; display:flex; flex-direction:column; gap:6px; flex:1; }
+  .card h2{ font-size:18px; font-weight:700; letter-spacing:-.01em; }
+  .card .desc{ color:var(--ink-2); font-size:13px; font-family:var(--mono); line-height:1.55; flex:1; }
+  .card .meta{ display:flex; align-items:center; justify-content:space-between; margin-top:8px; }
+  .card .stat{ font-family:var(--mono); font-size:11.5px; color:var(--ink-2); }
+  .card .stat b{ color:var(--green); }
+  .card .play{ font-family:var(--display); font-weight:600; font-size:13px; color:#06281c;
+    background:var(--green); padding:8px 16px; border-radius:9px; }
+  .card.pong .play{ background:var(--amber); color:#2a1c04; }
+  .card.runner .play{ background:var(--accent); color:#fff; }
+
+  .foot{ text-align:center; margin-top:34px; font-family:var(--mono); font-size:12px; color:var(--ink-2); line-height:1.7; }
+  .foot a{ color:var(--ink); border-bottom:1px solid var(--line); }
+
+  @media (max-width:720px){ .grid{ grid-template-columns:1fr; max-width:420px; margin:0 auto; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a class="brand" href="../index.html">
+    <img src="https://avatars.githubusercontent.com/u/43398608?v=4" alt="" />
+    <span class="glyph">▸▸</span><span>Oleksandr&nbsp;Tverdokhlieb</span>
+  </a>
+  <span class="sp"></span>
+  <a class="lk" href="../projects.html">← Projects</a>
+</header>
+
+<main class="wrap">
+  <div class="head">
+    <span class="eyebrow">Coffee-break arcade</span>
+    <h1>Three little data games</h1>
+    <p>Built for fun in plain JavaScript — no engine, no dependencies, all running in your browser. A data analyst's idea of a coffee break.</p>
+  </div>
+
+  <div class="grid">
+    <a class="card invaders" href="invaders.html">
+      <div class="art invaders"><span class="ico">👾</span></div>
+      <div class="body">
+        <h2>Excel Invaders</h2>
+        <div class="desc">Defend the data warehouse — blast rogue spreadsheets (#REF!, NULL, dupes) before they reach production.</div>
+        <div class="meta"><span class="stat">Best <b id="sInv">0</b></span><span class="play">Play ▸</span></div>
+      </div>
+    </a>
+
+    <a class="card pong" href="pong.html">
+      <div class="art pong"><span class="ico">🏓</span></div>
+      <div class="body">
+        <h2>Excel Ping Pong</h2>
+        <div class="desc">Rally spreadsheet cells against PIVOT BOT. First to 7 reconciles the books.</div>
+        <div class="meta"><span class="stat">Longest rally <b id="sPong">0</b></span><span class="play">Play ▸</span></div>
+      </div>
+    </a>
+
+    <a class="card runner" href="runner.html">
+      <div class="art runner"><span class="ico">🏃</span></div>
+      <div class="body">
+        <h2>Deadline Dash</h2>
+        <div class="desc">Sprint to ship — leap the piles of Excel & PowerPoint files and duck the flying reply-all.</div>
+        <div class="meta"><span class="stat">Best <b id="sRun">0</b></span><span class="play">Play ▸</span></div>
+      </div>
+    </a>
+  </div>
+
+  <div class="foot">
+    Pure front-end · <span style="color:var(--ink)">&lt;canvas&gt;</span> + vanilla JS · scores saved locally on your device.<br/>
+    Part of <a href="../index.html">oleks.devapp24.com</a> — back to the <a href="../projects.html">portfolio</a>.
+  </div>
+</main>
+
+<script>
+  function show(id,key){
+    var v=parseInt(localStorage.getItem(key)||"0",10)||0;
+    document.getElementById(id).textContent=v.toLocaleString();
+  }
+  show("sInv","excelInvadersHi");
+  show("sPong","excelPongRally");
+  show("sRun","deadlineDashBest");
+</script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>A practical process for working with AI, day to day — Oleksandr Tverdokhlieb</title>
+<meta name="description" content="The repeatable loop I use with AI tools day to day — frame the task, delegate the right slice, verify rigorously, then iterate or escalate. Verification is the whole game: AI multiplies a good process and amplifies a sloppy one." />
+<meta name="theme-color" content="#11161f" />
+<link rel="icon" href="https://avatars.githubusercontent.com/u/43398608?v=4" />
+<link rel="stylesheet" href="../assets/site.css?v=12" />
+<link rel="stylesheet" href="blog.css?v=1" />
+  <link rel="canonical" href="https://oleks.devapp24.com/blog/a-practical-process-for-working-with-ai.html" />
+  <meta name="author" content="Oleksandr Tverdokhlieb" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Oleksandr Tverdokhlieb" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="A practical process for working with AI, day to day" />
+  <meta property="og:description" content="The repeatable loop I use with AI tools — frame, delegate, verify, iterate. Verification is the whole game: AI multiplies a good process and amplifies a sloppy one." />
+  <meta property="og:url" content="https://oleks.devapp24.com/blog/a-practical-process-for-working-with-ai.html" />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/43398608?v=4" />
+  <meta property="article:published_time" content="2025-11-06" />
+  <meta property="article:author" content="Oleksandr Tverdokhlieb" />
+  <meta property="article:section" content="AI" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="A practical process for working with AI, day to day" />
+  <meta name="twitter:description" content="The repeatable loop I use with AI tools — frame, delegate, verify, iterate." />
+  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/43398608?v=4" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://oleks.devapp24.com/#person","name":"Oleksandr Tverdokhlieb","jobTitle":"Data Analytics Manager","url":"https://oleks.devapp24.com/","image":"https://avatars.githubusercontent.com/u/43398608?v=4","sameAs":["https://www.linkedin.com/in/tverd","https://github.com/scripts-and-tables"]},{"@type":"BlogPosting","@id":"https://oleks.devapp24.com/blog/a-practical-process-for-working-with-ai.html#post","headline":"A practical process for working with AI, day to day","description":"The repeatable loop I use with AI tools — frame, delegate, verify, iterate. Verification is the whole game: AI multiplies a good process and amplifies a sloppy one.","datePublished":"2025-11-06","dateModified":"2025-11-06","author":{"@id":"https://oleks.devapp24.com/#person"},"image":"https://avatars.githubusercontent.com/u/43398608?v=4","articleSection":"AI","keywords":"AI, workflow, productivity, verification, prompting, data analytics, SQL, automation","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https://oleks.devapp24.com/blog/a-practical-process-for-working-with-ai.html"},"publisher":{"@id":"https://oleks.devapp24.com/#person"}}]}</script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-in">
+      <a class="nav-brand" href="../index.html"><img src="https://avatars.githubusercontent.com/u/43398608?v=4" alt="" />Oleksandr&nbsp;Tverdokhlieb</a>
+      <div class="nav-spacer"></div>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog/" class="active">Blog</a>
+        <a href="../about.html">About</a>
+        <a href="../cv.html">CV</a>
+        <a href="../ai.html">AI</a>
+        <a href="../training.html">Training</a>
+        <a href="../credentials.html">Learning</a>
+        <a href="../game/">Games</a>
+      </nav>
+      <a class="nav-cta" href="../contact.html">Contact</a>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="nav-mobile">
+      <a href="../index.html">Home</a><a href="../projects.html">Projects</a><a href="../blog/">Blog</a><a href="../about.html">About</a><a href="../cv.html">CV</a><a href="../ai.html">AI</a><a href="../training.html">Training</a><a href="../credentials.html">Learning</a><a href="../game/">Games</a><a href="../contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="wrap page">
+    <article class="post-wrap">
+      <a class="backlink" href="index.html">← All writing</a>
+      <div class="page-head" style="padding-bottom:6px;">
+        <h1 style="margin-top:8px;font-size:clamp(27px,4.6vw,38px);line-height:1.16;">A practical process for working with AI, day to day</h1>
+        <div class="post-meta"><span class="cat">AI</span><span>6 November 2025</span><span>· 7 min read</span></div>
+        <div class="post-tags"><span class="tag">AI</span><span class="tag">Workflow</span><span class="tag">Productivity</span><span class="tag">Verification</span></div>
+      </div>
+
+      <div class="post-body">
+        <p class="lede">Most of the advice about working with AI is either breathless ("it changes everything") or dismissive ("it just makes things up"). Neither is much use at 9am when you have a report to build. So here's the unglamorous middle: the actual loop I run, dozens of times a day, when I hand a task to an AI tool and get something useful back.</p>
+
+        <p>I'm a data analytics manager, not a prompt influencer. I use AI the way I use any other tool on my bench — for drafting SQL, sketching a Python script, summarising a messy dataset, rubber-ducking a tricky join. Over time the way I do that has settled into a small, boring, repeatable process. It isn't tied to any one product. It works the same whether I'm in a chat window, an IDE assistant, or a notebook. And the single most important part of it is the part most people skip.</p>
+
+        <h2>The loop: frame, delegate, verify, iterate</h2>
+        <p>The whole thing is a cycle, not a one-shot. You frame the task and give it context. You delegate the right <em>slice</em> — not the whole job. You verify the output rigorously. Then you either iterate on the same loop or escalate to a human. Round and round, in minutes.</p>
+
+        <div class="fig">
+          <svg viewBox="0 0 720 300" role="img" aria-label="The working loop: frame, delegate, verify, iterate, repeating as a cycle">
+            <defs>
+              <marker id="ar" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#5b626c"/></marker>
+            </defs>
+            <!-- four nodes around a cycle -->
+            <!-- Frame (top) -->
+            <rect x="285" y="20" width="150" height="58" rx="10" fill="#eaf0fd" stroke="#cfd8e6"/>
+            <text x="360" y="44" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="15" font-weight="700" fill="#2459d6">1 · Frame</text>
+            <text x="360" y="63" text-anchor="middle" font-family="monospace" font-size="11" fill="#5b626c">task + context</text>
+
+            <!-- Delegate (right) -->
+            <rect x="540" y="121" width="150" height="58" rx="10" fill="#fff" stroke="#e6e4df"/>
+            <text x="615" y="145" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="15" font-weight="700" fill="#15181d">2 · Delegate</text>
+            <text x="615" y="164" text-anchor="middle" font-family="monospace" font-size="11" fill="#5b626c">the right slice</text>
+
+            <!-- Verify (bottom) -->
+            <rect x="285" y="222" width="150" height="58" rx="10" fill="#e4f5ee" stroke="#bfe6d3"/>
+            <text x="360" y="246" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="15" font-weight="700" fill="#0f9d6e">3 · Verify</text>
+            <text x="360" y="265" text-anchor="middle" font-family="monospace" font-size="11" fill="#5b626c">read · test · check</text>
+
+            <!-- Iterate (left) -->
+            <rect x="30" y="121" width="150" height="58" rx="10" fill="#fbeedd" stroke="#f0d9b8"/>
+            <text x="105" y="145" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="15" font-weight="700" fill="#c2691b">4 · Iterate</text>
+            <text x="105" y="164" text-anchor="middle" font-family="monospace" font-size="11" fill="#5b626c">or escalate</text>
+
+            <!-- arrows around the cycle (clockwise) -->
+            <path d="M438 56 Q540 70 580 118" fill="none" stroke="#5b626c" stroke-width="1.5" marker-end="url(#ar)"/>
+            <path d="M580 182 Q540 230 438 244" fill="none" stroke="#5b626c" stroke-width="1.5" marker-end="url(#ar)"/>
+            <path d="M282 244 Q180 230 140 182" fill="none" stroke="#5b626c" stroke-width="1.5" marker-end="url(#ar)"/>
+            <path d="M140 118 Q180 70 282 56" fill="none" stroke="#5b626c" stroke-width="1.5" marker-end="url(#ar)"/>
+
+            <text x="360" y="155" text-anchor="middle" font-family="monospace" font-size="11.5" fill="#8b939d">repeat until it holds up</text>
+          </svg>
+          <div class="fig-cap">A loop, not a one-shot. Most of the value lives on arrow three.</div>
+        </div>
+
+        <h2>1 — Frame: spend the context up front</h2>
+        <p>A vague request gets a vague answer that looks confident. The fix is cheap: say what you're actually trying to do, what the data looks like, and what "good" means. When I ask for SQL, I don't write "give me top customers." I paste the relevant table and column names, say which dialect (BigQuery vs. Postgres matters), define the metric — is "top" by revenue, by margin, by order count? — and name the edge cases I already know will bite, like refunds or test accounts.</p>
+        <p>Framing well is the cheapest leverage in the whole loop. Two extra sentences of context routinely save me three rounds of correction. It's the same discipline as writing a good ticket for a colleague: the clearer the brief, the less rework.</p>
+
+        <h2>2 — Delegate: hand over a slice, not the job</h2>
+        <p>The instinct is to delegate the whole task — "build me the dashboard." Resist it. AI is most useful on a well-bounded slice where I can describe the input and recognise a correct output. So I delegate the gnarly regex, the window-function skeleton, the boilerplate around an API call, the first draft of a docstring. I keep the parts that require judgement, business context, or accountability — what the metric should be, whether the result is plausible, what ships.</p>
+        <p>The smaller the slice, the easier the next step. A 200-line script I can't follow is a liability. A 20-line function with a clear contract is something I can actually check.</p>
+
+        <div class="pullquote">AI doesn't replace the thinking. It compresses the typing around the thinking — and only if you still do the thinking.</div>
+
+        <h2>3 — Verify: this is the whole game</h2>
+        <p>If you take one thing from this post, take this: the verification step <em>is</em> the work. Everything before it is setup. A fluent, well-formatted, completely wrong answer is the default failure mode of these tools — they're built to sound right, which is a different thing from being right. Public research has catalogued how often models state false information confidently; the practical lesson isn't "don't use them," it's "never ship anything you haven't checked." Anthropic's own <a href="https://www.anthropic.com/research" target="_blank" rel="noopener">research</a> on model behaviour and reliability is a good reminder that fluency and correctness are not the same axis.</p>
+        <p>So I verify the way I'd verify a junior analyst's first week. I <strong>read</strong> the output line by line — not skim it. I <strong>run</strong> it on a small known case where I already know the answer. I <strong>check the numbers</strong>: does a sum reconcile to a total I trust, does a row count make sense, does the join blow up or drop rows? For a generated SQL query I'll run it against a slice with a known result before I let it near production. For a script I'll feed it an input I've computed by hand. For a dataset summary I'll spot-check the claims against the raw data, because a tidy paragraph can quietly invent a trend.</p>
+
+        <div class="callout">
+          <span class="lab">The one rule I never break</span>
+          I treat every AI output as a <strong>draft from a fast, confident, occasionally wrong colleague</strong> — useful, but never trusted on sight. If I can't verify it, I can't use it. The tool's job is to produce a candidate; my job is to decide whether it's true.
+        </div>
+
+        <h2>4 — Iterate, or escalate to a human</h2>
+        <p>Verification has two outcomes. Either it holds up — ship it — or it doesn't, and now I have a choice. If the gap is small, I iterate: I feed the specific failure back ("this dropped the refunded orders, keep them but flag them") and run the loop again. Tight, specific feedback gets a better second draft than starting over.</p>
+        <p>But if the gap is about <em>judgement</em> — an ambiguous business definition, a risky assumption, something with real downside — I escalate to a person. That might be me stepping back to think, or it might be a colleague who owns that domain. Knowing when to leave the loop is as important as running it. AI is wonderful at the bounded and verifiable; it is not where I want final accountability for a number the business will act on.</p>
+
+        <h2>The process, concretely</h2>
+        <p>Here is the loop as I'd actually run it for a typical request — say, "draft a query for last quarter's churned accounts":</p>
+        <ul class="steps">
+          <li><strong>Frame it.</strong> Paste the schema, name the dialect, define "churned" precisely (no activity in 90 days? cancelled subscription?), and call out exclusions like internal test accounts.</li>
+          <li><strong>Delegate the slice.</strong> Ask for the query body, not the whole pipeline. Keep ownership of the metric definition and what counts as "done."</li>
+          <li><strong>Read it.</strong> Walk every line. If I can't explain what a CTE does, I don't trust it yet — I ask it to explain or simplify before going further.</li>
+          <li><strong>Test it.</strong> Run it on one known account and one known month where I already know the expected result. Reconcile the row count and a total against a figure I trust.</li>
+          <li><strong>Iterate or escalate.</strong> Small bug? Feed back the exact failing case and rerun. Ambiguous definition or material risk? Stop and bring in a human before anything ships.</li>
+        </ul>
+
+        <p>That's the entire method. It's deliberately unexciting. There's no secret prompt, no magic phrasing — just a frame, a bounded handoff, hard verification, and a decision about whether to loop again or pull in a person.</p>
+
+        <h2>Why the process matters more than the tool</h2>
+        <p>The uncomfortable truth I keep coming back to: AI is a multiplier, and multipliers work in both directions. Drop it on top of a clear, disciplined workflow and you get real leverage — the same output in a fraction of the time, with you spending your hours on judgement instead of boilerplate. Drop it on top of a sloppy one — no framing, no verification, blind trust — and you get the same mistakes you'd have made anyway, just faster and with more confidence behind them.</p>
+        <p>That's why I don't think the interesting question is "which AI tool is best." The tools are converging and they'll keep getting better. The durable advantage is the process around them: how clearly you frame, how carefully you delegate, and above all how rigorously you verify. Get that right and almost any capable tool becomes useful. Skip it and the best tool in the world just helps you be wrong on a deadline.</p>
+
+        <p>So my honest, balanced take after a year of this: AI hasn't made the analyst's craft obsolete. It's moved where the craft lives — out of the typing and into the framing and the checking. The loop is small. The discipline is everything.</p>
+      </div>
+
+      <div class="post-foot">
+        <div class="by">
+          <img src="https://avatars.githubusercontent.com/u/43398608?v=4" alt="Oleksandr Tverdokhlieb" />
+          <div>
+            <div class="n">Oleksandr Tverdokhlieb</div>
+            <div class="r">Data Analytics Manager · Dubai — building data platforms, automation and applied AI.</div>
+          </div>
+        </div>
+        <div class="post-cta">
+          <a class="primary" href="index.html">More writing →</a>
+          <a href="../ai.html">How I use AI</a>
+          <a href="https://www.linkedin.com/in/tverd" target="_blank" rel="noopener">Connect on LinkedIn ↗</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-in">
+      <div class="c">© <span data-year></span> Oleksandr Tverdokhlieb · Dubai, UAE</div>
+      <div class="foot-links">
+        <a href="https://www.linkedin.com/in/tverd" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6 1.12 6 0 4.88 0 3.5 0 2.12 1.12 1 2.49 1c1.38 0 2.49 1.12 2.49 2.5zM.24 8h4.5v14H.24V8zm7.5 0h4.31v1.92h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V22h-4.5v-6.6c0-1.57-.03-3.6-2.19-3.6-2.2 0-2.53 1.71-2.53 3.48V22h-4.5V8z"/></svg></a>
+        <a href="https://github.com/scripts-and-tables" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.05-.02-2.06-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22 0 1.61-.01 2.9-.01 3.29 0 .32.21.7.82.58A12.01 12.01 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"/></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>AI as an attack surface: how a support bot handed over Instagram accounts — Oleksandr Tverdokhlieb</title>
+<meta name="description" content="Attackers talked Meta's AI account-recovery assistant into resetting Instagram passwords — no exploit, just social engineering of the bot. Why an AI agent inside a trust-sensitive workflow is a new attack surface, and what guardrails it needs." />
+<meta name="theme-color" content="#11161f" />
+<link rel="icon" href="https://avatars.githubusercontent.com/u/43398608?v=4" />
+<link rel="stylesheet" href="../assets/site.css?v=12" />
+<link rel="stylesheet" href="blog.css?v=1" />
+  <link rel="canonical" href="https://oleks.devapp24.com/blog/ai-as-an-attack-surface.html" />
+  <meta name="author" content="Oleksandr Tverdokhlieb" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Oleksandr Tverdokhlieb" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="AI as an attack surface: how a support bot handed over Instagram accounts" />
+  <meta property="og:description" content="Attackers talked Meta's AI account-recovery assistant into resetting Instagram passwords. Why an AI agent inside a trust-sensitive workflow is a new attack surface — and the guardrails it needs." />
+  <meta property="og:url" content="https://oleks.devapp24.com/blog/ai-as-an-attack-surface.html" />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/43398608?v=4" />
+  <meta property="article:published_time" content="2026-06-08" />
+  <meta property="article:author" content="Oleksandr Tverdokhlieb" />
+  <meta property="article:section" content="AI & Security" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI as an attack surface: how a support bot handed over Instagram accounts" />
+  <meta name="twitter:description" content="Attackers social-engineered Meta's AI support assistant into resetting Instagram passwords. The lesson about AI agents in high-stakes workflows." />
+  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/43398608?v=4" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://oleks.devapp24.com/#person","name":"Oleksandr Tverdokhlieb","jobTitle":"Data Analytics Manager","url":"https://oleks.devapp24.com/","image":"https://avatars.githubusercontent.com/u/43398608?v=4","sameAs":["https://www.linkedin.com/in/tverd","https://github.com/scripts-and-tables"]},{"@type":"BlogPosting","@id":"https://oleks.devapp24.com/blog/ai-as-an-attack-surface.html#post","headline":"AI as an attack surface: how a support bot handed over Instagram accounts","description":"Attackers talked Meta's AI account-recovery assistant into resetting Instagram passwords — no exploit, just social engineering of the bot. Why an AI agent inside a trust-sensitive workflow is a new attack surface, and what guardrails it needs.","datePublished":"2026-06-08","dateModified":"2026-06-08","author":{"@id":"https://oleks.devapp24.com/#person"},"image":"https://avatars.githubusercontent.com/u/43398608?v=4","articleSection":"AI & Security","keywords":"AI security, social engineering, identity, account takeover, AI agents, guardrails, human-in-the-loop, Instagram, Meta","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https://oleks.devapp24.com/blog/ai-as-an-attack-surface.html"},"publisher":{"@id":"https://oleks.devapp24.com/#person"}}]}</script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-in">
+      <a class="nav-brand" href="../index.html"><img src="https://avatars.githubusercontent.com/u/43398608?v=4" alt="" />Oleksandr&nbsp;Tverdokhlieb</a>
+      <div class="nav-spacer"></div>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog/" class="active">Blog</a>
+        <a href="../about.html">About</a>
+        <a href="../cv.html">CV</a>
+        <a href="../ai.html">AI</a>
+        <a href="../training.html">Training</a>
+        <a href="../credentials.html">Learning</a>
+        <a href="../game/">Games</a>
+      </nav>
+      <a class="nav-cta" href="../contact.html">Contact</a>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="nav-mobile">
+      <a href="../index.html">Home</a><a href="../projects.html">Projects</a><a href="../blog/">Blog</a><a href="../about.html">About</a><a href="../cv.html">CV</a><a href="../ai.html">AI</a><a href="../training.html">Training</a><a href="../credentials.html">Learning</a><a href="../game/">Games</a><a href="../contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="wrap page">
+    <article class="post-wrap">
+      <a class="backlink" href="index.html">← All writing</a>
+      <div class="page-head" style="padding-bottom:6px;">
+        <h1 style="margin-top:8px;font-size:clamp(27px,4.6vw,38px);line-height:1.16;">AI as an attack surface: how a support bot handed over Instagram accounts</h1>
+        <div class="post-meta"><span class="cat">AI &amp; Security</span><span>8 June 2026</span><span>· 7 min read</span></div>
+        <div class="post-tags"><span class="tag">AI</span><span class="tag">Security</span><span class="tag">Social engineering</span><span class="tag">Identity</span></div>
+      </div>
+
+      <div class="post-body">
+        <p class="lede">In the spring of 2026, attackers stole tens of thousands of Instagram accounts without ever breaking the password, the encryption, or the firewall. They simply opened a chat with Meta's AI-powered account-recovery assistant and talked it into doing the takeover for them. It's one of the cleanest case studies I've seen of a problem I keep coming back to: the AI itself is now part of the attack surface.</p>
+
+        <p>I write about AI as leverage a lot — for analytics, for automation, for shipping faster. So it's worth being just as clear-eyed about where it goes wrong. This story isn't a "see, AI is dangerous" cautionary tale. It's something more specific and, to me, more useful: a worked example of what happens when you place an AI agent inside a workflow that exists precisely because it decides <em>who someone is</em>.</p>
+
+        <h2>What actually happened</h2>
+        <p>According to reporting by <a href="https://techcrunch.com/2026/06/01/hackers-hijacked-instagram-accounts-by-tricking-meta-ai-support-chatbot-into-granting-access/" target="_blank" rel="noopener">TechCrunch</a> and <a href="https://www.securityweek.com/meta-says-20000-instagram-accounts-hacked-via-ai-tool-abuse/" target="_blank" rel="noopener">SecurityWeek</a>, the entry point was Meta's AI assistant for Instagram account recovery — the chatbot you'd normally reach when you're locked out and need help getting back in. Instead of helping a legitimate owner, attackers used the conversation to drive a hostile recovery against accounts they didn't own.</p>
+
+        <p>The sequence was almost mundane, which is what makes it unsettling. The attacker would coax the assistant into attaching an email address they controlled to the target account. The bot then dispatched a verification code to that attacker-owned address — treating it as if it belonged to the real owner. The attacker read the code off their own inbox, handed it back to the bot, and the bot, now satisfied that the request was "verified," offered up a password reset. Reset complete, the account belonged to the attacker. To slip past automated defences that watch for logins from unexpected places, the attackers leaned on VPNs to make their traffic look like it was coming from the victim's own region.</p>
+
+        <div class="fig">
+          <svg viewBox="0 0 720 250" role="img" aria-label="How the AI support bot was tricked into an account takeover">
+            <defs>
+              <marker id="ar" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#5b626c"/></marker>
+            </defs>
+
+            <!-- actors -->
+            <rect x="14" y="98" width="132" height="56" rx="10" fill="#fdf2f0" stroke="#f0c9c4"/>
+            <text x="80" y="122" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="14" font-weight="700" fill="#15181d">Attacker</text>
+            <text x="80" y="140" text-anchor="middle" font-family="monospace" font-size="10.5" fill="#5b626c">via VPN · spoofed region</text>
+
+            <rect x="294" y="98" width="132" height="56" rx="10" fill="#eaf0fd" stroke="#cfd8e6"/>
+            <text x="360" y="122" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="14" font-weight="700" fill="#15181d">AI support bot</text>
+            <text x="360" y="140" text-anchor="middle" font-family="monospace" font-size="10.5" fill="#5b626c">account recovery</text>
+
+            <rect x="574" y="98" width="132" height="56" rx="10" fill="#fbeedd" stroke="#f0d9b8"/>
+            <text x="640" y="122" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="14" font-weight="700" fill="#15181d">Victim account</text>
+            <text x="640" y="140" text-anchor="middle" font-family="monospace" font-size="10.5" fill="#5b626c">taken over</text>
+
+            <!-- step 1: attacker -> bot, add email -->
+            <line x1="146" y1="116" x2="289" y2="116" stroke="#5b626c" stroke-width="1.5" marker-end="url(#ar)"/>
+            <text x="217" y="92" text-anchor="middle" font-family="monospace" font-size="10.5" fill="#2459d6">1 · "add my email"</text>
+
+            <!-- step 2: bot -> attacker, send code (loop back below) -->
+            <line x1="289" y1="138" x2="146" y2="138" stroke="#5b626c" stroke-width="1.5" marker-end="url(#ar)"/>
+            <text x="217" y="172" text-anchor="middle" font-family="monospace" font-size="10.5" fill="#8b939d">2 · code → attacker inbox</text>
+
+            <!-- step 3: attacker -> bot, feed code back -->
+            <line x1="146" y1="200" x2="294" y2="200" stroke="#5b626c" stroke-width="1.5" marker-end="url(#ar)"/>
+            <text x="220" y="222" text-anchor="middle" font-family="monospace" font-size="10.5" fill="#2459d6">3 · feed code back → "verified"</text>
+            <line x1="80" y1="154" x2="80" y2="200" stroke="#5b626c" stroke-width="1.5"/>
+
+            <!-- step 4: bot -> victim, reset -->
+            <line x1="426" y1="116" x2="569" y2="116" stroke="#5b626c" stroke-width="1.5" marker-end="url(#ar)"/>
+            <text x="497" y="92" text-anchor="middle" font-family="monospace" font-size="10.5" fill="#2459d6">4 · password reset</text>
+            <line x1="360" y1="200" x2="360" y2="158" stroke="#5b626c" stroke-width="1.5" marker-end="url(#ar)"/>
+
+            <text x="360" y="30" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="13" font-weight="700" fill="#15181d">No exploit. The bot was the exploit.</text>
+          </svg>
+          <div class="fig-cap">The technical controls never fired — every step looked like a "valid" recovery to the assistant.</div>
+        </div>
+
+        <p>By Meta's own account, the abuse ran from roughly 17 April to 31 May 2026 and affected in the region of 20,225 Instagram accounts, some of them high-profile. Meta says it caught the pattern on 31 May and pulled the tool offline. Notice the timeline: this quietly worked for about six weeks before anyone noticed. That gap is the part security teams should sit with.</p>
+
+        <h2>Why this is a new kind of vulnerability</h2>
+        <p>There's a temptation to file this under "chatbot gone wrong" and move on. I'd push back on that. The password system worked. Two-factor mechanics worked — a code really was generated and really was entered. The location checks were in place. Every individual control behaved as designed. What failed was the <em>decision-maker</em> sitting in the middle, and that decision-maker was an AI agent that could be talked into things.</p>
+
+        <p>An account-recovery flow is, at its core, an identity adjudication: it answers "is this person allowed to take control of this account?" The moment you let a language model drive that adjudication, you've created a path to account takeover that doesn't route through any of your hardened technical defences. It routes through persuasion. The attacker doesn't need a zero-day; they need a convincing conversation.</p>
+
+        <div class="pullquote">The attackers didn't break a control. They changed the conversation until the bot decided to break it for them.</div>
+
+        <p>That's the shift worth internalising. For years we modelled threats around code: injection, misconfiguration, leaked credentials, unpatched services. An AI agent with real permissions adds a new entry in the threat model — one where the input is natural language and the "vulnerability" is the model's willingness to be steered. You can't fully patch that the way you patch a buffer overflow, because flexibility is the entire reason the agent exists. So the defence has to live somewhere other than the model's good judgement.</p>
+
+        <div class="callout warn">
+          <span class="lab">The trap</span>
+          When an AI agent can perform <strong>identity-changing actions</strong> — adding a recovery email, resetting a password, escalating access — it becomes a single point of failure that sits <em>behind</em> your technical controls. Social-engineering the bot bypasses the firewall entirely, because the bot is already on the trusted side of it.
+        </div>
+
+        <h2>What I take from it</h2>
+        <p>I'm bullish on AI agents. I use them, I build around them, and I think the productivity case is real. But this incident sharpens a line I already try to hold: <strong>the more consequential the action, the less an agent should be allowed to take it alone.</strong> Drafting a summary, triaging a ticket, querying data — let the agent run. Changing who controls an account — that needs a wall around it.</p>
+
+        <p>Concretely, here are the lessons I'd carry into any system where an AI agent touches a trust-sensitive workflow.</p>
+
+        <ul class="steps">
+          <li><strong>Treat the agent as an untrusted intermediary.</strong> Assume anyone talking to it may be hostile and that the conversation can be manipulated. Don't grant trust based on what the bot "decided" — grant it based on verification the bot can't fabricate.</li>
+          <li><strong>Keep account-takeover-class actions out of the agent's hands.</strong> Adding recovery contacts, resetting credentials, or changing ownership should demand strong, independent verification and, for high-stakes cases, a human in the loop. The agent can prepare the request; it shouldn't be the one to approve it.</li>
+          <li><strong>Apply least privilege to the agent itself.</strong> Scope exactly what it can do and deny everything else by default. An assistant that can <em>explain</em> the recovery process is far safer than one that can <em>execute</em> it.</li>
+          <li><strong>Log everything and rate-limit aggressively.</strong> Six weeks is a long time for a campaign to run unseen. Per-account and per-session limits, anomaly alerts, and full audit trails are what turn a slow-burn breach into a same-day catch.</li>
+          <li><strong>Assume attackers will aim at the AI, not the perimeter.</strong> If the agent is the softest path to a privileged action, that's where pressure goes. Red-team the conversation, not just the code.</li>
+        </ul>
+
+        <p>None of this is anti-AI. It's the same principle I apply to people and automation alike: give the easy, reversible work to the fast actor, and put the irreversible, high-stakes work behind verification and review. An AI assistant that can reset a stranger's password on the strength of a chat was never a model problem — it was a design that handed an unsupervised agent the keys to an identity decision. The fix isn't to fear the agent. It's to stop letting it decide who you are.</p>
+      </div>
+
+      <div class="post-foot">
+        <div class="by">
+          <img src="https://avatars.githubusercontent.com/u/43398608?v=4" alt="Oleksandr Tverdokhlieb" />
+          <div>
+            <div class="n">Oleksandr Tverdokhlieb</div>
+            <div class="r">Data Analytics Manager · Dubai — building data platforms, automation and applied AI.</div>
+          </div>
+        </div>
+        <div class="post-cta">
+          <a class="primary" href="index.html">More writing →</a>
+          <a href="../ai.html">How I use AI</a>
+          <a href="https://www.linkedin.com/in/tverd" target="_blank" rel="noopener">Connect on LinkedIn ↗</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-in">
+      <div class="c">© <span data-year></span> Oleksandr Tverdokhlieb · Dubai, UAE</div>
+      <div class="foot-links">
+        <a href="https://www.linkedin.com/in/tverd" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6 1.12 6 0 4.88 0 3.5 0 2.12 1.12 1 2.49 1c1.38 0 2.49 1.12 2.49 2.5zM.24 8h4.5v14H.24V8zm7.5 0h4.31v1.92h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V22h-4.5v-6.6c0-1.57-.03-3.6-2.19-3.6-2.2 0-2.53 1.71-2.53 3.48V22h-4.5V8z"/></svg></a>
+        <a href="https://github.com/scripts-and-tables" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.05-.02-2.06-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22 0 1.61-.01 2.9-.01 3.29 0 .32.21.7.82.58A12.01 12.01 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"/></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/site.js"></script>
+</body>
+</html>

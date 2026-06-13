@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-density="regular">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jobs — Data Pipeline Automation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="pipeline.css" />
+</head>
+<body>
+
+<header class="topbar" data-screen-label="Top bar">
+  <div class="wrap topbar-inner">
+    <div class="topbar-brand"><span class="glyph">▸▸</span><span>Data Pipeline Automation</span></div>
+    <nav class="topbar-tabs">
+      <a href="index.html">Dashboard</a>
+      <a href="Agents.html">Agents</a>
+      <a href="Jobs.html" aria-current="page">Jobs</a>
+      <a href="About.html">About</a>
+    </nav>
+    <div class="topbar-right">
+      <span class="status-pill"><span class="dot"></span>OPERATIONAL · LAST RUN 08:00 UTC</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap page-head" data-screen-label="Jobs header">
+  <h1>Jobs</h1>
+  <p class="page-sub">Individual tasks executed by the agents — one job per feed or stage, per run. Pending jobs belong to the next scheduled run at 14:00 UTC.</p>
+</div>
+
+<section class="section" data-screen-label="Jobs list" style="border-top: none; padding-top: 12px;">
+  <div class="wrap">
+    <div class="filters" role="group" aria-label="Filter jobs by status">
+      <button class="filter-chip" data-filter="all" aria-pressed="true">All<span class="count" data-count="all"></span></button>
+      <button class="filter-chip" data-filter="completed" aria-pressed="false">Completed<span class="count" data-count="completed"></span></button>
+      <button class="filter-chip" data-filter="error" aria-pressed="false">Error<span class="count" data-count="error"></span></button>
+      <button class="filter-chip" data-filter="pending" aria-pressed="false">Pending<span class="count" data-count="pending"></span></button>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head"><h3>Jobs · last 24 hours</h3><span class="panel-note">ALL TIMES UTC</span></div>
+      <div class="tscroll">
+      <table class="runs" id="jobs-table">
+        <thead>
+          <tr><th>Job</th><th>Run</th><th>Started</th><th>Duration</th><th>Rows</th><th>Agent</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr data-status="pending"><td>Fetch · ERP (PostgreSQL)</td><td class="num">#2026.06.10-14</td><td class="num">14:00 · sched</td><td class="num">—</td><td class="num">—</td><td class="num">agent-db-01</td><td><span class="badge run">PENDING</span></td></tr>
+          <tr data-status="pending"><td>Fetch · Budget workbooks (Excel)</td><td class="num">#2026.06.10-14</td><td class="num">14:00 · sched</td><td class="num">—</td><td class="num">—</td><td class="num">agent-files-01</td><td><span class="badge run">PENDING</span></td></tr>
+          <tr data-status="pending"><td>Fetch · Market prices (Scraper)</td><td class="num">#2026.06.10-14</td><td class="num">14:00 · sched</td><td class="num">—</td><td class="num">—</td><td class="num">agent-web-01</td><td><span class="badge run">PENDING</span></td></tr>
+          <tr data-status="pending"><td>Ingest · staging load</td><td class="num">#2026.06.10-14</td><td class="num">14:00 · sched</td><td class="num">—</td><td class="num">—</td><td class="num">agent-orch-01</td><td><span class="badge run">PENDING</span></td></tr>
+          <tr data-status="pending"><td>Refresh reports · BI dashboards</td><td class="num">#2026.06.10-14</td><td class="num">14:00 · sched</td><td class="num">—</td><td class="num">—</td><td class="num">agent-report-01</td><td><span class="badge run">PENDING</span></td></tr>
+          <tr data-status="completed"><td>Submit · email digest</td><td class="num">#2026.06.10-08</td><td class="num">08:12</td><td class="num">0m 38s</td><td class="num">—</td><td class="num">agent-submit-01</td><td><span class="badge ok">COMPLETED</span></td></tr>
+          <tr data-status="completed"><td>Submit · portal filing</td><td class="num">#2026.06.10-08</td><td class="num">08:11</td><td class="num">1m 04s</td><td class="num">—</td><td class="num">agent-submit-01</td><td><span class="badge ok">COMPLETED</span></td></tr>
+          <tr data-status="completed"><td>Refresh reports · BI dashboards</td><td class="num">#2026.06.10-08</td><td class="num">08:08</td><td class="num">2m 51s</td><td class="num">—</td><td class="num">agent-report-01</td><td><span class="badge ok">COMPLETED</span></td></tr>
+          <tr data-status="completed"><td>Ingest · staging load</td><td class="num">#2026.06.10-08</td><td class="num">08:03</td><td class="num">4m 47s</td><td class="num">561,204</td><td class="num">agent-orch-01</td><td><span class="badge ok">COMPLETED</span></td></tr>
+          <tr data-status="completed"><td>Fetch · FX rates (API)</td><td class="num">#2026.06.10-08</td><td class="num">08:00</td><td class="num">0m 41s</td><td class="num">1,440</td><td class="num">agent-web-02</td><td><span class="badge ok">COMPLETED</span></td></tr>
+          <tr data-status="completed"><td>Fetch · Market prices (Scraper)</td><td class="num">#2026.06.10-08</td><td class="num">08:00</td><td class="num">2m 12s</td><td class="num">18,330</td><td class="num">agent-web-01</td><td><span class="badge ok">COMPLETED</span></td></tr>
+          <tr data-status="completed"><td>Fetch · Partner exports (SFTP)</td><td class="num">#2026.06.10-08</td><td class="num">08:00</td><td class="num">1m 22s</td><td class="num">42,118</td><td class="num">agent-files-02</td><td><span class="badge ok">COMPLETED</span></td></tr>
+          <tr data-status="error"><td>Fetch · Budget workbooks (Excel)</td><td class="num">#2026.06.10-08</td><td class="num">08:00</td><td class="num">0m 47s</td><td class="num">—</td><td class="num">agent-files-01</td><td><span class="badge fail">ERROR</span></td></tr>
+          <tr data-status="completed"><td>Fetch · CRM (MySQL)</td><td class="num">#2026.06.10-08</td><td class="num">08:00</td><td class="num">1m 51s</td><td class="num">88,402</td><td class="num">agent-db-02</td><td><span class="badge ok">COMPLETED</span></td></tr>
+          <tr data-status="completed"><td>Fetch · Finance (SQL Server)</td><td class="num">#2026.06.10-08</td><td class="num">08:00</td><td class="num">2m 33s</td><td class="num">204,557</td><td class="num">agent-db-01</td><td><span class="badge ok">COMPLETED</span></td></tr>
+          <tr data-status="completed"><td>Fetch · ERP (PostgreSQL)</td><td class="num">#2026.06.10-08</td><td class="num">08:00</td><td class="num">2m 58s</td><td class="num">206,357</td><td class="num">agent-db-01</td><td><span class="badge ok">COMPLETED</span></td></tr>
+          <tr data-status="completed"><td>Submit · portal filing</td><td class="num">#2026.06.10-02</td><td class="num">02:11</td><td class="num">1m 09s</td><td class="num">—</td><td class="num">agent-submit-01</td><td><span class="badge ok">COMPLETED</span></td></tr>
+          <tr data-status="completed"><td>Ingest · staging load</td><td class="num">#2026.06.10-02</td><td class="num">02:03</td><td class="num">4m 52s</td><td class="num">548,917</td><td class="num">agent-orch-01</td><td><span class="badge ok">COMPLETED</span></td></tr>
+          <tr data-status="error"><td>Fetch · FX rates (API)</td><td class="num">#2026.06.09-20</td><td class="num">Jun 09 · 20:00</td><td class="num">5m 00s</td><td class="num">—</td><td class="num">agent-web-02</td><td><span class="badge fail">ERROR</span></td></tr>
+          <tr data-status="completed"><td>Fetch · ERP (PostgreSQL)</td><td class="num">#2026.06.09-20</td><td class="num">Jun 09 · 20:00</td><td class="num">3m 04s</td><td class="num">198,651</td><td class="num">agent-db-01</td><td><span class="badge ok">COMPLETED</span></td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="jobs-empty" id="jobs-empty" hidden="">No jobs match this filter.</div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot" data-screen-label="Footer">
+  <div class="wrap" style="display: flex; gap: 48px; flex-wrap: wrap; padding-top: 8px;">
+    <div>
+      <div class="f-label">On error</div>
+      <div>Job retries ×2 with backoff · run halts before Submit if still failing</div>
+    </div>
+    <div>
+      <div class="f-label">Retention</div>
+      <div>Job history kept 90 days · logs linked from each run</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var chips = document.querySelectorAll(".filter-chip");
+  var rows = document.querySelectorAll("#jobs-table tbody tr");
+  var empty = document.getElementById("jobs-empty");
+
+  // counts
+  var counts = { all: rows.length, completed: 0, error: 0, pending: 0 };
+  rows.forEach(function (r) { counts[r.dataset.status]++; });
+  document.querySelectorAll(".count").forEach(function (c) {
+    c.textContent = counts[c.dataset.count];
+  });
+
+  function apply(filter) {
+    var visible = 0;
+    rows.forEach(function (r) {
+      var show = filter === "all" || r.dataset.status === filter;
+      r.hidden = !show;
+      if (show) visible++;
+    });
+    empty.hidden = visible > 0;
+    chips.forEach(function (ch) {
+      ch.setAttribute("aria-pressed", ch.dataset.filter === filter ? "true" : "false");
+    });
+  }
+
+  chips.forEach(function (ch) {
+    ch.addEventListener("click", function () { apply(ch.dataset.filter); });
+  });
+})();
+</script>
+
+</body>
+</html>

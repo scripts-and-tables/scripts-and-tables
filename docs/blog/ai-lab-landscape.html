@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>The AI lab landscape: who's building what, and how — Oleksandr Tverdokhlieb</title>
+<meta name="description" content="A practitioner's map of the major AI labs — Anthropic, OpenAI, Google DeepMind, Meta, plus xAI, Mistral and DeepSeek. Not a ranking: what each optimizes for and what that means when you're choosing tools for data work." />
+<meta name="theme-color" content="#11161f" />
+<link rel="icon" href="https://avatars.githubusercontent.com/u/43398608?v=4" />
+<link rel="stylesheet" href="../assets/site.css?v=12" />
+<link rel="stylesheet" href="blog.css?v=1" />
+  <link rel="canonical" href="https://oleks.devapp24.com/blog/ai-lab-landscape.html" />
+  <meta name="author" content="Oleksandr Tverdokhlieb" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Oleksandr Tverdokhlieb" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="The AI lab landscape: who's building what, and how" />
+  <meta property="og:description" content="A practitioner's map of the major AI labs — what each optimizes for and what that means when you're choosing tools for data work. Balanced, not a ranking." />
+  <meta property="og:url" content="https://oleks.devapp24.com/blog/ai-lab-landscape.html" />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/43398608?v=4" />
+  <meta property="article:published_time" content="2025-12-11" />
+  <meta property="article:author" content="Oleksandr Tverdokhlieb" />
+  <meta property="article:section" content="AI" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The AI lab landscape: who's building what, and how" />
+  <meta name="twitter:description" content="A practitioner's map of the major AI labs — posture and strategy, not a leaderboard." />
+  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/43398608?v=4" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://oleks.devapp24.com/#person","name":"Oleksandr Tverdokhlieb","jobTitle":"Data Analytics Manager","url":"https://oleks.devapp24.com/","image":"https://avatars.githubusercontent.com/u/43398608?v=4","sameAs":["https://www.linkedin.com/in/tverd","https://github.com/scripts-and-tables"]},{"@type":"BlogPosting","@id":"https://oleks.devapp24.com/blog/ai-lab-landscape.html#post","headline":"The AI lab landscape: who's building what, and how","description":"A practitioner's map of the major AI labs — what each optimizes for and what that means when you're choosing tools for data work. Balanced, not a ranking.","datePublished":"2025-12-11","dateModified":"2025-12-11","author":{"@id":"https://oleks.devapp24.com/#person"},"image":"https://avatars.githubusercontent.com/u/43398608?v=4","articleSection":"AI","keywords":"AI labs, Anthropic, OpenAI, Google DeepMind, Gemini, Meta, Llama, open weights, model strategy, data analytics","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https://oleks.devapp24.com/blog/ai-lab-landscape.html"},"publisher":{"@id":"https://oleks.devapp24.com/#person"}}]}</script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-in">
+      <a class="nav-brand" href="../index.html"><img src="https://avatars.githubusercontent.com/u/43398608?v=4" alt="" />Oleksandr&nbsp;Tverdokhlieb</a>
+      <div class="nav-spacer"></div>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog/" class="active">Blog</a>
+        <a href="../about.html">About</a>
+        <a href="../cv.html">CV</a>
+        <a href="../ai.html">AI</a>
+        <a href="../training.html">Training</a>
+        <a href="../credentials.html">Learning</a>
+        <a href="../game/">Games</a>
+      </nav>
+      <a class="nav-cta" href="../contact.html">Contact</a>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="nav-mobile">
+      <a href="../index.html">Home</a><a href="../projects.html">Projects</a><a href="../blog/">Blog</a><a href="../about.html">About</a><a href="../cv.html">CV</a><a href="../ai.html">AI</a><a href="../training.html">Training</a><a href="../credentials.html">Learning</a><a href="../game/">Games</a><a href="../contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="wrap page">
+    <article class="post-wrap">
+      <a class="backlink" href="index.html">← All writing</a>
+      <div class="page-head" style="padding-bottom:6px;">
+        <h1 style="margin-top:8px;font-size:clamp(27px,4.6vw,38px);line-height:1.16;">The AI lab landscape: who's building what, and how</h1>
+        <div class="post-meta"><span class="cat">AI</span><span>11 December 2025</span><span>· 9 min read</span></div>
+        <div class="post-tags"><span class="tag">AI</span><span class="tag">Anthropic</span><span class="tag">OpenAI</span><span class="tag">Google</span><span class="tag">Open models</span></div>
+      </div>
+
+      <div class="post-body">
+        <p class="lede">If you do data work, the model you pick is now a real engineering decision — not a toy you bolt on at the end. But the noise around it is mostly leaderboards: which model scored half a point higher on which benchmark this week. That's the least useful way to think about it. What actually matters is <em>posture</em> — what each lab is optimising for, and what that means when you put it into a pipeline. Here's how I read the map.</p>
+
+        <p>I should say up front: I use Claude every day, and I'll try hard not to let that turn this into a sales pitch. The honest position for a practitioner is that there is no single "best" model — there are different bets, made by different organisations, that happen to suit different jobs. The labs aren't really competing to win one number. They're competing on strategy: who they sell to, how they ship, and whether the weights are open or closed. Once you see the strategy, the model choices stop looking arbitrary.</p>
+
+        <p>One caveat that applies to every word below: this moves <em>fast</em>. Specific model names age in weeks, benchmark claims age in days, and "the latest" is a moving target. So I've kept this at the level of strategy and posture, which changes far more slowly than the version numbers. Treat the named models as snapshots, not commitments.</p>
+
+        <h2>The five postures</h2>
+        <p>It helps to stop thinking "model A vs model B" and start thinking about what each lab is fundamentally <em>for</em>. Roughly, I see five distinct stances — and most of the field clusters into them.</p>
+
+        <div class="fig">
+          <svg viewBox="0 0 720 332" role="img" aria-label="The major AI labs positioned by strategic posture: lab, flagship family, and what they optimise for">
+            <defs>
+              <style>
+                .lab-n{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;fill:#15181d;}
+                .lab-f{font-family:monospace;font-size:11px;fill:#5b626c;}
+                .lab-p{font-family:monospace;font-size:11px;fill:#2459d6;}
+                .hdr{font-family:monospace;font-size:10.5px;fill:#8b939d;letter-spacing:.06em;}
+              </style>
+            </defs>
+            <!-- column headers -->
+            <text x="22" y="24" class="hdr">LAB</text>
+            <text x="232" y="24" class="hdr">FLAGSHIP FAMILY</text>
+            <text x="452" y="24" class="hdr">OPTIMISING FOR</text>
+
+            <!-- Anthropic -->
+            <rect x="14" y="34" width="692" height="44" rx="9" fill="#eaf0fd" stroke="#cfd8e6"/>
+            <text x="28" y="61" class="lab-n">Anthropic</text>
+            <text x="232" y="61" class="lab-f">Claude (Opus / Sonnet)</text>
+            <text x="452" y="61" class="lab-p">safety + enterprise + agents</text>
+
+            <!-- OpenAI -->
+            <rect x="14" y="84" width="692" height="44" rx="9" fill="#fff" stroke="#e6e4df"/>
+            <text x="28" y="111" class="lab-n">OpenAI</text>
+            <text x="232" y="111" class="lab-f">GPT / ChatGPT</text>
+            <text x="452" y="111" class="lab-p">consumer reach + breadth</text>
+
+            <!-- Google DeepMind -->
+            <rect x="14" y="134" width="692" height="44" rx="9" fill="#fff" stroke="#e6e4df"/>
+            <text x="28" y="161" class="lab-n">Google DeepMind</text>
+            <text x="232" y="161" class="lab-f">Gemini</text>
+            <text x="452" y="161" class="lab-p">deep product + infra integration</text>
+
+            <!-- Meta -->
+            <rect x="14" y="184" width="692" height="44" rx="9" fill="#e4f5ee" stroke="#bfe6d3"/>
+            <text x="28" y="211" class="lab-n">Meta</text>
+            <text x="232" y="211" class="lab-f">Llama</text>
+            <text x="452" y="211" class="lab-p">open-weight ecosystem bet</text>
+
+            <!-- xAI / Mistral / DeepSeek -->
+            <rect x="14" y="234" width="692" height="44" rx="9" fill="#fff" stroke="#e6e4df"/>
+            <text x="28" y="261" class="lab-n">xAI</text>
+            <text x="232" y="261" class="lab-f">Grok</text>
+            <text x="452" y="261" class="lab-p">speed + real-time + low price</text>
+
+            <rect x="14" y="284" width="339" height="40" rx="9" fill="#e4f5ee" stroke="#bfe6d3"/>
+            <text x="28" y="309" class="lab-n">Mistral</text>
+            <text x="138" y="309" class="lab-p" text-anchor="start">open + EU + efficient</text>
+
+            <rect x="367" y="284" width="339" height="40" rx="9" fill="#e4f5ee" stroke="#bfe6d3"/>
+            <text x="381" y="309" class="lab-n">DeepSeek</text>
+            <text x="491" y="309" class="lab-p" text-anchor="start">open + cost-efficient</text>
+          </svg>
+          <div class="fig-cap">Green = open-weight posture. The map is about <em>strategy</em>, not score — read it left to right, not top to bottom.</div>
+        </div>
+
+        <h2>Anthropic — safety and the enterprise agent</h2>
+        <p>Anthropic's posture is the one I know best, so I'll be careful to keep it level. Its bet is that the value sits in <strong>reliable, well-behaved models you can put to work inside a business</strong> — long-horizon agentic tasks, coding, document work — with safety and interpretability treated as load-bearing parts of the product rather than a press release. The Claude family (Opus at the top, Sonnet for balance, Haiku for speed) leans into that: tool use, long context, and a generally cautious disposition. For me, that caution is a feature when a model is touching production data; it's occasionally a friction when I just want it to do the obvious thing without hedging. You can read the framing on the lab's own <a href="https://www.anthropic.com/news/claude-opus-4-8" target="_blank" rel="noopener">latest Opus announcement</a> — note the emphasis on agents and alignment over raw consumer flash.</p>
+
+        <h2>OpenAI — consumer reach and breadth</h2>
+        <p>OpenAI's centre of gravity is the opposite end: <strong>reach</strong>. ChatGPT is the front door to AI for hundreds of millions of people, and a great deal of the strategy follows from owning that surface — a default model that's fast and good enough for everyone, with deeper reasoning tiers underneath for people who ask for them. The GPT family is broad, multimodal, and aggressively productised across a consumer app, an API, and a coding agent. If your job is to ship something a non-technical audience will actually touch, that breadth and familiarity count for a lot. You can see the posture in how they frame a <a href="https://openai.com/index/introducing-gpt-5-5/" target="_blank" rel="noopener">flagship launch</a> — it's pitched at "getting work done," not at a benchmark table.</p>
+
+        <div class="pullquote">There is no "best model." There are different bets — and the right one depends on the job, the data, and who has to trust the result.</div>
+
+        <h2>Google DeepMind — depth of integration</h2>
+        <p>Google's advantage isn't really the model in isolation; it's everything the model is wired into. Gemini lives inside Search, Workspace, Android, and — crucially for data people — the Google Cloud and BigQuery stack. The posture is <strong>deep integration</strong>: if your data already lives in that ecosystem, the model is a short reach away rather than another vendor to wire up. DeepMind also carries a strong research pedigree, and Google's infrastructure (its own TPUs) gives it a cost-and-scale lever the others have to rent. The trade-off is the usual one with platforms: convenience inside the ecosystem, more friction the moment you step outside it.</p>
+
+        <h2>Meta — the open-weight bet</h2>
+        <p>Meta is playing a genuinely different game. Llama is released as <strong>open weights</strong>, which means you can download it, run it on your own hardware, fine-tune it, and never send a byte to someone else's API. For a lot of data work that's the whole ballgame: data residency, no per-token bill, full control over the stack, and the ability to audit what you're running. Meta's strategic logic is that commoditising the model layer suits a company whose business is elsewhere — and the side effect is a large, fast-moving open ecosystem that the smaller open labs build on too. The honest caveat is that "open weights" isn't the same as "open source," and running your own model means you own the ops, the safety tuning, and the evaluation that a hosted API would otherwise handle for you.</p>
+
+        <div class="callout">
+          <span class="lab">The practitioner's lens</span>
+          When I'm choosing for data work, I'm not asking "which model is smartest." I'm asking: <strong>where does the data have to live, who has to trust the output, and what happens when the model is wrong?</strong> Those three questions sort the labs faster than any leaderboard.
+        </div>
+
+        <h2>The fast followers — xAI, Mistral, DeepSeek</h2>
+        <p>Around the four big positions sit three labs worth knowing. <strong>xAI</strong> (Grok) competes on speed, real-time data, and aggressive pricing — tightly tied to the X platform, with a less buttoned-up disposition than the enterprise labs. <strong>Mistral</strong>, out of Europe, pairs an open-weight posture with efficiency and a strong EU/data-sovereignty story — a natural fit when regulatory geography matters. <strong>DeepSeek</strong> made its name by showing that frontier-ish capability could be trained and served far more cheaply than assumed, and it ships open weights too. None of these are afterthoughts: open and low-cost models from this cluster now match commercial ones on plenty of everyday tasks, which is exactly what keeps the whole field honest on price.</p>
+
+        <h2>So how do I actually choose?</h2>
+        <p>I don't pick a lab; I pick a fit for the task. The rough heuristics I keep coming back to:</p>
+        <ul>
+          <li><strong>Sensitive data that can't leave the building?</strong> An open-weight model (Llama, Mistral, DeepSeek) you host yourself is often the only defensible answer, full stop.</li>
+          <li><strong>Agentic or long-running work touching production systems?</strong> I want a model tuned for reliability and tool use, and I want to be able to explain its behaviour — that's where the enterprise-focused, safety-forward labs earn their keep.</li>
+          <li><strong>A consumer-facing feature or quick broad coverage?</strong> Reach, ecosystem, and familiarity matter more than the last benchmark point.</li>
+          <li><strong>Already deep in one cloud?</strong> The integrated option usually wins on time-to-value, even if a standalone model edges it on paper.</li>
+          <li><strong>Cost-sensitive, high-volume, low-stakes?</strong> The cheap-and-fast tier is there precisely for this, and it's gotten genuinely good.</li>
+        </ul>
+
+        <p>The thing I try to remember — and the reason I don't fanboy any one lab in public — is that this is a portfolio decision, not a loyalty test. Using one model daily doesn't oblige me to pretend the others aren't excellent at things it isn't. The labs are making different, defensible bets about where AI value lands; the practitioner's job is to match the bet to the problem in front of you, re-check it as the landscape shifts, and keep the data foundations clean enough that the choice is reversible. Pick for the job, not the jersey.</p>
+      </div>
+
+      <div class="post-foot">
+        <div class="by">
+          <img src="https://avatars.githubusercontent.com/u/43398608?v=4" alt="Oleksandr Tverdokhlieb" />
+          <div>
+            <div class="n">Oleksandr Tverdokhlieb</div>
+            <div class="r">Data Analytics Manager · Dubai — building data platforms, automation and applied AI.</div>
+          </div>
+        </div>
+        <div class="post-cta">
+          <a class="primary" href="index.html">More writing →</a>
+          <a href="../ai.html">How I use AI</a>
+          <a href="https://www.linkedin.com/in/tverd" target="_blank" rel="noopener">Connect on LinkedIn ↗</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-in">
+      <div class="c">© <span data-year></span> Oleksandr Tverdokhlieb · Dubai, UAE</div>
+      <div class="foot-links">
+        <a href="https://www.linkedin.com/in/tverd" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6 1.12 6 0 4.88 0 3.5 0 2.12 1.12 1 2.49 1c1.38 0 2.49 1.12 2.49 2.5zM.24 8h4.5v14H.24V8zm7.5 0h4.31v1.92h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V22h-4.5v-6.6c0-1.57-.03-3.6-2.19-3.6-2.2 0-2.53 1.71-2.53 3.48V22h-4.5V8z"/></svg></a>
+        <a href="https://github.com/scripts-and-tables" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.05-.02-2.06-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22 0 1.61-.01 2.9-.01 3.29 0 .32.21.7.82.58A12.01 12.01 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"/></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/site.js"></script>
+</body>
+</html>

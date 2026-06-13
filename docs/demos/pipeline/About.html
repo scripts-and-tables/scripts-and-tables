@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" data-density="regular">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About — Data Pipeline Automation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="pipeline.css" />
+</head>
+<body>
+
+<header class="topbar" data-screen-label="Top bar">
+  <div class="wrap topbar-inner">
+    <div class="topbar-brand"><span class="glyph">▸▸</span><span>Data Pipeline Automation</span></div>
+    <nav class="topbar-tabs">
+      <a href="index.html">Dashboard</a>
+      <a href="Agents.html">Agents</a>
+      <a href="Jobs.html">Jobs</a>
+      <a href="About.html" aria-current="page">About</a>
+    </nav>
+    <div class="topbar-right">
+      <span class="status-pill"><span class="dot"></span>OPERATIONAL · LAST RUN 08:00 UTC</span>
+    </div>
+  </div>
+</header>
+
+<section class="hero" data-screen-label="Hero">
+  <div class="wrap">
+    <p class="eyebrow">Internal engineering · Data platform</p>
+    <h1>Data Pipeline Automation</h1>
+    <p class="lede">One automated pipeline that collects data from our databases, spreadsheets and external websites, validates and loads it, refreshes every downstream report, and submits the final outputs — four times a day, with no manual steps.</p>
+    <div class="kpis">
+      <div class="kpi">
+        <div class="kpi-label">Connected feeds</div>
+        <div class="kpi-value">14</div>
+        <div class="kpi-sub">across 7 source systems</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Runs per day</div>
+        <div class="kpi-value">4</div>
+        <div class="kpi-sub">every 6 hours, UTC</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Success rate</div>
+        <div class="kpi-value">99.2%</div>
+        <div class="kpi-sub">last 30 days</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Avg run time</div>
+        <div class="kpi-value">12m 40s</div>
+        <div class="kpi-sub"><span class="up">▾ 9%</span> vs April</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="how" data-screen-label="How it works">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">01</span><h2>How it works</h2></div>
+    <p class="section-sub">Every run moves through the same four stages. A stage only starts when the previous one finishes cleanly; failures stop the run and raise an alert instead of submitting bad data.</p>
+    <div class="stages">
+      <div class="stage">
+        <div class="stage-num">STAGE 1</div>
+        <h3>Fetch</h3>
+        <p>Connectors pull raw data from each source on schedule — SQL queries against the databases, Excel workbooks from shared drives, scrapers and APIs for the websites.</p>
+        <div class="stage-meta">~3 min · 14 feeds in parallel</div>
+      </div>
+      <div class="stage">
+        <div class="stage-num">STAGE 2</div>
+        <h3>Read &amp; ingest</h3>
+        <p>Files and feeds are parsed, checked against expected schemas, deduplicated, and loaded into staging tables in the warehouse. Bad rows are quarantined, not dropped.</p>
+        <div class="stage-meta">~5 min · ≈2.2M rows / day</div>
+      </div>
+      <div class="stage">
+        <div class="stage-num">STAGE 3</div>
+        <h3>Refresh reports</h3>
+        <p>Curated models recalculate on the new data, and every downstream dashboard and report refreshes automatically — no one re-runs anything by hand.</p>
+        <div class="stage-meta">~3 min · 12 reports</div>
+      </div>
+      <div class="stage">
+        <div class="stage-num">STAGE 4</div>
+        <h3>Submit</h3>
+        <p>Final outputs are exported and delivered: the daily filing goes to the submission portal, stakeholders get the digest, and a snapshot is archived for audit.</p>
+        <div class="stage-meta">~1.5 min · 3 destinations</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="flow" data-screen-label="Data flow">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">02</span><h2>Where the data comes from</h2></div>
+    <p class="section-sub">Three kinds of sources feed the pipeline. Everything lands in one warehouse, so reports and submissions always read from a single, validated copy of the data.</p>
+    <div class="flow">
+      <div class="flow-col">
+        <div class="flow-col-label">Sources</div>
+        <div class="src-group">
+          <div class="src-kind">Databases</div>
+          <div class="src-item"><span class="dot"></span>ERP<span class="src-tech">PostgreSQL</span></div>
+          <div class="src-item"><span class="dot"></span>Finance<span class="src-tech">SQL Server</span></div>
+          <div class="src-item"><span class="dot"></span>CRM<span class="src-tech">MySQL</span></div>
+        </div>
+        <div class="src-group">
+          <div class="src-kind">Files</div>
+          <div class="src-item"><span class="dot warn"></span>Budget workbooks<span class="src-tech">Excel ×6</span></div>
+          <div class="src-item"><span class="dot"></span>Partner exports<span class="src-tech">CSV / SFTP</span></div>
+        </div>
+        <div class="src-group">
+          <div class="src-kind">Web</div>
+          <div class="src-item"><span class="dot"></span>Market prices<span class="src-tech">Scraper</span></div>
+          <div class="src-item"><span class="dot"></span>FX rates<span class="src-tech">REST API</span></div>
+        </div>
+      </div>
+      <div class="flow-col">
+        <div class="flow-col-label">Pipeline</div>
+        <div class="pipeline-box">
+          <div class="pb-title">Automation pipeline</div>
+          <div class="pb-sub">4× DAILY · 02:00 / 08:00 / 14:00 / 20:00 UTC</div>
+          <div class="pb-stage"><span class="pb-n">1</span>Fetch<span class="pb-time">~3 min</span></div>
+          <div class="pb-stage"><span class="pb-n">2</span>Read &amp; ingest<span class="pb-time">~5 min</span></div>
+          <div class="pb-stage"><span class="pb-n">3</span>Refresh reports<span class="pb-time">~3 min</span></div>
+          <div class="pb-stage"><span class="pb-n">4</span>Submit<span class="pb-time">~1.5 min</span></div>
+        </div>
+      </div>
+      <div class="flow-col">
+        <div class="flow-col-label">Destinations</div>
+        <div class="dest">
+          <div class="dest-name">Data warehouse</div>
+          <div class="dest-sub">Curated, validated tables — single source of truth</div>
+        </div>
+        <div class="dest">
+          <div class="dest-name">BI dashboards</div>
+          <div class="dest-sub">12 reports, refreshed automatically each run</div>
+        </div>
+        <div class="dest">
+          <div class="dest-name">Submission portal</div>
+          <div class="dest-sub">Daily filing, uploaded and confirmed</div>
+        </div>
+        <div class="dest">
+          <div class="dest-name">Email digest</div>
+          <div class="dest-sub">Summary to stakeholders after each run</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot" data-screen-label="Footer">
+  <div class="wrap" style="display: flex; gap: 48px; flex-wrap: wrap; padding-top: 8px;">
+    <div>
+      <div class="f-label">Owned by</div>
+      <div>Data Platform team · <span class="mono">#data-pipeline</span></div>
+    </div>
+    <div>
+      <div class="f-label">Schedule</div>
+      <div class="mono" style="font-size: 12px;">02:00 · 08:00 · 14:00 · 20:00 UTC</div>
+    </div>
+    <div>
+      <div class="f-label">On failure</div>
+      <div>Run halts before Submit · alert to on-call within 2 min</div>
+    </div>
+    <div>
+      <div class="f-label">Runbook</div>
+      <div><a href="#" style="color: var(--accent);">Incident runbook</a> · <a href="#" style="color: var(--accent);">Pipeline repo</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="charts.js"></script>
+<script>
+  drawFlowConnectors();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawFlowConnectors);
+</script>
+
+</body>
+</html>

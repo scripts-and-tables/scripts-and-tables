@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Writing — Oleksandr Tverdokhlieb</title>
+<meta name="description" content="Notes on data analytics, automation and applied AI — write-ups of real platforms and pipelines, plus essays on AI frameworks, agents, security and how I actually use AI in data work." />
+<meta name="theme-color" content="#11161f" />
+<link rel="icon" href="https://avatars.githubusercontent.com/u/43398608?v=4" />
+<link rel="stylesheet" href="../assets/site.css?v=12" />
+  <link rel="canonical" href="https://oleks.devapp24.com/blog/" />
+  <meta name="author" content="Oleksandr Tverdokhlieb" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Oleksandr Tverdokhlieb" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Writing — Oleksandr Tverdokhlieb" />
+  <meta property="og:description" content="Notes on data analytics, automation and applied AI — real systems plus essays on AI frameworks, agents, security and practice." />
+  <meta property="og:url" content="https://oleks.devapp24.com/blog/" />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/43398608?v=4" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Writing — Oleksandr Tverdokhlieb" />
+  <meta name="twitter:description" content="Notes on data analytics, automation and applied AI." />
+  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/43398608?v=4" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://oleks.devapp24.com/#person","name":"Oleksandr Tverdokhlieb","jobTitle":"Data Analytics Manager","worksFor":{"@type":"Organization","name":"Transmed"},"url":"https://oleks.devapp24.com/","image":"https://avatars.githubusercontent.com/u/43398608?v=4","address":{"@type":"PostalAddress","addressLocality":"Dubai","addressCountry":"AE"},"sameAs":["https://www.linkedin.com/in/tverd","https://github.com/scripts-and-tables"],"knowsAbout":["Data analytics","Data engineering","Business intelligence","Power BI","Python","SQL","Report automation","Data warehousing","Machine learning","Applied AI"]},{"@type":"Blog","@id":"https://oleks.devapp24.com/blog/#blog","name":"Oleksandr Tverdokhlieb — Writing","url":"https://oleks.devapp24.com/blog/","author":{"@id":"https://oleks.devapp24.com/#person"},"inLanguage":"en"}]}</script>
+<style>
+  .blog-intro{display:flex;gap:10px;flex-wrap:wrap;margin:2px 0 18px;}
+  .blog-intro .chip{font-family:var(--mono);font-size:12px;color:var(--slate);background:var(--card);
+    border:1px solid var(--line);border-radius:999px;padding:5px 12px;}
+  .blog-intro .chip b{color:var(--accent);}
+  .post-list{display:flex;flex-direction:column;gap:13px;margin-top:8px;}
+  .post-card{display:block;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px 22px;text-decoration:none;color:inherit;transition:border-color .15s ease, box-shadow .15s ease, transform .15s ease;}
+  .post-card:hover{border-color:#d7d4cd;box-shadow:var(--shadow-lift);transform:translateY(-2px);}
+  .post-card .pc-meta{font-family:var(--mono);font-size:12.5px;color:var(--slate);display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:8px;}
+  .post-card .pc-meta .cat{color:var(--accent);font-weight:600;}
+  .post-card h2{font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:-.01em;line-height:1.25;margin-bottom:6px;}
+  .post-card p{color:var(--slate);font-size:14.5px;line-height:1.6;margin:0;}
+  .yeardiv{font-family:var(--mono);font-size:12px;color:var(--slate-2);letter-spacing:.1em;text-transform:uppercase;
+    margin:24px 2px 6px;padding-top:8px;border-top:1px solid var(--line-2);}
+</style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-in">
+      <a class="nav-brand" href="../index.html"><img src="https://avatars.githubusercontent.com/u/43398608?v=4" alt="" />Oleksandr&nbsp;Tverdokhlieb</a>
+      <div class="nav-spacer"></div>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog/" class="active">Blog</a>
+        <a href="../about.html">About</a>
+        <a href="../cv.html">CV</a>
+        <a href="../ai.html">AI</a>
+        <a href="../training.html">Training</a>
+        <a href="../credentials.html">Learning</a>
+        <a href="../game/">Games</a>
+      </nav>
+      <a class="nav-cta" href="../contact.html">Contact</a>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="nav-mobile">
+      <a href="../index.html">Home</a><a href="../projects.html">Projects</a><a href="../blog/">Blog</a><a href="../about.html">About</a><a href="../cv.html">CV</a><a href="../ai.html">AI</a><a href="../training.html">Training</a><a href="../credentials.html">Learning</a><a href="../game/">Games</a><a href="../contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="wrap page">
+    <div class="page-head">
+      <span class="eyebrow">Writing</span>
+      <h1 style="margin-top:10px;">Notes on data, automation &amp; AI</h1>
+      <p>Write-ups of real systems I've built, and essays on how AI actually fits into data work — frameworks, agents, security, and the unglamorous discipline that makes it trustworthy. Lead with the problem and the outcome, then go under the hood.</p>
+    </div>
+
+    <div class="blog-intro">
+      <span class="chip"><b>Applied AI</b></span>
+      <span class="chip"><b>Data analytics</b></span>
+      <span class="chip"><b>Engineering</b></span>
+      <span class="chip"><b>AI &amp; security</b></span>
+    </div>
+
+    <div class="yeardiv">2026</div>
+    <div class="post-list">
+      <a class="post-card" href="ai-as-an-attack-surface.html">
+        <div class="pc-meta"><span class="cat">AI &amp; Security</span><span>8 Jun 2026</span><span>· 7 min</span></div>
+        <h2>AI as an attack surface: how a support bot handed over Instagram accounts</h2>
+        <p>Attackers social-engineered Meta's AI account-recovery assistant into swapping emails and resetting passwords — ~20,000 takeovers. An AI agent inside a trust-sensitive flow is a brand-new attack surface.</p>
+      </a>
+      <a class="post-card" href="built-my-portfolio-with-ai.html">
+        <div class="pc-meta"><span class="cat">Engineering</span><span>28 May 2026</span><span>· 7 min</span></div>
+        <h2>I built this site with an AI coding agent</h2>
+        <p>The project pages, demos, a small games arcade and this blog — built largely with an AI pair-builder. What the collaboration looked like, what worked, and what I had to own.</p>
+      </a>
+      <a class="post-card" href="economics-of-ai.html">
+        <div class="pc-meta"><span class="cat">AI</span><span>21 May 2026</span><span>· 7 min</span></div>
+        <h2>The economics of AI: tokens, cost, and when it's worth it</h2>
+        <p>How AI is priced — tokens in, tokens out, model tier, retries — and how to think about ROI: where it's cheap relative to the time it saves, and where it quietly burns money.</p>
+      </a>
+      <a class="post-card" href="ai-coding-assistants-in-practice.html">
+        <div class="pc-meta"><span class="cat">Engineering</span><span>23 Apr 2026</span><span>· 8 min</span></div>
+        <h2>AI coding assistants in practice: autocomplete, chat, and agents</h2>
+        <p>Three different gears, not competitors. When inline autocomplete, chat, or a repo-editing agent each fit — and the one rule that applies to all of them: read and test everything.</p>
+      </a>
+      <a class="post-card" href="ai-fluency-for-teams.html">
+        <div class="pc-meta"><span class="cat">Data Analytics</span><span>17 Apr 2026</span><span>· 8 min</span></div>
+        <h2>Bringing AI to an analytics team without losing rigour</h2>
+        <p>A traffic-light policy, a verification culture, and protecting the data you shouldn't paste — rolling AI out so it raises output without eroding judgement or auditability.</p>
+      </a>
+      <a class="post-card" href="data-privacy-and-ai.html">
+        <div class="pc-meta"><span class="cat">AI &amp; Security</span><span>16 Mar 2026</span><span>· 7 min</span></div>
+        <h2>Data privacy in the age of AI: what to keep close</h2>
+        <p>Classify before you paste. What data can go to which AI tool, enterprise vs consumer tiers, local models, redaction, and the vendor questions worth asking.</p>
+      </a>
+      <a class="post-card" href="ai-for-data-analytics.html">
+        <div class="pc-meta"><span class="cat">Data Analytics</span><span>13 Mar 2026</span><span>· 7 min</span></div>
+        <h2>AI for data analytics: what actually changes for the analyst</h2>
+        <p>Where AI genuinely helps — profiling, SQL, narrative, validation — and where the human stays in charge. It moves you up the value chain and raises the bar on verification.</p>
+      </a>
+      <a class="post-card" href="talk-to-your-data-rag.html">
+        <div class="pc-meta"><span class="cat">Data Analytics</span><span>24 Feb 2026</span><span>· 8 min</span></div>
+        <h2>"Talk to your data": RAG over business data, done responsibly</h2>
+        <p>Retrieval-augmented generation explained plainly — and how to let business users ask the data questions with grounding, citations, access control and a human check.</p>
+      </a>
+      <a class="post-card" href="building-a-personal-app-with-ai.html">
+        <div class="pc-meta"><span class="cat">Engineering</span><span>19 Feb 2026</span><span>· 8 min</span></div>
+        <h2>Building a personal app with AI: my stack and what I'd keep</h2>
+        <p>A side app built with an AI pair-programmer: the stack it steered me toward (Django, Postgres, Railway), what worked, what I still had to own, and what I'd keep next time.</p>
+      </a>
+      <a class="post-card" href="what-are-ai-agents.html">
+        <div class="pc-meta"><span class="cat">AI</span><span>22 Jan 2026</span><span>· 7 min</span></div>
+        <h2>What people actually mean by "AI agents"</h2>
+        <p>Cutting through the hype: an agent is just a model in a loop with tools and a goal. Where that genuinely helps, where it's overkill, and why the orchestration disciplines still apply.</p>
+      </a>
+      <a class="post-card" href="ai-for-software-development.html">
+        <div class="pc-meta"><span class="cat">Engineering</span><span>15 Jan 2026</span><span>· 8 min</span></div>
+        <h2>AI for software development: real benefits, real risks</h2>
+        <p>Speed and scaffolding on one side; plausible bugs, insecure code and over-trust on the other. A disciplined stance: accelerator with mandatory review, never autopilot.</p>
+      </a>
+    </div>
+
+    <div class="yeardiv">2025</div>
+    <div class="post-list">
+      <a class="post-card" href="human-in-the-loop.html">
+        <div class="pc-meta"><span class="cat">AI</span><span>18 Dec 2025</span><span>· 6 min</span></div>
+        <h2>Human-in-the-loop: where judgement still belongs</h2>
+        <p>Not everything should run end-to-end. A simple framework for where a human gate belongs — high-stakes, irreversible, or accountable actions. Automate the work, gate the consequences.</p>
+      </a>
+      <a class="post-card" href="ai-lab-landscape.html">
+        <div class="pc-meta"><span class="cat">AI</span><span>11 Dec 2025</span><span>· 9 min</span></div>
+        <h2>The AI lab landscape: who's building what, and how</h2>
+        <p>A practitioner's map of the major labs — Anthropic, OpenAI, Google, Meta and the open-weight players — by posture and strategy, not a leaderboard.</p>
+      </a>
+      <a class="post-card" href="context-engineering.html">
+        <div class="pc-meta"><span class="cat">AI</span><span>20 Nov 2025</span><span>· 7 min</span></div>
+        <h2>Context engineering: getting useful output from AI</h2>
+        <p>Past prompt tricks: the real skill is engineering the context — instructions, examples, the actual data, and clear output constraints. Garbage context in, garbage out.</p>
+      </a>
+      <a class="post-card" href="a-practical-process-for-working-with-ai.html">
+        <div class="pc-meta"><span class="cat">AI</span><span>6 Nov 2025</span><span>· 7 min</span></div>
+        <h2>A practical process for working with AI, day to day</h2>
+        <p>A repeatable loop I actually use — frame, delegate, verify, iterate — where the verification step is the whole game, and a good process is what AI multiplies.</p>
+      </a>
+      <a class="post-card" href="ai-fluency-framework.html">
+        <div class="pc-meta"><span class="cat">AI</span><span>3 Oct 2025</span><span>· 8 min</span></div>
+        <h2>The AI Fluency framework: Delegation, Description, Discernment, Diligence</h2>
+        <p>Anthropic's four-D framework, and how a data analyst applies each one in real work. A durable mental model that beats a pile of prompt tips.</p>
+      </a>
+      <a class="post-card" href="ai-in-2025-honest-take.html">
+        <div class="pc-meta"><span class="cat">AI</span><span>12 Sep 2025</span><span>· 7 min</span></div>
+        <h2>AI in 2025: an honest take from a data analyst</h2>
+        <p>Where AI earns its keep in data work, where it's overhyped or quietly dangerous, and why it's leverage on good foundations — not a replacement for judgement.</p>
+      </a>
+      <a class="post-card" href="structured-data-from-documents.html">
+        <div class="pc-meta"><span class="cat">Data Analytics</span><span>21 Aug 2025</span><span>· 7 min</span></div>
+        <h2>Turning messy documents into data with vision AI</h2>
+        <p>Why OCR-and-regex always broke, and how vision models with structured outputs make document extraction production-grade — with the Leaflet Analyzer pipeline as the example.</p>
+      </a>
+      <a class="post-card" href="when-ai-deletes-the-database.html">
+        <div class="pc-meta"><span class="cat">AI &amp; Security</span><span>28 Jul 2025</span><span>· 7 min</span></div>
+        <h2>When AI deletes the database: lessons from the Replit incident</h2>
+        <p>An AI agent deleted a production database during a code freeze, then misreported the recovery. The lessons: least privilege, separate environments, tested restores, and never trust an agent's self-report.</p>
+      </a>
+      <a class="post-card" href="data-innovation-summit-mea-2025.html">
+        <div class="pc-meta"><span class="cat">Conferences</span><span>26 May 2025</span><span>· 6 min</span></div>
+        <h2>What I took away from Data Innovation Summit MEA 2025</h2>
+        <p>A delegate's notes from Conrad Dubai: pilots are over, foundations beat models, and governance stopped being the "no" department.</p>
+      </a>
+    </div>
+
+    <div class="yeardiv">Earlier</div>
+    <div class="post-list">
+      <a class="post-card" href="automated-data-platform.html">
+        <div class="pc-meta"><span class="cat">Data Engineering</span><span>3 Oct 2023</span><span>· 7 min</span></div>
+        <h2>Building an in-house data platform that runs the reporting cycle by itself</h2>
+        <p>Replacing the daily grind of exports and reconciliations with one system that ingests ~100 sources, builds a governed warehouse, and ships reports to email, Power BI, Excel and PDF — with retries and monitoring.</p>
+      </a>
+      <a class="post-card" href="rules-first-crm-segmentation.html">
+        <div class="pc-meta"><span class="cat">Analytics</span><span>17 May 2022</span><span>· 8 min</span></div>
+        <h2>Rules first, code second: customer segmentation you can actually audit</h2>
+        <p>Modelling customer value, lifecycle and churn as transparent, brand-configurable rules instead of a black box — an RFMT approach where every segment traces to a documented definition.</p>
+      </a>
+    </div>
+
+    <p class="note" style="margin-top:24px;">Most of these also go out on <a href="https://www.linkedin.com/in/tverd" target="_blank" rel="noopener">LinkedIn</a>. Written by a human, with AI in the loop — and verified either way.</p>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-in">
+      <div class="c">© <span data-year></span> Oleksandr Tverdokhlieb · Dubai, UAE</div>
+      <div class="foot-links">
+        <a href="https://www.linkedin.com/in/tverd" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6 1.12 6 0 4.88 0 3.5 0 2.12 1.12 1 2.49 1c1.38 0 2.49 1.12 2.49 2.5zM.24 8h4.5v14H.24V8zm7.5 0h4.31v1.92h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V22h-4.5v-6.6c0-1.57-.03-3.6-2.19-3.6-2.2 0-2.53 1.71-2.53 3.48V22h-4.5V8z"/></svg></a>
+        <a href="https://github.com/scripts-and-tables" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.05-.02-2.06-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22 0 1.61-.01 2.9-.01 3.29 0 .32.21.7.82.58A12.01 12.01 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"/></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/site.js"></script>
+</body>
+</html>

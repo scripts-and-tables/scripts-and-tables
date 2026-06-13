@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>AI for software development: real benefits, real risks — Oleksandr Tverdokhlieb</title>
+<meta name="description" content="An honest, first-person take from someone who ships tools with AI help — where AI genuinely accelerates software work, where it quietly bites, and the disciplined stance that keeps it an accelerator rather than an autopilot." />
+<meta name="theme-color" content="#11161f" />
+<link rel="icon" href="https://avatars.githubusercontent.com/u/43398608?v=4" />
+<link rel="stylesheet" href="../assets/site.css?v=12" />
+<link rel="stylesheet" href="blog.css?v=1" />
+  <link rel="canonical" href="https://oleks.devapp24.com/blog/ai-for-software-development.html" />
+  <meta name="author" content="Oleksandr Tverdokhlieb" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Oleksandr Tverdokhlieb" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="AI for software development: real benefits, real risks" />
+  <meta property="og:description" content="Where AI genuinely accelerates software work, where it quietly bites, and the disciplined stance that keeps it an accelerator — not an autopilot." />
+  <meta property="og:url" content="https://oleks.devapp24.com/blog/ai-for-software-development.html" />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/43398608?v=4" />
+  <meta property="article:published_time" content="2026-01-15" />
+  <meta property="article:author" content="Oleksandr Tverdokhlieb" />
+  <meta property="article:section" content="Engineering" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI for software development: real benefits, real risks" />
+  <meta name="twitter:description" content="Where AI genuinely accelerates software work, where it quietly bites, and a disciplined stance for using it well." />
+  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/43398608?v=4" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://oleks.devapp24.com/#person","name":"Oleksandr Tverdokhlieb","jobTitle":"Data Analytics Manager","url":"https://oleks.devapp24.com/","image":"https://avatars.githubusercontent.com/u/43398608?v=4","sameAs":["https://www.linkedin.com/in/tverd","https://github.com/scripts-and-tables"]},{"@type":"BlogPosting","@id":"https://oleks.devapp24.com/blog/ai-for-software-development.html#post","headline":"AI for software development: real benefits, real risks","description":"An honest, first-person take on where AI accelerates software work, where it quietly bites, and the disciplined stance that keeps it an accelerator rather than an autopilot.","datePublished":"2026-01-15","dateModified":"2026-01-15","author":{"@id":"https://oleks.devapp24.com/#person"},"image":"https://avatars.githubusercontent.com/u/43398608?v=4","articleSection":"Engineering","keywords":"AI, software development, code generation, code review, security, developer productivity","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https://oleks.devapp24.com/blog/ai-for-software-development.html"},"publisher":{"@id":"https://oleks.devapp24.com/#person"}}]}</script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-in">
+      <a class="nav-brand" href="../index.html"><img src="https://avatars.githubusercontent.com/u/43398608?v=4" alt="" />Oleksandr&nbsp;Tverdokhlieb</a>
+      <div class="nav-spacer"></div>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog/" class="active">Blog</a>
+        <a href="../about.html">About</a>
+        <a href="../cv.html">CV</a>
+        <a href="../ai.html">AI</a>
+        <a href="../training.html">Training</a>
+        <a href="../credentials.html">Learning</a>
+        <a href="../game/">Games</a>
+      </nav>
+      <a class="nav-cta" href="../contact.html">Contact</a>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="nav-mobile">
+      <a href="../index.html">Home</a><a href="../projects.html">Projects</a><a href="../blog/">Blog</a><a href="../about.html">About</a><a href="../cv.html">CV</a><a href="../ai.html">AI</a><a href="../training.html">Training</a><a href="../credentials.html">Learning</a><a href="../game/">Games</a><a href="../contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="wrap page">
+    <article class="post-wrap">
+      <a class="backlink" href="index.html">← All writing</a>
+      <div class="page-head" style="padding-bottom:6px;">
+        <h1 style="margin-top:8px;font-size:clamp(27px,4.6vw,38px);line-height:1.16;">AI for software development: real benefits, real risks</h1>
+        <div class="post-meta"><span class="cat">Engineering</span><span>15 January 2026</span><span>· 8 min read</span></div>
+        <div class="post-tags"><span class="tag">AI</span><span class="tag">Software</span><span class="tag">Code</span><span class="tag">Risk</span></div>
+      </div>
+
+      <div class="post-body">
+        <p class="lede">I ship internal tools and side projects with AI sitting in my editor most days. It has genuinely changed how fast I work — and it has also handed me bugs so plausible I nearly merged them. This is my honest accounting of both sides, and where I've landed: AI is a brilliant accelerator and a terrible autopilot.</p>
+
+        <p>The discourse around AI coding tends to split into two unhelpful camps. One says junior developers are obsolete and we'll all be "prompting" by next quarter. The other says it's autocomplete with a marketing budget. Neither matches what I actually experience when I build something real. The truth is more useful and less dramatic: the tools are powerful in specific, knowable ways, and dangerous in equally specific, knowable ways. The whole game is knowing which is which before you press merge.</p>
+
+        <h2>Where it genuinely pays off</h2>
+        <p>Let me start with the honest upside, because it's real and I'd be lying to pretend otherwise. The first win is <strong>momentum</strong>. The hardest part of a side project at 9pm isn't the hard part — it's the empty file. AI scaffolds the boilerplate, stubs the routes, sketches the config, and suddenly I'm editing instead of staring. For personal projects that would otherwise die in the "I'll start it this weekend" graveyard, that shift from blank page to working skeleton is the difference between shipping and not.</p>
+
+        <p>The second is <strong>unfamiliar territory</strong>. When I drop into a stack I don't use daily — a new framework, an SDK I've never touched, some gnarly CSS layout — AI is a faster, more patient way to learn than bouncing between twelve browser tabs. It shows me the idiomatic shape of a thing, and I learn by reading and adapting rather than by transcribing. The third is <strong>refactoring and translation</strong>: "rewrite this loop as a comprehension," "convert this script to use the async client," "explain what this regex does." These are mechanical, well-bounded tasks where the AI is fast and I can verify the result at a glance.</p>
+
+        <p>None of this is hype. Surveys consistently find developers <em>feel</em> more productive and more fulfilled with these tools in the loop — and that subjective experience matters, because flow and reduced frustration are why side projects survive. But "feels faster" is exactly where the honesty has to get sharper, because the measured picture is messier.</p>
+
+        <div class="pullquote">AI is a brilliant accelerator and a terrible autopilot. The entire skill is knowing which mode you're in.</div>
+
+        <h2>Where it quietly bites</h2>
+        <p>The risks aren't the dramatic ones people imagine. The AI rarely produces obvious garbage — obvious garbage is easy to catch. What it produces is <strong>plausible</strong> garbage: code that reads beautifully, runs on the happy path, and contains a subtle bug you'd never write yourself because you'd never have been that confident. An off-by-one in a boundary condition. A silently swallowed error. A function that handles the example I gave and quietly mishandles the case I didn't mention. The confidence of the output is the trap.</p>
+
+        <p>Then there's <strong>hallucinated APIs</strong> — methods, parameters, and entire libraries that simply don't exist but look exactly like they should. And the one that should worry anyone shipping to production: <strong>security</strong>. Multiple analyses have found that a large share of AI-generated code introduces vulnerabilities — Veracode's 2025 review of AI output across many models put it <a href="https://www.veracode.com/blog/genai-code-security-report/" target="_blank" rel="noopener">around 45% of cases</a>, echoing earlier academic work on Copilot. SQL injection, command injection, hard-coded secrets — the classics, generated cleanly and confidently. Worse, researchers have found that people using AI assistants tend to write <a href="https://arxiv.org/abs/2211.03622" target="_blank" rel="noopener">less secure code while feeling <em>more</em> confident</a> it's safe. The false sense of security is the actual vulnerability.</p>
+
+        <div class="compare">
+          <div class="col good">
+            <h4>Where it pays off</h4>
+            <ul>
+              <li>Scaffolding and boilerplate — blank page to skeleton fast</li>
+              <li>Learning an unfamiliar stack, SDK or framework</li>
+              <li>Mechanical refactors and code-to-code translation</li>
+              <li>Explaining dense code you didn't write</li>
+              <li>Momentum on side projects that would otherwise stall</li>
+            </ul>
+          </div>
+          <div class="col bad">
+            <h4>Where it bites</h4>
+            <ul>
+              <li>Subtle, plausible bugs you'd never write yourself</li>
+              <li>Insecure code that reads perfectly clean</li>
+              <li>Hallucinated APIs, params and libraries</li>
+              <li>Over-trust and a false sense of security</li>
+              <li>Skill atrophy, and pasting proprietary code into a box</li>
+            </ul>
+          </div>
+        </div>
+
+        <p>Two slower-burning risks round it out. <strong>Skill atrophy</strong> is real — if I let the tool do the thinking on every problem, the muscles I'd use to debug a genuinely novel issue get weaker. And the <strong>confidentiality</strong> question: pasting proprietary or client code into a tool to "just fix this quickly" is a data-handling decision, not a convenience. I treat where the code goes as seriously as what the code does.</p>
+
+        <h2>The productivity number deserves a footnote</h2>
+        <p>Here's the uncomfortable nuance. Even as developers report feeling dramatically faster, the team-level delivery metrics don't always agree. Google's DORA research has repeatedly noted that AI adoption <a href="https://dora.dev/research/" target="_blank" rel="noopener">amplifies a team's existing habits rather than rescuing them</a> — and that higher individual output can show up downstream as bigger review queues and shakier delivery stability, not faster shipping. More code generated is not more value delivered. It's just more code to review, and review is exactly where AI shifts the work.</p>
+
+        <p>I don't read that as "AI doesn't help." I read it as: the bottleneck moves. The constraint stops being how fast you can write a function and becomes how fast you can <em>verify</em> one. If your review discipline doesn't scale with your generation speed, you've just built a faster way to accumulate risk.</p>
+
+        <h2>Trust, but verify — as an actual loop</h2>
+        <p>So the stance I've settled on isn't "use AI" or "don't." It's a loop with a non-negotiable gate. Generate fast, then treat everything the AI produces as a confident draft from a talented stranger who has never seen your codebase, your security requirements, or your edge cases. Nothing crosses the line into <code>merge</code> without my eyes and, for anything that matters, a test.</p>
+
+        <div class="fig">
+          <svg viewBox="0 0 720 200" role="img" aria-label="Trust-but-verify loop: prompt, generate, review and test gate, merge">
+            <defs>
+              <marker id="ar" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#5b626c"/></marker>
+              <marker id="arb" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#c0564a"/></marker>
+            </defs>
+            <!-- prompt -->
+            <rect x="20" y="78" width="132" height="56" rx="10" fill="#eaf0fd" stroke="#cfd8e6"/>
+            <text x="86" y="103" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="14" font-weight="700" fill="#15181d">Prompt</text>
+            <text x="86" y="120" text-anchor="middle" font-family="monospace" font-size="10.5" fill="#5b626c">clear, scoped ask</text>
+            <!-- generate -->
+            <rect x="208" y="78" width="132" height="56" rx="10" fill="#fff" stroke="#e6e4df"/>
+            <text x="274" y="103" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="14" font-weight="700" fill="#15181d">Generate</text>
+            <text x="274" y="120" text-anchor="middle" font-family="monospace" font-size="10.5" fill="#5b626c">fast draft</text>
+            <!-- gate -->
+            <rect x="396" y="78" width="132" height="56" rx="10" fill="#fbeedd" stroke="#f0d9b8"/>
+            <text x="462" y="100" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="14" font-weight="700" fill="#15181d">Review + test</text>
+            <text x="462" y="118" text-anchor="middle" font-family="monospace" font-size="10.5" fill="#a8741f">the mandatory gate</text>
+            <!-- merge -->
+            <rect x="584" y="78" width="116" height="56" rx="10" fill="#e4f5ee" stroke="#bfe6d3"/>
+            <text x="642" y="103" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="14" font-weight="700" fill="#15181d">Merge</text>
+            <text x="642" y="120" text-anchor="middle" font-family="monospace" font-size="10.5" fill="#5b626c">human owns it</text>
+            <!-- forward arrows -->
+            <line x1="152" y1="106" x2="202" y2="106" stroke="#5b626c" stroke-width="1.5" marker-end="url(#ar)"/>
+            <line x1="340" y1="106" x2="390" y2="106" stroke="#5b626c" stroke-width="1.5" marker-end="url(#ar)"/>
+            <line x1="528" y1="106" x2="578" y2="106" stroke="#5b626c" stroke-width="1.5" marker-end="url(#ar)"/>
+            <!-- reject loop back -->
+            <path d="M462 134 L462 170 L274 170 L274 138" fill="none" stroke="#c0564a" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arb)"/>
+            <text x="368" y="187" text-anchor="middle" font-family="monospace" font-size="11" fill="#c0564a">reject → regenerate (no shortcut to merge)</text>
+          </svg>
+          <div class="fig-cap">The gate is not optional. Code only reaches merge through human review and a test — never around them.</div>
+        </div>
+
+        <p>In practice that means a few concrete habits. I keep prompts scoped and specific, because a vague ask gets a vague, hallucination-prone answer. I read every generated line as if a colleague wrote it on a deadline — looking hardest at error handling, boundaries, and anything touching auth, input, or secrets. I write or ask for tests on the cases the AI conveniently ignored. And I never paste anything sensitive into a tool I haven't cleared for it.</p>
+
+        <div class="callout">
+          <span class="lab">My working rule</span>
+          AI can write the code. It cannot <strong>own</strong> the code. The moment something I generated ships, it's mine — my bug, my vulnerability, my name on the commit. That single line of accountability is what keeps the tool an accelerator instead of an excuse.
+        </div>
+
+        <h2>What I'm taking into 2026</h2>
+        <ul>
+          <li><strong>Generate fast, verify slow.</strong> The speed-up is real; spend it buying time for review, not skipping it.</li>
+          <li><strong>Treat confidence as a warning, not a signal.</strong> The cleanest-looking output is exactly where the subtle bug hides.</li>
+          <li><strong>Protect the fundamentals.</strong> Keep solving some problems by hand so the debugging muscles don't waste away.</li>
+          <li><strong>Guard the inputs.</strong> Where the code goes matters as much as whether it works.</li>
+        </ul>
+
+        <p>I'm not nostalgic about doing things the slow way, and I'm not breathless about the new way either. AI has made me a faster builder and, paradoxically, a more careful one — because the failure mode shifted from "can't get it working" to "got it working a little too easily." Used with discipline, it's the best accelerator I've had in years. Used as an autopilot, it's a confident way to ship someone else's bug under your own name. I know which one I'm choosing.</p>
+      </div>
+
+      <div class="post-foot">
+        <div class="by">
+          <img src="https://avatars.githubusercontent.com/u/43398608?v=4" alt="Oleksandr Tverdokhlieb" />
+          <div>
+            <div class="n">Oleksandr Tverdokhlieb</div>
+            <div class="r">Data Analytics Manager · Dubai — building data platforms, automation and applied AI.</div>
+          </div>
+        </div>
+        <div class="post-cta">
+          <a class="primary" href="index.html">More writing →</a>
+          <a href="../ai.html">How I use AI</a>
+          <a href="https://www.linkedin.com/in/tverd" target="_blank" rel="noopener">Connect on LinkedIn ↗</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-in">
+      <div class="c">© <span data-year></span> Oleksandr Tverdokhlieb · Dubai, UAE</div>
+      <div class="foot-links">
+        <a href="https://www.linkedin.com/in/tverd" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6 1.12 6 0 4.88 0 3.5 0 2.12 1.12 1 2.49 1c1.38 0 2.49 1.12 2.49 2.5zM.24 8h4.5v14H.24V8zm7.5 0h4.31v1.92h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V22h-4.5v-6.6c0-1.57-.03-3.6-2.19-3.6-2.2 0-2.53 1.71-2.53 3.48V22h-4.5V8z"/></svg></a>
+        <a href="https://github.com/scripts-and-tables" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.05-.02-2.06-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22 0 1.61-.01 2.9-.01 3.29 0 .32.21.7.82.58A12.01 12.01 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"/></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/site.js"></script>
+</body>
+</html>

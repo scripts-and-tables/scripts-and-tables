@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Context engineering: getting useful output from AI — Oleksandr Tverdokhlieb</title>
+<meta name="description" content="The real skill with AI isn't clever wording — it's engineering the context you give a model: clear intent, relevant examples, the actual data, explicit constraints, and the right tools. A practical, analyst's view." />
+<meta name="theme-color" content="#11161f" />
+<link rel="icon" href="https://avatars.githubusercontent.com/u/43398608?v=4" />
+<link rel="stylesheet" href="../assets/site.css?v=12" />
+<link rel="stylesheet" href="blog.css?v=1" />
+  <link rel="canonical" href="https://oleks.devapp24.com/blog/context-engineering.html" />
+  <meta name="author" content="Oleksandr Tverdokhlieb" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Oleksandr Tverdokhlieb" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Context engineering: getting useful output from AI" />
+  <meta property="og:description" content="Move past prompt tricks. The real skill is engineering the context — intent, examples, data, constraints, output format and tools — that a model needs to give you useful output." />
+  <meta property="og:url" content="https://oleks.devapp24.com/blog/context-engineering.html" />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/43398608?v=4" />
+  <meta property="article:published_time" content="2025-11-20" />
+  <meta property="article:author" content="Oleksandr Tverdokhlieb" />
+  <meta property="article:section" content="AI" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Context engineering: getting useful output from AI" />
+  <meta name="twitter:description" content="The real skill isn't clever wording — it's engineering the context you give a model." />
+  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/43398608?v=4" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://oleks.devapp24.com/#person","name":"Oleksandr Tverdokhlieb","jobTitle":"Data Analytics Manager","url":"https://oleks.devapp24.com/","image":"https://avatars.githubusercontent.com/u/43398608?v=4","sameAs":["https://www.linkedin.com/in/tverd","https://github.com/scripts-and-tables"]},{"@type":"BlogPosting","@id":"https://oleks.devapp24.com/blog/context-engineering.html#post","headline":"Context engineering: getting useful output from AI","description":"Move past prompt tricks. The real skill is engineering the context — intent, examples, data, constraints, output format and tools — that a model needs to give you useful output.","datePublished":"2025-11-20","dateModified":"2025-11-20","author":{"@id":"https://oleks.devapp24.com/#person"},"image":"https://avatars.githubusercontent.com/u/43398608?v=4","articleSection":"AI","keywords":"context engineering, prompt engineering, AI, LLM, prompting, analyst, SQL, output format","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https://oleks.devapp24.com/blog/context-engineering.html"},"publisher":{"@id":"https://oleks.devapp24.com/#person"}}]}</script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-in">
+      <a class="nav-brand" href="../index.html"><img src="https://avatars.githubusercontent.com/u/43398608?v=4" alt="" />Oleksandr&nbsp;Tverdokhlieb</a>
+      <div class="nav-spacer"></div>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog/" class="active">Blog</a>
+        <a href="../about.html">About</a>
+        <a href="../cv.html">CV</a>
+        <a href="../ai.html">AI</a>
+        <a href="../training.html">Training</a>
+        <a href="../credentials.html">Learning</a>
+        <a href="../game/">Games</a>
+      </nav>
+      <a class="nav-cta" href="../contact.html">Contact</a>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="nav-mobile">
+      <a href="../index.html">Home</a><a href="../projects.html">Projects</a><a href="../blog/">Blog</a><a href="../about.html">About</a><a href="../cv.html">CV</a><a href="../ai.html">AI</a><a href="../training.html">Training</a><a href="../credentials.html">Learning</a><a href="../game/">Games</a><a href="../contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="wrap page">
+    <article class="post-wrap">
+      <a class="backlink" href="index.html">← All writing</a>
+      <div class="page-head" style="padding-bottom:6px;">
+        <h1 style="margin-top:8px;font-size:clamp(27px,4.6vw,38px);line-height:1.16;">Context engineering: getting useful output from AI</h1>
+        <div class="post-meta"><span class="cat">AI</span><span>20 November 2025</span><span>· 7 min read</span></div>
+        <div class="post-tags"><span class="tag">AI</span><span class="tag">Prompting</span><span class="tag">Context</span><span class="tag">Practical</span></div>
+      </div>
+
+      <div class="post-body">
+        <p class="lede">For a while everyone chased "prompt tricks" — the magic phrase, the secret role-play, the "you are a world-class expert" opener. I've stopped caring about wording almost entirely. The thing that actually moves the needle on whether AI gives me something useful isn't how I phrase the request. It's the <em>context</em> I put around it.</p>
+
+        <p>There's a name for this now — <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener">context engineering</a> — and I think it's a better frame than prompt engineering. Prompting treats the model like a slot machine you tune with clever words. Context engineering treats it like a capable colleague who can only be as good as the brief you hand them. Hand them a one-liner and they guess. Hand them the right material and they're sharp.</p>
+
+        <h2>What "context" actually means</h2>
+        <p>When people say context they sometimes just mean "the prompt." I mean everything the model can see when it answers: your intent, a few examples of what good looks like, the actual data or code it needs to work on, the constraints it must respect, the output format you want back, and any tools it's allowed to use. That whole bundle is the context window. The model reasons over what's in it — and nothing else.</p>
+
+        <div class="fig">
+          <svg viewBox="0 0 720 220" role="img" aria-label="What goes into the context window">
+            <defs>
+              <marker id="ar" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#5b626c"/></marker>
+            </defs>
+            <!-- input pills -->
+            <rect x="14" y="16" width="190" height="30" rx="15" fill="#eaf0fd" stroke="#cfd8e6"/>
+            <text x="109" y="36" text-anchor="middle" font-family="monospace" font-size="12" fill="#15181d">instructions / intent</text>
+            <rect x="14" y="54" width="190" height="30" rx="15" fill="#eaf0fd" stroke="#cfd8e6"/>
+            <text x="109" y="74" text-anchor="middle" font-family="monospace" font-size="12" fill="#15181d">examples of "good"</text>
+            <rect x="14" y="92" width="190" height="30" rx="15" fill="#eaf0fd" stroke="#cfd8e6"/>
+            <text x="109" y="112" text-anchor="middle" font-family="monospace" font-size="12" fill="#15181d">the actual data</text>
+            <rect x="14" y="130" width="190" height="30" rx="15" fill="#eaf0fd" stroke="#cfd8e6"/>
+            <text x="109" y="150" text-anchor="middle" font-family="monospace" font-size="12" fill="#15181d">constraints + format</text>
+            <rect x="14" y="168" width="190" height="30" rx="15" fill="#eaf0fd" stroke="#cfd8e6"/>
+            <text x="109" y="188" text-anchor="middle" font-family="monospace" font-size="12" fill="#15181d">tools available</text>
+            <!-- arrows in -->
+            <line x1="210" y1="31" x2="296" y2="95" stroke="#5b626c" stroke-width="1.3" marker-end="url(#ar)"/>
+            <line x1="210" y1="69" x2="296" y2="103" stroke="#5b626c" stroke-width="1.3" marker-end="url(#ar)"/>
+            <line x1="210" y1="107" x2="296" y2="110" stroke="#5b626c" stroke-width="1.3" marker-end="url(#ar)"/>
+            <line x1="210" y1="145" x2="296" y2="117" stroke="#5b626c" stroke-width="1.3" marker-end="url(#ar)"/>
+            <line x1="210" y1="183" x2="296" y2="125" stroke="#5b626c" stroke-width="1.3" marker-end="url(#ar)"/>
+            <!-- model -->
+            <rect x="300" y="80" width="150" height="60" rx="12" fill="#fff" stroke="#e6e4df"/>
+            <text x="375" y="107" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="15" font-weight="700" fill="#15181d">model</text>
+            <text x="375" y="125" text-anchor="middle" font-family="monospace" font-size="10.5" fill="#5b626c">reasons over context</text>
+            <!-- arrow out -->
+            <line x1="450" y1="110" x2="540" y2="110" stroke="#5b626c" stroke-width="1.5" marker-end="url(#ar)"/>
+            <!-- output -->
+            <rect x="544" y="80" width="162" height="60" rx="12" fill="#e4f5ee" stroke="#bfe6d3"/>
+            <text x="625" y="107" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="15" font-weight="700" fill="#15181d">useful output</text>
+            <text x="625" y="125" text-anchor="middle" font-family="monospace" font-size="10.5" fill="#5b626c">grounded · on-format</text>
+          </svg>
+          <div class="fig-cap">The context window is the whole brief: instructions, examples, data, constraints and tools → model → output.</div>
+        </div>
+
+        <h2>Garbage context in, garbage out</h2>
+        <p>The old "garbage in, garbage out" rule never went away — it just moved up a layer. A model can't reason about a metric you never defined, a schema it can't see, or an edge case you didn't mention. When the output is vague or wrong, my first instinct now isn't to reword. It's to ask what I failed to give it.</p>
+
+        <p>Here's a concrete one from my own week. "Write me a SQL query for monthly active users" is a coin flip — the model has to invent your table names, guess what "active" means, and assume a date column. Compare that with handing it the schema, one sample row, and the exact definition:</p>
+
+        <div class="codeblock"><span class="c">-- Vague ask (model has to guess everything)</span>
+"write SQL for monthly active users"
+
+<span class="c">-- Engineered context (model has what it needs)</span>
+<span class="k">Table</span> events(user_id <span class="n">bigint</span>, event_name <span class="n">text</span>, ts <span class="n">timestamptz</span>)
+<span class="c">-- sample row:</span> 481922 | <span class="s">'app_open'</span> | 2025-11-03 08:14:22+00
+<span class="k">Definition:</span> an "active" user = ≥1 <span class="s">'app_open'</span> in the calendar month.
+<span class="k">Want:</span> one row per month, month + distinct active users, last 12 months, Postgres.
+<span class="k">Format:</span> just the query, no prose.</div>
+
+        <p>The second version isn't more clever — it's more <em>complete</em>. I removed every guess. The model now produces a query I can run, against my real table, measuring the thing I actually meant. That's the whole game: most "the AI got it wrong" moments are really "I left a blank the model filled in for me."</p>
+
+        <div class="pullquote">Giving the model the right context almost always beats finding cleverer words. The skill isn't phrasing — it's deciding what to put in front of it.</div>
+
+        <h2>Examples and format do a lot of quiet work</h2>
+        <p>Two of the cheapest, highest-leverage things you can add are an example and an output spec. One example of a "good" answer communicates taste and structure faster than a paragraph of description — show it one before/after pair and it infers the pattern. And telling it exactly how you want the result back ("a markdown table with these columns", "valid JSON, no commentary", "three bullets, max ten words each") removes a whole class of cleanup. I'd rather spend one line constraining the format than five minutes reshaping the answer afterwards.</p>
+
+        <p>Constraints work the same way. "Don't assume a library that isn't already imported", "use UK date format", "if the data doesn't support a conclusion, say so" — each one closes a door you'd otherwise have to walk back through. Anthropic's <a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener">guidance on prompting</a> makes a similar point: being explicit about what you want, and giving the model the material to do it, beats hoping it reads your mind.</p>
+
+        <div class="callout tip">
+          <span class="lab">What I actually add to a request</span>
+          Before I hit send, I check five blanks: <strong>intent</strong> (what decision is this for?), <strong>data</strong> (did I paste the schema/snippet/row?), <strong>example</strong> (one "good" sample), <strong>constraints</strong> (what must it not do?), and <strong>format</strong> (exactly how I want it back). Filling those beats any opening line.
+        </div>
+
+        <h2>But more isn't always better</h2>
+        <p>Here's the part people skip once they're sold on context: more context isn't automatically better context. Dump an entire 40-tab workbook, three unrelated docs, and a chat history into the window and you don't get a smarter answer — you get a distracted one. The signal you actually need gets buried in noise, and the model can latch onto the wrong detail. Long, cluttered context can quietly degrade quality, an effect people sometimes call <a href="https://arxiv.org/abs/2307.03172" target="_blank" rel="noopener">"lost in the middle"</a>, where information buried in a long input gets used less reliably than the same fact placed up front.</p>
+
+        <p>So the goal isn't <em>maximum</em> context — it's the <em>smallest set of highly relevant</em> context. Tight and on-point beats big and vague. That's a judgement call, and it's exactly the part that doesn't automate: knowing which sample row, which column definition, which one example actually represents the problem.</p>
+
+        <div class="callout">
+          <span class="lab">My one-line takeaway</span>
+          Stop polishing the prompt. Start curating the context — <strong>the right data, one good example, clear constraints, an exact format</strong> — and keep it tight enough that the signal doesn't drown.
+        </div>
+
+        <h2>Why this is an analyst's skill</h2>
+        <p>I find this framing freeing, because it's not a new mysterious art — it's the brief-writing skill I already needed. A good brief to a junior analyst and a good brief to a model rhyme: state the question, share the data, define the terms, show an example, set the constraints, name the format. The people who get the most out of these tools aren't the ones hoarding prompt incantations. They're the ones who are clear about what they want and disciplined about handing over what's needed to get there.</p>
+
+        <p>That's the shift I'd encourage: treat the model as a fast, capable colleague who only knows what you tell it. Engineer the context, keep it lean, and the wording mostly takes care of itself.</p>
+      </div>
+
+      <div class="post-foot">
+        <div class="by">
+          <img src="https://avatars.githubusercontent.com/u/43398608?v=4" alt="Oleksandr Tverdokhlieb" />
+          <div>
+            <div class="n">Oleksandr Tverdokhlieb</div>
+            <div class="r">Data Analytics Manager · Dubai — building data platforms, automation and applied AI.</div>
+          </div>
+        </div>
+        <div class="post-cta">
+          <a class="primary" href="index.html">More writing →</a>
+          <a href="../ai.html">How I use AI</a>
+          <a href="https://www.linkedin.com/in/tverd" target="_blank" rel="noopener">Connect on LinkedIn ↗</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-in">
+      <div class="c">© <span data-year></span> Oleksandr Tverdokhlieb · Dubai, UAE</div>
+      <div class="foot-links">
+        <a href="https://www.linkedin.com/in/tverd" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6 1.12 6 0 4.88 0 3.5 0 2.12 1.12 1 2.49 1c1.38 0 2.49 1.12 2.49 2.5zM.24 8h4.5v14H.24V8zm7.5 0h4.31v1.92h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V22h-4.5v-6.6c0-1.57-.03-3.6-2.19-3.6-2.2 0-2.53 1.71-2.53 3.48V22h-4.5V8z"/></svg></a>
+        <a href="https://github.com/scripts-and-tables" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.05-.02-2.06-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22 0 1.61-.01 2.9-.01 3.29 0 .32.21.7.82.58A12.01 12.01 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"/></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+[
+  {
+    "id": "automated-reporting-platform",
+    "title": "From manual mornings to a self-running reporting platform",
+    "date": "May 2026",
+    "readingTime": "5 min read",
+    "excerpt": "How I replaced a team's manual reporting cycle with an automated data-analytics platform that ingests ~100 sources and runs ~500 jobs a day.",
+    "tags": ["Automation", "Data engineering", "Leadership"],
+    "relatedProject": "data-analytics-platform",
+    "body": [
+      "Every analytics team I've worked with starts its week the same way: downloading exports, reconciling spreadsheets, refreshing dashboards, and emailing the same reports to the same people. It's slow, fragile, and a waste of people who could be solving harder problems.",
+      { "h": "The shift: from reports to a product" },
+      "Instead of producing reports by hand, we built a platform that produces them on its own. It ingests data from across the business — Excel files, APIs, operational systems, databases — consolidates it into a governed warehouse, and delivers decision-ready reports on a schedule to inboxes, Power BI, Excel, and PDF.",
+      "Today it orchestrates roughly 100 data sources and 500 pipeline runs a day, all scheduled, retried on failure, and observable from a single monitoring console.",
+      { "h": "What made it work" },
+      "Three things mattered more than the technology. First, treating reporting as a governed product, not a pile of scripts — one auditable source of truth. Second, monitoring: every run reports its own health, so problems surface before stakeholders notice. Third, a ruthless focus on the decision each report drives, not the data it contains.",
+      { "h": "The payoff" },
+      "Reporting that used to take a team's mornings now runs itself, and the analysts moved from assembling reports to acting on them. That's the real win — not the automation, but what people do with the time it frees."
+    ]
+  },
+  {
+    "id": "automating-promo-factsheets",
+    "title": "Cutting 60 hours a week of data entry",
+    "date": "Apr 2026",
+    "readingTime": "4 min read",
+    "excerpt": "Replacing manual supplier-file transcription with an automation that turns spreadsheets into validated, Salesforce-ready promo fact sheets.",
+    "tags": ["Automation", "Salesforce", "Business impact"],
+    "relatedProject": "salesforce-promo-automation",
+    "body": [
+      "At CPG distributors, sales coordinators lose about a third of every week re-typing supplier Excel files into Salesforce. It's slow, error-prone, and it pulls expensive sales talent away from selling.",
+      { "h": "The gap between the spreadsheet and the system" },
+      "The fix wasn't a new platform — it was closing the gap between the file and the CRM. Drop a supplier file in a shared folder, and the tool matches items against the stock master, validates the data, flags issues (missing SKUs, off-quarter dates, channel problems), and produces a clean, Salesforce-ready promo fact sheet for approval in minutes.",
+      { "h": "Why it stuck" },
+      "It was built on tools the team already used — Salesforce/Aforza, Excel, existing approval flows — so there was nothing new to onboard. And it kept a human in the loop: the coordinator reviews and approves before anything is published, with a full audit trail preserved.",
+      { "h": "The result" },
+      "For one customer it freed 60+ hours a week across five coordinators — roughly 3,000 hours a year — and redeployed about 1.5 full-time roles from data entry back to selling, with near-zero transcription errors. Half-day files became minutes."
+    ]
+  },
+  {
+    "id": "more",
+    "title": "More articles in progress",
+    "excerpt": "I'm writing up more case studies and lessons from building analytics products and leading a data team. Follow along on LinkedIn.",
+    "tags": ["Coming soon"],
+    "soon": true
+  }
+]

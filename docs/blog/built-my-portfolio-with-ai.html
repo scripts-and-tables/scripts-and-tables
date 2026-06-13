@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>I built this site with an AI coding agent — Oleksandr Tverdokhlieb</title>
+<meta name="description" content="An honest, behind-the-scenes look at building this portfolio — project pages, interactive demos, a games arcade and this blog — with an AI coding agent as a pair-builder on a simple static stack deployed to GitHub Pages." />
+<meta name="theme-color" content="#11161f" />
+<link rel="icon" href="https://avatars.githubusercontent.com/u/43398608?v=4" />
+<link rel="stylesheet" href="../assets/site.css?v=12" />
+<link rel="stylesheet" href="blog.css?v=1" />
+  <link rel="canonical" href="https://oleks.devapp24.com/blog/built-my-portfolio-with-ai.html" />
+  <meta name="author" content="Oleksandr Tverdokhlieb" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Oleksandr Tverdokhlieb" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="I built this site with an AI coding agent" />
+  <meta property="og:description" content="An honest, behind-the-scenes look at building this portfolio with an AI coding agent as a pair-builder — what worked, what I had to own, and the guardrails." />
+  <meta property="og:url" content="https://oleks.devapp24.com/blog/built-my-portfolio-with-ai.html" />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/43398608?v=4" />
+  <meta property="article:published_time" content="2026-05-28" />
+  <meta property="article:author" content="Oleksandr Tverdokhlieb" />
+  <meta property="article:section" content="Engineering" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="I built this site with an AI coding agent" />
+  <meta name="twitter:description" content="An honest, behind-the-scenes look at building this portfolio with an AI coding agent as a pair-builder." />
+  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/43398608?v=4" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://oleks.devapp24.com/#person","name":"Oleksandr Tverdokhlieb","jobTitle":"Data Analytics Manager","url":"https://oleks.devapp24.com/","image":"https://avatars.githubusercontent.com/u/43398608?v=4","sameAs":["https://www.linkedin.com/in/tverd","https://github.com/scripts-and-tables"]},{"@type":"BlogPosting","@id":"https://oleks.devapp24.com/blog/built-my-portfolio-with-ai.html#post","headline":"I built this site with an AI coding agent","description":"An honest, behind-the-scenes look at building this portfolio with an AI coding agent as a pair-builder — what worked, what I had to own, and the guardrails.","datePublished":"2026-05-28","dateModified":"2026-05-28","author":{"@id":"https://oleks.devapp24.com/#person"},"image":"https://avatars.githubusercontent.com/u/43398608?v=4","articleSection":"Engineering","keywords":"AI coding agent, static site, GitHub Pages, web development, portfolio, meta, applied AI","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https://oleks.devapp24.com/blog/built-my-portfolio-with-ai.html"},"publisher":{"@id":"https://oleks.devapp24.com/#person"}}]}</script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-in">
+      <a class="nav-brand" href="../index.html"><img src="https://avatars.githubusercontent.com/u/43398608?v=4" alt="" />Oleksandr&nbsp;Tverdokhlieb</a>
+      <div class="nav-spacer"></div>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog/" class="active">Blog</a>
+        <a href="../about.html">About</a>
+        <a href="../cv.html">CV</a>
+        <a href="../ai.html">AI</a>
+        <a href="../training.html">Training</a>
+        <a href="../credentials.html">Learning</a>
+        <a href="../game/">Games</a>
+      </nav>
+      <a class="nav-cta" href="../contact.html">Contact</a>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="nav-mobile">
+      <a href="../index.html">Home</a><a href="../projects.html">Projects</a><a href="../blog/">Blog</a><a href="../about.html">About</a><a href="../cv.html">CV</a><a href="../ai.html">AI</a><a href="../training.html">Training</a><a href="../credentials.html">Learning</a><a href="../game/">Games</a><a href="../contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="wrap page">
+    <article class="post-wrap">
+      <a class="backlink" href="index.html">← All writing</a>
+      <div class="page-head" style="padding-bottom:6px;">
+        <h1 style="margin-top:8px;font-size:clamp(27px,4.6vw,38px);line-height:1.16;">I built this site with an AI coding agent</h1>
+        <div class="post-meta"><span class="cat">Engineering</span><span>28 May 2026</span><span>· 7 min read</span></div>
+        <div class="post-tags"><span class="tag">AI</span><span class="tag">Web</span><span class="tag">Static site</span><span class="tag">Meta</span></div>
+      </div>
+
+      <div class="post-body">
+        <p class="lede">The site you're reading was built largely with an AI coding agent. The project pages, the interactive demos, the little games arcade, and this very blog — most of it was drafted, refactored and iterated with an agent sitting beside me. This post is the honest version of how that actually went: what the collaboration looked like, what worked, and what I still had to own.</p>
+
+        <p>I write a lot on this blog about AI as leverage on top of judgement. It felt dishonest to make that argument without showing my own work — so here it is, the meta-post. No mystique, no "I just typed a prompt and a website appeared." Building this was a real collaboration with a clear division of labour, and the interesting part is exactly where that line sits.</p>
+
+        <h2>The stack is deliberately boring</h2>
+        <p>There's no framework here, no build step to speak of, no server. It's hand-written HTML, CSS and a little vanilla JavaScript, with the content-heavy pages driven by small JSON data files. Everything is committed to a Git repository and deployed straight to <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a>, served at a custom domain. That's the whole architecture.</p>
+
+        <p>Boring is a feature. A simple static stack means there's nothing to misbehave at runtime, every page is just a file I can read end to end, and the AI agent and I are always looking at the same plain text. When the surface area is small, review is fast — and review is where the real work lives.</p>
+
+        <div class="fig">
+          <svg viewBox="0 0 720 172" role="img" aria-label="The build loop: idea, agent drafts, I review and test, commit, deploy">
+            <defs>
+              <marker id="ar" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#5b626c"/></marker>
+            </defs>
+            <rect x="10" y="58" width="118" height="56" rx="10" fill="#eaf0fd" stroke="#cfd8e6"/>
+            <text x="69" y="83" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="14" font-weight="700" fill="#15181d">Idea</text>
+            <text x="69" y="101" text-anchor="middle" font-family="monospace" font-size="10.5" fill="#5b626c">I direct</text>
+
+            <rect x="160" y="58" width="118" height="56" rx="10" fill="#fff" stroke="#e6e4df"/>
+            <text x="219" y="83" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="14" font-weight="700" fill="#15181d">Agent drafts</text>
+            <text x="219" y="101" text-anchor="middle" font-family="monospace" font-size="10.5" fill="#5b626c">code · iterate</text>
+
+            <rect x="310" y="58" width="118" height="56" rx="10" fill="#fbeedd" stroke="#f0d9b8"/>
+            <text x="369" y="83" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="14" font-weight="700" fill="#15181d">I review</text>
+            <text x="369" y="101" text-anchor="middle" font-family="monospace" font-size="10.5" fill="#5b626c">read · test</text>
+
+            <rect x="460" y="58" width="118" height="56" rx="10" fill="#fff" stroke="#e6e4df"/>
+            <text x="519" y="83" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="14" font-weight="700" fill="#15181d">Commit</text>
+            <text x="519" y="101" text-anchor="middle" font-family="monospace" font-size="10.5" fill="#5b626c">git</text>
+
+            <rect x="610" y="58" width="100" height="56" rx="10" fill="#e4f5ee" stroke="#bfe6d3"/>
+            <text x="660" y="83" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="14" font-weight="700" fill="#15181d">Deploy</text>
+            <text x="660" y="101" text-anchor="middle" font-family="monospace" font-size="10.5" fill="#5b626c">Pages</text>
+
+            <line x1="128" y1="86" x2="156" y2="86" stroke="#5b626c" stroke-width="1.5" marker-end="url(#ar)"/>
+            <line x1="278" y1="86" x2="306" y2="86" stroke="#5b626c" stroke-width="1.5" marker-end="url(#ar)"/>
+            <line x1="428" y1="86" x2="456" y2="86" stroke="#5b626c" stroke-width="1.5" marker-end="url(#ar)"/>
+            <line x1="578" y1="86" x2="606" y2="86" stroke="#5b626c" stroke-width="1.5" marker-end="url(#ar)"/>
+            <path d="M369 118 L369 150 L219 150 L219 118" fill="none" stroke="#2459d6" stroke-width="1.3" stroke-dasharray="4 4" marker-end="url(#ar)"/>
+            <text x="294" y="166" text-anchor="middle" font-family="monospace" font-size="10.5" fill="#2459d6">if it's wrong, back to drafting — the loop is cheap</text>
+          </svg>
+          <div class="fig-cap">The build loop. The agent makes the cheap part cheaper; the review step is mine and non-negotiable.</div>
+        </div>
+
+        <h2>What the collaboration actually looked like</h2>
+        <p>The easiest way to describe it is a pairing in which the roles are sharply split. I set the direction and made every decision that mattered; the agent did the fast, repetitive, mechanical work of turning intent into working code. Concretely:</p>
+
+        <ul class="steps">
+          <li><strong>I described the intent.</strong> "A blog index that reads from a JSON file," "a demo that feels like a real internal portal," "make the project cards consistent with the design system." Goals, constraints and taste — not implementation.</li>
+          <li><strong>The agent drafted.</strong> It wrote the markup, the CSS, the small scripts, and wired pages to their data — usually faster than I'd have typed the boilerplate myself, and consistently in the house style once the system was set.</li>
+          <li><strong>I reviewed and tested everything.</strong> I read every diff, opened the page, clicked through it, checked it on mobile, and pushed back on anything that was off — wrong, ugly, or subtly untrue.</li>
+          <li><strong>We iterated tightly.</strong> Most things took a few rounds. Because a static page is cheap to regenerate, trying a second or third approach cost minutes, not hours.</li>
+          <li><strong>Then I committed and deployed.</strong> A commit to the main branch, GitHub Pages rebuilds, and the change is live at the custom domain. No pipeline to babysit.</li>
+        </ul>
+
+        <p>That loop is the whole story. It's not "AI builds a website." It's me using an agent to compress the distance between an idea and a working, reviewed version of it.</p>
+
+        <h2>What genuinely worked</h2>
+        <p>The honest wins were mostly about <em>momentum</em>. Speed, yes — but more importantly the ability to try ideas cheaply. When trying a layout or a demo costs ten minutes instead of an afternoon, you try more of them, and you keep the good ones. A lot of what's on this site exists simply because the cost of experimenting dropped low enough that I bothered.</p>
+
+        <p>The other quiet win was consistency. Once I'd settled a design system — the spacing, the colours, the components in <code>blog.css</code>, the navigation — the agent applied it uniformly across dozens of pages without drifting. That kind of disciplined repetition is exactly what humans get bored doing and machines do not.</p>
+
+        <div class="pullquote">The agent didn't give me taste, accuracy or judgement. It gave me speed on everything downstream of those — which is most of the typing.</div>
+
+        <h2>What I had to own</h2>
+        <p>This is the part that matters most, and the part it would be easy to gloss over. The agent is fast and tireless, but it has no stake in whether the result is <em>good</em> or <em>true</em>. That was entirely on me.</p>
+
+        <p><strong>Taste</strong> stayed mine: whether a page felt right, whether a demo was clear, whether the writing sounded like me and not like generic web copy. <strong>Accuracy</strong> stayed mine: every claim on this site about what I've built or what I do had to be something I'd stand behind. And the line between <em>true</em> and merely <em>impressive</em> was a line only I could police — an agent will happily make something sound more accomplished than it is if you let it.</p>
+
+        <div class="callout tip">
+          <span class="lab">The guardrail that mattered most</span>
+          Review everything, keep it honest, and never let the tool inflate a claim. Fast drafting is only an asset if a person who actually knows the truth is checking every line before it ships. The agent writes; <strong>I'm accountable for what stays.</strong>
+        </div>
+
+        <p>There's a concrete example of that discipline elsewhere on the site. The internal-portal demo is built entirely on synthetic data — no real company names, brands or numbers — precisely because the point is to show the <em>shape</em> of a product without borrowing credibility I haven't earned. The agent could have made it look more "real." It shouldn't, and didn't.</p>
+
+        <h2>The honest verdict</h2>
+        <p>An AI coding agent turned out to be a genuinely good pair-builder for a project like this: a lot of surface area, a clear design system, low stakes per change, and a human who knows what "done" looks like. It made me faster and bolder. It did not make me redundant — if anything it raised the value of the things only I could supply: direction, taste, and the willingness to say "that's not quite true, do it again."</p>
+
+        <p>Which is the same thing I keep landing on across this whole blog. AI is leverage, and leverage multiplies whatever you point it at. Point it at good judgement and honest standards and you ship more, faster. Skip those and you just produce polished mistakes at speed. This site is my small, working proof of the first version — built in the open, reviewed line by line, and kept honest on purpose.</p>
+      </div>
+
+      <div class="post-foot">
+        <div class="by">
+          <img src="https://avatars.githubusercontent.com/u/43398608?v=4" alt="Oleksandr Tverdokhlieb" />
+          <div>
+            <div class="n">Oleksandr Tverdokhlieb</div>
+            <div class="r">Data Analytics Manager · Dubai — building data platforms, automation and applied AI.</div>
+          </div>
+        </div>
+        <div class="post-cta">
+          <a class="primary" href="index.html">More writing →</a>
+          <a href="../projects.html">See the projects</a>
+          <a href="https://www.linkedin.com/in/tverd" target="_blank" rel="noopener">Connect on LinkedIn ↗</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-in">
+      <div class="c">© <span data-year></span> Oleksandr Tverdokhlieb · Dubai, UAE</div>
+      <div class="foot-links">
+        <a href="https://www.linkedin.com/in/tverd" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6 1.12 6 0 4.88 0 3.5 0 2.12 1.12 1 2.49 1c1.38 0 2.49 1.12 2.49 2.5zM.24 8h4.5v14H.24V8zm7.5 0h4.31v1.92h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V22h-4.5v-6.6c0-1.57-.03-3.6-2.19-3.6-2.2 0-2.53 1.71-2.53 3.48V22h-4.5V8z"/></svg></a>
+        <a href="https://github.com/scripts-and-tables" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.05-.02-2.06-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22 0 1.61-.01 2.9-.01 3.29 0 .32.21.7.82.58A12.01 12.01 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"/></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/site.js"></script>
+</body>
+</html>

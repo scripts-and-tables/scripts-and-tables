@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" data-density="regular">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dashboard — Data Pipeline Automation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="pipeline.css" />
+</head>
+<body>
+
+<header class="topbar" data-screen-label="Top bar">
+  <div class="wrap topbar-inner">
+    <div class="topbar-brand"><span class="glyph">▸▸</span><span>Data Pipeline Automation</span></div>
+    <nav class="topbar-tabs">
+      <a href="index.html" aria-current="page">Dashboard</a>
+      <a href="Agents.html">Agents</a>
+      <a href="Jobs.html">Jobs</a>
+      <a href="About.html">About</a>
+    </nav>
+    <div class="topbar-right">
+      <span class="status-pill"><span class="dot"></span>OPERATIONAL · LAST RUN 08:00 UTC</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap page-head" data-screen-label="Dashboard header">
+  <h1>Dashboard</h1>
+  <p class="page-sub">Pipeline health at a glance — run history, throughput, durations and quality over the last 30 days, plus what needs attention right now.</p>
+</div>
+
+<div class="wrap" data-screen-label="KPIs">
+  <div class="kpis" style="margin-bottom: 8px;">
+    <div class="kpi">
+      <div class="kpi-label">Connected feeds</div>
+      <div class="kpi-value">14</div>
+      <div class="kpi-sub">across 7 source systems</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Runs per day</div>
+      <div class="kpi-value">4</div>
+      <div class="kpi-sub">every 6 hours, UTC</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Success rate</div>
+      <div class="kpi-value">99.2%</div>
+      <div class="kpi-sub">last 30 days</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Avg run time</div>
+      <div class="kpi-value">12m 40s</div>
+      <div class="kpi-sub"><span class="up">▾ 9%</span> vs April</div>
+    </div>
+  </div>
+</div>
+
+<section class="section" id="monitoring" data-screen-label="Monitoring" style="border-top: none; padding-top: 32px;">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">01</span><h2>Monitoring</h2></div>
+    <p class="section-sub">Every run is recorded. These charts cover the last 30 days — May 12 to June 10, 2026.</p>
+    <div class="charts-grid">
+      <div class="chart-card">
+        <div class="chart-head"><h3>Run status history</h3><span class="chart-range">30 DAYS · 4 RUNS/DAY</span></div>
+        <p class="chart-sub">Outcome of each scheduled run, stacked per day.</p>
+        <div id="chart-runs"></div>
+        <div class="legend">
+          <span><i style="background: var(--ok);"></i>Success</span>
+          <span><i style="background: var(--warn);"></i>Warning</span>
+          <span><i style="background: var(--fail);"></i>Failed</span>
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-head"><h3>Rows processed per day</h3><span class="chart-range">30 DAYS</span></div>
+        <p class="chart-sub">Total rows ingested across all 14 feeds. Weekend dips are expected.</p>
+        <div id="chart-volume"></div>
+        <div class="legend">
+          <span><i style="background: var(--accent);"></i>Rows ingested</span>
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-head"><h3>Run duration by stage</h3><span class="chart-range">30 DAYS · MINUTES</span></div>
+        <p class="chart-sub">Average time per stage per day. Ingest dominates; the May 30 spike was a backfill.</p>
+        <div id="chart-duration"></div>
+        <div class="legend">
+          <span><i style="background: var(--accent);"></i>Fetch</span>
+          <span><i style="background: oklch(0.55 0.09 200);"></i>Ingest</span>
+          <span><i style="background: oklch(0.55 0.12 300);"></i>Refresh</span>
+          <span><i style="background: oklch(0.7 0.06 80);"></i>Submit</span>
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-head"><h3>Data quality checks</h3><span class="chart-range">LAST RUN</span></div>
+        <p class="chart-sub">Validation gates applied during ingest. Rows failing a gate are quarantined for review.</p>
+        <div class="quality-rows">
+          <div class="q-row"><span>Schema validation</span><span class="q-bar"><i style="width: 99.8%;"></i></span><span class="q-val">99.8%</span></div>
+          <div class="q-row"><span>Row completeness</span><span class="q-bar"><i style="width: 98.6%;"></i></span><span class="q-val">98.6%</span></div>
+          <div class="q-row"><span>Uniqueness (no duplicates)</span><span class="q-bar"><i style="width: 99.9%;"></i></span><span class="q-val">99.9%</span></div>
+          <div class="q-row"><span>Referential integrity</span><span class="q-bar"><i style="width: 100%;"></i></span><span class="q-val">100%</span></div>
+          <div class="q-row"><span>Source freshness &lt; 24h</span><span class="q-bar"><i class="warn" style="width: 96.7%;"></i></span><span class="q-val">96.7%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="status" data-screen-label="Status reports">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">02</span><h2>Status &amp; reports</h2></div>
+    <p class="section-sub">What to check day-to-day: the latest runs, the health of each source, open alerts, and whether we hit our service-level targets.</p>
+    <div class="reports-grid">
+      <div class="panel">
+        <div class="panel-head"><h3>Recent runs</h3><span class="panel-note">ALL TIMES UTC</span></div>
+        <div class="tscroll">
+        <table class="runs">
+          <thead>
+            <tr><th>Run</th><th>Trigger</th><th>Started</th><th>Duration</th><th>Rows</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="num">#2026.06.10-08</td><td>Scheduled</td><td class="num">Jun 10 · 08:00</td><td class="num">12m 18s</td><td class="num">561,204</td><td><span class="badge ok">SUCCESS</span></td></tr>
+            <tr><td class="num">#2026.06.10-02</td><td>Scheduled</td><td class="num">Jun 10 · 02:00</td><td class="num">13m 02s</td><td class="num">548,917</td><td><span class="badge ok">SUCCESS</span></td></tr>
+            <tr><td class="num">#2026.06.09-20</td><td>Scheduled</td><td class="num">Jun 09 · 20:00</td><td class="num">12m 44s</td><td class="num">552,338</td><td><span class="badge ok">SUCCESS</span></td></tr>
+            <tr><td class="num">#2026.06.09-14</td><td>Scheduled</td><td class="num">Jun 09 · 14:00</td><td class="num">14m 51s</td><td class="num">560,112</td><td><span class="badge warn">WARNING</span></td></tr>
+            <tr><td class="num">#2026.06.09-08</td><td>Scheduled</td><td class="num">Jun 09 · 08:00</td><td class="num">12m 09s</td><td class="num">555,876</td><td><span class="badge ok">SUCCESS</span></td></tr>
+            <tr><td class="num">#2026.06.09-02</td><td>Scheduled</td><td class="num">Jun 09 · 02:00</td><td class="num">12m 31s</td><td class="num">549,452</td><td><span class="badge ok">SUCCESS</span></td></tr>
+            <tr><td class="num">#2026.06.08-20</td><td>Manual</td><td class="num">Jun 08 · 21:12</td><td class="num">11m 58s</td><td class="num">12,408</td><td><span class="badge ok">SUCCESS</span></td></tr>
+            <tr><td class="num">#2026.06.08-20</td><td>Scheduled</td><td class="num">Jun 08 · 20:00</td><td class="num">06m 12s</td><td class="num">—</td><td><span class="badge fail">FAILED</span></td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <div class="flow-col" style="gap: var(--card-gap);">
+        <div class="panel">
+          <div class="panel-head"><h3>Source health</h3><span class="panel-note">LIVE</span></div>
+          <div class="health-list">
+            <div class="health-row"><span class="dot"></span>ERP · PostgreSQL<span class="h-meta">synced 22 min ago</span></div>
+            <div class="health-row"><span class="dot"></span>Finance · SQL Server<span class="h-meta">synced 22 min ago</span></div>
+            <div class="health-row"><span class="dot"></span>CRM · MySQL<span class="h-meta">synced 23 min ago</span></div>
+            <div class="health-row"><span class="dot warn"></span>Budget workbooks · Excel<span class="h-meta">1 file pending</span></div>
+            <div class="health-row"><span class="dot"></span>Partner exports · SFTP<span class="h-meta">synced 24 min ago</span></div>
+            <div class="health-row"><span class="dot"></span>Market prices · Scraper<span class="h-meta">synced 25 min ago</span></div>
+            <div class="health-row"><span class="dot"></span>FX rates · API<span class="h-meta">synced 25 min ago</span></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>Alerts</h3><span class="panel-note">1 OPEN</span></div>
+          <div>
+            <div class="alert-row">
+              <span class="dot warn"></span>
+              <div>
+                <div class="a-title">Budget workbook missing tab “FY26-Q3”</div>
+                <div class="a-sub">File skipped; previous version used. Owner notified.</div>
+              </div>
+              <span class="a-time">TODAY 08:14</span>
+            </div>
+            <div class="alert-row">
+              <span class="dot fail"></span>
+              <div>
+                <div class="a-title">FX rates API timeout — resolved</div>
+                <div class="a-sub">Run #2026.06.08-20 failed at fetch; manual retry succeeded.</div>
+              </div>
+              <span class="a-time">JUN 08</span>
+            </div>
+            <div class="alert-row">
+              <span class="dot" style="background: var(--accent);"></span>
+              <div>
+                <div class="a-title">Schema drift on CRM — auto-mapped</div>
+                <div class="a-sub">New column <span class="mono">lead_source_v2</span> detected and mapped.</div>
+              </div>
+              <span class="a-time">JUN 03</span>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>SLA · last 30 days</h3></div>
+          <div>
+            <div class="sla-row"><span>Warehouse refreshed</span><span class="sla-target">by 07:00 UTC</span><span class="sla-met ok">29 / 30</span></div>
+            <div class="sla-row"><span>Reports live</span><span class="sla-target">by 08:00 UTC</span><span class="sla-met ok">30 / 30</span></div>
+            <div class="sla-row"><span>Submission filed</span><span class="sla-target">by 17:00 UTC</span><span class="sla-met ok">30 / 30</span></div>
+            <div class="sla-row"><span>Source freshness</span><span class="sla-target">&lt; 24 hours</span><span class="sla-met warn">28 / 30</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot" data-screen-label="Footer">
+  <div class="wrap" style="display: flex; gap: 48px; flex-wrap: wrap; padding-top: 8px;">
+    <div>
+      <div class="f-label">Owned by</div>
+      <div>Data Platform team · <span class="mono">#data-pipeline</span></div>
+    </div>
+    <div>
+      <div class="f-label">Schedule</div>
+      <div class="mono" style="font-size: 12px;">02:00 · 08:00 · 14:00 · 20:00 UTC</div>
+    </div>
+    <div>
+      <div class="f-label">On failure</div>
+      <div>Run halts before Submit · alert to on-call within 2 min</div>
+    </div>
+    <div>
+      <div class="f-label">Project</div>
+      <div><a href="About.html" style="color: var(--accent);">About this pipeline</a> · <a href="#" style="color: var(--accent);">Incident runbook</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="charts.js"></script>
+<script>
+(function () {
+  // ---- run status history (30 days, max 4 runs/day) ----
+  var runs = [];
+  for (var i = 0; i < 30; i++) runs.push({ ok: 4, warn: 0, fail: 0 });
+  [[4, { ok: 3, warn: 1, fail: 0 }],
+   [9, { ok: 3, warn: 0, fail: 1 }],
+   [12, { ok: 3, warn: 1, fail: 0 }],
+   [18, { ok: 2, warn: 1, fail: 1 }],
+   [27, { ok: 3, warn: 0, fail: 1 }],
+   [28, { ok: 3, warn: 1, fail: 0 }]].forEach(function (o) { runs[o[0]] = o[1]; });
+  var dayLabels = { 0: "May 12", 7: "May 19", 14: "May 26", 21: "Jun 2", 28: "Jun 9" };
+  runs.forEach(function (d, i) { if (dayLabels[i]) d.label = dayLabels[i]; });
+  renderStackedBars(document.getElementById("chart-runs"), runs, { max: 4 });
+
+  // ---- rows processed per day ----
+  var vol = [], volLabels = [];
+  for (var j = 0; j < 30; j++) {
+    var dow = (j + 2) % 7; // May 12, 2026 is a Tuesday
+    var weekend = dow === 5 || dow === 6;
+    var v = 2.15 + 0.18 * Math.sin(j / 3.1) + 0.06 * Math.sin(j * 1.7);
+    if (weekend) v *= 0.62;
+    if (j === 18) v += 0.45; // backfill day
+    vol.push(v * 1e6);
+    if (dayLabels[j]) volLabels.push({ i: j, text: dayLabels[j] });
+  }
+  renderArea(document.getElementById("chart-volume"), vol, volLabels, {
+    max: 3e6,
+    fmt: function (v) { return v === 0 ? "0" : (v / 1e6).toFixed(1) + "M"; }
+  });
+
+  // ---- duration by stage ----
+  function series(base, amp, phase) {
+    var out = [];
+    for (var k = 0; k < 30; k++) out.push(base + amp * Math.sin(k / 4 + phase) + 0.15 * Math.sin(k * 1.3 + phase));
+    return out;
+  }
+  var ingest = series(4.6, 0.5, 1);
+  ingest[18] = 7.8; // backfill spike
+  renderLines(document.getElementById("chart-duration"), [
+    { color: "var(--accent)", values: series(3.1, 0.3, 0) },
+    { color: "oklch(0.55 0.09 200)", values: ingest },
+    { color: "oklch(0.55 0.12 300)", values: series(2.9, 0.25, 2) },
+    { color: "oklch(0.7 0.06 80)", values: series(1.5, 0.15, 3) }
+  ], volLabels, { max: 8, fmt: function (v) { return v + "m"; } });
+})();
+</script>
+
+<!-- Tweaks panel -->
+<div id="tweaks-root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="tweaks.jsx"></script>
+
+</body>
+</html>

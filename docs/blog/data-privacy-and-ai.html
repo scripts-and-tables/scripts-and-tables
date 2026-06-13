@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Data privacy in the age of AI: what to keep close — Oleksandr Tverdokhlieb</title>
+<meta name="description" content="A grounded, practical guide to handling data responsibly when you use AI tools: classify before you paste, know consumer vs enterprise tiers, redact sensitive data, and ask vendors the right questions." />
+<meta name="theme-color" content="#11161f" />
+<link rel="icon" href="https://avatars.githubusercontent.com/u/43398608?v=4" />
+<link rel="stylesheet" href="../assets/site.css?v=12" />
+<link rel="stylesheet" href="blog.css?v=1" />
+  <link rel="canonical" href="https://oleks.devapp24.com/blog/data-privacy-and-ai.html" />
+  <meta name="author" content="Oleksandr Tverdokhlieb" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Oleksandr Tverdokhlieb" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Data privacy in the age of AI: what to keep close" />
+  <meta property="og:description" content="A grounded, practical guide to handling data responsibly when you use AI tools: classify before you paste, consumer vs enterprise tiers, redaction, and the vendor questions to ask." />
+  <meta property="og:url" content="https://oleks.devapp24.com/blog/data-privacy-and-ai.html" />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/43398608?v=4" />
+  <meta property="article:published_time" content="2026-03-16" />
+  <meta property="article:author" content="Oleksandr Tverdokhlieb" />
+  <meta property="article:section" content="AI &amp; Security" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Data privacy in the age of AI: what to keep close" />
+  <meta name="twitter:description" content="A grounded, practical guide to handling data responsibly when you use AI tools." />
+  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/43398608?v=4" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://oleks.devapp24.com/#person","name":"Oleksandr Tverdokhlieb","jobTitle":"Data Analytics Manager","url":"https://oleks.devapp24.com/","image":"https://avatars.githubusercontent.com/u/43398608?v=4","sameAs":["https://www.linkedin.com/in/tverd","https://github.com/scripts-and-tables"]},{"@type":"BlogPosting","@id":"https://oleks.devapp24.com/blog/data-privacy-and-ai.html#post","headline":"Data privacy in the age of AI: what to keep close","description":"A grounded, practical guide to handling data responsibly when you use AI tools: classify before you paste, consumer vs enterprise tiers, redaction, and the vendor questions to ask.","datePublished":"2026-03-16","dateModified":"2026-03-16","author":{"@id":"https://oleks.devapp24.com/#person"},"image":"https://avatars.githubusercontent.com/u/43398608?v=4","articleSection":"AI & Security","keywords":"data privacy, AI, governance, security, GDPR, data processing agreement, redaction, enterprise AI","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https://oleks.devapp24.com/blog/data-privacy-and-ai.html"},"publisher":{"@id":"https://oleks.devapp24.com/#person"}}]}</script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-in">
+      <a class="nav-brand" href="../index.html"><img src="https://avatars.githubusercontent.com/u/43398608?v=4" alt="" />Oleksandr&nbsp;Tverdokhlieb</a>
+      <div class="nav-spacer"></div>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog/" class="active">Blog</a>
+        <a href="../about.html">About</a>
+        <a href="../cv.html">CV</a>
+        <a href="../ai.html">AI</a>
+        <a href="../training.html">Training</a>
+        <a href="../credentials.html">Learning</a>
+        <a href="../game/">Games</a>
+      </nav>
+      <a class="nav-cta" href="../contact.html">Contact</a>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="nav-mobile">
+      <a href="../index.html">Home</a><a href="../projects.html">Projects</a><a href="../blog/">Blog</a><a href="../about.html">About</a><a href="../cv.html">CV</a><a href="../ai.html">AI</a><a href="../training.html">Training</a><a href="../credentials.html">Learning</a><a href="../game/">Games</a><a href="../contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="wrap page">
+    <article class="post-wrap">
+      <a class="backlink" href="index.html">← All writing</a>
+      <div class="page-head" style="padding-bottom:6px;">
+        <h1 style="margin-top:8px;font-size:clamp(27px,4.6vw,38px);line-height:1.16;">Data privacy in the age of AI: what to keep close</h1>
+        <div class="post-meta"><span class="cat">AI &amp; Security</span><span>16 March 2026</span><span>· 7 min read</span></div>
+        <div class="post-tags"><span class="tag">AI</span><span class="tag">Privacy</span><span class="tag">Governance</span><span class="tag">Security</span></div>
+      </div>
+
+      <div class="post-body">
+        <p class="lede">AI tools are now in everyone's daily workflow, which means the question is no longer "should I use them?" but "what am I about to paste in?" Most of the privacy risk I see isn't dramatic — it's an analyst dropping a customer export into a consumer chatbot to "just clean it up." This is a grounded guide to staying useful without being careless. Not paranoid, just deliberate.</p>
+
+        <p>I use AI every day for real work, so I'm not here to tell you to switch it off. The opposite: the people who get the most out of these tools are usually the ones who've thought about <em>where the data goes</em> once it leaves their hands. A few simple habits cover almost all of it, and none of them slow you down once they're muscle memory.</p>
+
+        <h2>Classify before you paste</h2>
+        <p>The single most useful habit is a half-second mental check before anything goes into a prompt: <strong>what kind of data is this?</strong> You don't need a formal taxonomy — most data falls cleanly into one of four buckets, and the bucket tells you what's allowed where.</p>
+
+        <div class="fig">
+          <svg viewBox="0 0 720 230" role="img" aria-label="Data-sensitivity gate: public, internal, confidential and PII routed to where they may go">
+            <defs>
+              <marker id="ar" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#5b626c"/></marker>
+            </defs>
+            <!-- tiers, top to bottom -->
+            <rect x="14" y="16" width="150" height="40" rx="9" fill="#e4f5ee" stroke="#bfe6d3"/>
+            <text x="89" y="35" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="14" font-weight="700" fill="#15181d">Public</text>
+            <text x="89" y="49" text-anchor="middle" font-family="monospace" font-size="10" fill="#5b626c">already published</text>
+
+            <rect x="14" y="66" width="150" height="40" rx="9" fill="#eaf0fd" stroke="#cfd8e6"/>
+            <text x="89" y="85" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="14" font-weight="700" fill="#15181d">Internal</text>
+            <text x="89" y="99" text-anchor="middle" font-family="monospace" font-size="10" fill="#5b626c">team-only, low harm</text>
+
+            <rect x="14" y="116" width="150" height="40" rx="9" fill="#fbeedd" stroke="#f0d9b8"/>
+            <text x="89" y="135" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="14" font-weight="700" fill="#15181d">Confidential</text>
+            <text x="89" y="149" text-anchor="middle" font-family="monospace" font-size="10" fill="#5b626c">contracts · finance</text>
+
+            <rect x="14" y="166" width="150" height="40" rx="9" fill="#fdf2f0" stroke="#f0c9c4"/>
+            <text x="89" y="185" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="14" font-weight="700" fill="#15181d">PII</text>
+            <text x="89" y="199" text-anchor="middle" font-family="monospace" font-size="10" fill="#5b626c">people · regulated</text>
+
+            <!-- destination column -->
+            <rect x="430" y="16" width="276" height="56" rx="10" fill="#fff" stroke="#e6e4df"/>
+            <text x="568" y="40" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="13.5" font-weight="700" fill="#0f9d6e">Any AI tool</text>
+            <text x="568" y="58" text-anchor="middle" font-family="monospace" font-size="10.5" fill="#5b626c">consumer chatbots OK</text>
+
+            <rect x="430" y="86" width="276" height="56" rx="10" fill="#fff" stroke="#e6e4df"/>
+            <text x="568" y="110" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="13.5" font-weight="700" fill="#2459d6">Enterprise tier only</text>
+            <text x="568" y="128" text-anchor="middle" font-family="monospace" font-size="10.5" fill="#5b626c">DPA · training opt-out</text>
+
+            <rect x="430" y="156" width="276" height="56" rx="10" fill="#fff" stroke="#e6e4df"/>
+            <text x="568" y="180" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="13.5" font-weight="700" fill="#c2691b">Redact, or run local</text>
+            <text x="568" y="198" text-anchor="middle" font-family="monospace" font-size="10.5" fill="#5b626c">anonymize first</text>
+
+            <!-- routing lines -->
+            <line x1="166" y1="36" x2="426" y2="40" stroke="#0f9d6e" stroke-width="1.5" marker-end="url(#ar)"/>
+            <line x1="166" y1="86" x2="426" y2="106" stroke="#2459d6" stroke-width="1.5" marker-end="url(#ar)"/>
+            <line x1="166" y1="136" x2="426" y2="120" stroke="#2459d6" stroke-width="1.5" marker-end="url(#ar)"/>
+            <line x1="166" y1="186" x2="426" y2="184" stroke="#c2691b" stroke-width="1.5" marker-end="url(#ar)"/>
+
+            <text x="300" y="222" text-anchor="middle" font-family="monospace" font-size="11" fill="#8b939d">the bucket decides the destination — not your deadline</text>
+          </svg>
+          <div class="fig-cap">A simple gate: the more sensitive the data, the fewer places it's allowed to go.</div>
+        </div>
+
+        <p><strong>Public</strong> data — anything already on the open internet — can go anywhere; there's nothing to protect. <strong>Internal</strong> data is mundane company material that would cause little harm if it leaked, but still shouldn't be fed into training corpora. <strong>Confidential</strong> covers contracts, unreleased numbers, and commercial terms. <strong>PII</strong> — names, emails, IDs, anything that identifies a real person — is the category that carries legal weight and deserves the most care. The rule of thumb is short: never send confidential or personal data to a consumer chatbot.</p>
+
+        <h2>Consumer vs enterprise: it's a different contract</h2>
+        <p>The free or personal tier of an AI product and its business tier can look identical in the chat window, but the terms underneath are not the same. With most consumer tiers, your inputs may be used to improve the provider's models unless you turn that off, and your controls over retention are limited. Business and enterprise tiers typically reverse those defaults: your data isn't used for training, it's governed by a <strong>data processing agreement (DPA)</strong>, and you get clearer retention and deletion terms. The major providers document this split openly — it's worth reading the page for whichever tool you've standardised on, for example <a href="https://openai.com/enterprise-privacy/" target="_blank" rel="noopener">OpenAI's enterprise privacy notes</a> or <a href="https://privacy.anthropic.com/" target="_blank" rel="noopener">Anthropic's privacy centre</a>.</p>
+
+        <div class="pullquote">The same model can be a privacy liability or a perfectly safe tool. The difference isn't the model — it's the tier you're on and the data you feed it.</div>
+
+        <p>If your organisation is going to use AI seriously, the cleanest move is to put everyone on a business tier with training opt-out switched on, and make the personal accounts the exception rather than the default. It removes the hardest judgement call — "is this one OK to paste?" — from the moment of pressure, which is exactly when people get it wrong.</p>
+
+        <h2>For the most sensitive work, keep it on the machine</h2>
+        <p>There's a tier above "enterprise with a DPA," and that's data that simply never leaves your environment. Open-weight models now run well on a laptop or a controlled server, and for the genuinely sensitive tasks — drafting over a confidential contract, exploring raw HR or health records — a local model means the data never touches a third party at all. It's not the right tool for everything; the very best models still live in the cloud. But for the small slice of work where the answer to "can this go to a vendor?" is a firm no, on-device is the honest answer.</p>
+
+        <h2>Redact before you send</h2>
+        <p>Most of the time you don't need the sensitive part of the data to get the help you want. If you're asking AI to write a SQL query, summarise a complaint, or draft a reply, the customer's actual name and account number add nothing — so strip them first. Replace real identifiers with placeholders (<code>CUSTOMER_A</code>, <code>ACME_LTD</code>, <code>+971-XXX</code>), keep the structure, and you get the same quality of answer with none of the exposure. Anonymisation is the cheapest privacy control there is, and it's almost always available if you pause to look for it.</p>
+
+        <div class="callout warn">
+          <span class="lab">Common slip</span>
+          The classic mistake is pasting a full spreadsheet export — orders, emails, phone numbers and all — into a consumer tool to "reformat it." You almost never needed the personal columns for the task. <strong>Delete or mask the columns you don't need before the data leaves your laptop</strong>, not after.
+        </div>
+
+        <h2>It's not just etiquette — it's an obligation</h2>
+        <p>When the data is about customers or employees, privacy stops being a personal preference and becomes a duty you're holding on someone else's behalf. Under GDPR-style regimes — and the UAE has its own <a href="https://u.ae/en/about-the-uae/digital-uae/data/data-protection-laws" target="_blank" rel="noopener">data-protection framework</a> — personal data has to be processed lawfully, kept to what's necessary, and not quietly shipped off to systems and regions nobody agreed to. I won't lecture on the statutes; the practical version is simpler. If you'd be uncomfortable explaining to the person <em>why</em> their data ended up in a particular tool, that discomfort is the signal. Treat other people's data the way you'd want yours treated, and most of the compliance follows.</p>
+
+        <h2>Questions to ask any AI vendor</h2>
+        <p>Before a tool gets near real data, a handful of questions sort the safe options from the ones to avoid. You're not looking for perfect answers — you're looking for clear ones.</p>
+        <ul>
+          <li><strong>Do you train on our data?</strong> The answer for a business tier should be a plain no, ideally on by default.</li>
+          <li><strong>How long is data retained, and can we control it?</strong> Look for stated retention windows and a real deletion path.</li>
+          <li><strong>Where is it processed and stored?</strong> Region matters for regulated data — "somewhere in the cloud" isn't an answer.</li>
+          <li><strong>Will you sign a DPA?</strong> If a vendor won't put data terms in writing, that <em>is</em> the answer.</li>
+          <li><strong>Who are the sub-processors?</strong> Your data is only as private as the weakest link they hand it to.</li>
+        </ul>
+
+        <h2>The short checklist</h2>
+        <p>None of this needs to be heavy. Here's the version I actually run in my head, in order, every time:</p>
+        <ul class="steps">
+          <li><strong>Classify first.</strong> Public, internal, confidential, or PII? Decide before you type.</li>
+          <li><strong>Match the tool to the tier.</strong> Sensitive data goes only to enterprise tiers with training opt-out — or stays local.</li>
+          <li><strong>Redact what you can.</strong> Mask names, IDs and accounts; you rarely need them for the task.</li>
+          <li><strong>Check the contract, not the chat box.</strong> Confirm the DPA, retention and region before the first real upload.</li>
+          <li><strong>If in doubt, keep it close.</strong> When you can't answer "where does this go?", don't send it.</li>
+        </ul>
+
+        <p>That's the whole discipline. Used this way, AI is a genuine accelerator and the privacy cost is close to zero — because the sensitive material never went anywhere it shouldn't. The goal isn't to be afraid of these tools. It's to know, every time, exactly what you're handing over and to whom.</p>
+      </div>
+
+      <div class="post-foot">
+        <div class="by">
+          <img src="https://avatars.githubusercontent.com/u/43398608?v=4" alt="Oleksandr Tverdokhlieb" />
+          <div>
+            <div class="n">Oleksandr Tverdokhlieb</div>
+            <div class="r">Data Analytics Manager · Dubai — building data platforms, automation and applied AI.</div>
+          </div>
+        </div>
+        <div class="post-cta">
+          <a class="primary" href="index.html">More writing →</a>
+          <a href="../ai.html">How I use AI</a>
+          <a href="https://www.linkedin.com/in/tverd" target="_blank" rel="noopener">Connect on LinkedIn ↗</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-in">
+      <div class="c">© <span data-year></span> Oleksandr Tverdokhlieb · Dubai, UAE</div>
+      <div class="foot-links">
+        <a href="https://www.linkedin.com/in/tverd" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6 1.12 6 0 4.88 0 3.5 0 2.12 1.12 1 2.49 1c1.38 0 2.49 1.12 2.49 2.5zM.24 8h4.5v14H.24V8zm7.5 0h4.31v1.92h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V22h-4.5v-6.6c0-1.57-.03-3.6-2.19-3.6-2.2 0-2.53 1.71-2.53 3.48V22h-4.5V8z"/></svg></a>
+        <a href="https://github.com/scripts-and-tables" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.05-.02-2.06-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22 0 1.61-.01 2.9-.01 3.29 0 .32.21.7.82.58A12.01 12.01 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"/></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/site.js"></script>
+</body>
+</html>

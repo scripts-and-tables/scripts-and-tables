@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>What people actually mean by 'AI agents' — Oleksandr Tverdokhlieb</title>
+<meta name="description" content="Cutting through the hype: an AI agent is just a model put in a loop with tools and a goal — it plans, acts, observes, and repeats until done. Where that genuinely helps, where it's overkill, and the discipline it borrows from data pipelines." />
+<meta name="theme-color" content="#11161f" />
+<link rel="icon" href="https://avatars.githubusercontent.com/u/43398608?v=4" />
+<link rel="stylesheet" href="../assets/site.css?v=12" />
+<link rel="stylesheet" href="blog.css?v=1" />
+  <link rel="canonical" href="https://oleks.devapp24.com/blog/what-are-ai-agents.html" />
+  <meta name="author" content="Oleksandr Tverdokhlieb" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Oleksandr Tverdokhlieb" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="What people actually mean by 'AI agents'" />
+  <meta property="og:description" content="An AI agent is just a model put in a loop with tools and a goal — it plans, acts, observes, and repeats until done. Where it helps, where it's overkill, and the discipline it borrows from data pipelines." />
+  <meta property="og:url" content="https://oleks.devapp24.com/blog/what-are-ai-agents.html" />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/43398608?v=4" />
+  <meta property="article:published_time" content="2026-01-22" />
+  <meta property="article:author" content="Oleksandr Tverdokhlieb" />
+  <meta property="article:section" content="AI" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="What people actually mean by 'AI agents'" />
+  <meta name="twitter:description" content="An AI agent is just a model put in a loop with tools and a goal. Where it helps, where it's overkill, and the discipline it borrows from data pipelines." />
+  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/43398608?v=4" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://oleks.devapp24.com/#person","name":"Oleksandr Tverdokhlieb","jobTitle":"Data Analytics Manager","url":"https://oleks.devapp24.com/","image":"https://avatars.githubusercontent.com/u/43398608?v=4","sameAs":["https://www.linkedin.com/in/tverd","https://github.com/scripts-and-tables"]},{"@type":"BlogPosting","@id":"https://oleks.devapp24.com/blog/what-are-ai-agents.html#post","headline":"What people actually mean by 'AI agents'","description":"An AI agent is just a model put in a loop with tools and a goal — it plans, acts, observes, and repeats until done. Where it genuinely helps, where it's overkill, and the discipline it borrows from data pipeline orchestration.","datePublished":"2026-01-22","dateModified":"2026-01-22","author":{"@id":"https://oleks.devapp24.com/#person"},"image":"https://avatars.githubusercontent.com/u/43398608?v=4","articleSection":"AI","keywords":"AI agents, agentic, tool use, automation, LLM, orchestration, guardrails","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https://oleks.devapp24.com/blog/what-are-ai-agents.html"},"publisher":{"@id":"https://oleks.devapp24.com/#person"}}]}</script>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-in">
+      <a class="nav-brand" href="../index.html"><img src="https://avatars.githubusercontent.com/u/43398608?v=4" alt="" />Oleksandr&nbsp;Tverdokhlieb</a>
+      <div class="nav-spacer"></div>
+      <nav class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog/" class="active">Blog</a>
+        <a href="../about.html">About</a>
+        <a href="../cv.html">CV</a>
+        <a href="../ai.html">AI</a>
+        <a href="../training.html">Training</a>
+        <a href="../credentials.html">Learning</a>
+        <a href="../game/">Games</a>
+      </nav>
+      <a class="nav-cta" href="../contact.html">Contact</a>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="nav-mobile">
+      <a href="../index.html">Home</a><a href="../projects.html">Projects</a><a href="../blog/">Blog</a><a href="../about.html">About</a><a href="../cv.html">CV</a><a href="../ai.html">AI</a><a href="../training.html">Training</a><a href="../credentials.html">Learning</a><a href="../game/">Games</a><a href="../contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="wrap page">
+    <article class="post-wrap">
+      <a class="backlink" href="index.html">← All writing</a>
+      <div class="page-head" style="padding-bottom:6px;">
+        <h1 style="margin-top:8px;font-size:clamp(27px,4.6vw,38px);line-height:1.16;">What people actually mean by 'AI agents'</h1>
+        <div class="post-meta"><span class="cat">AI</span><span>22 January 2026</span><span>· 7 min read</span></div>
+        <div class="post-tags"><span class="tag">AI</span><span class="tag">Agents</span><span class="tag">Automation</span><span class="tag">Tools</span></div>
+      </div>
+
+      <div class="post-body">
+        <p class="lede">"Agent" might be the most over-loaded word in tech right now. Vendors slap it on everything, demos make it look like magic, and somewhere underneath the hype there's a genuinely useful idea getting buried. So let me try to do the unglamorous thing and say plainly what an agent actually is — and, just as importantly, when you shouldn't reach for one.</p>
+
+        <p>Here's the whole idea in one sentence: an agent is a model put in a <em>loop</em>, with <em>tools</em> and a <em>goal</em>. That's it. Instead of answering your question in a single shot, it plans a step, takes an action — calls a tool, runs some code, queries a database — looks at what came back, and decides what to do next. It keeps going around that loop until the goal is met or it gives up. Anthropic's own write-up on building agents lands on a similar definition: systems where the model <a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">dynamically directs its own process and tool use</a>, rather than following a fixed script.</p>
+
+        <h2>One-shot vs. the loop</h2>
+        <p>A plain chatbot is one-shot. You ask, it answers from what it already knows, and the exchange is over. That's fine for "explain this concept" or "rewrite this paragraph." But ask it "what were our top three products by margin last quarter, and email the summary to the team" and a one-shot answer can't be right — the model doesn't have your numbers, and it can't send email. It would have to <em>hallucinate</em> the figures.</p>
+
+        <p>An agent handles that differently. It breaks the goal into steps, and for each step it can actually <em>do</em> something: query the warehouse, get real numbers back, notice the query returned nothing, fix the filter, try again, format the result, then call the send-email tool. The loop is what turns a model from something that talks <em>about</em> work into something that does work.</p>
+
+        <div class="fig">
+          <svg viewBox="0 0 720 300" role="img" aria-label="The agent loop: goal, plan, act with tools, observe, repeat until done">
+            <defs>
+              <marker id="ar" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#5b626c"/></marker>
+            </defs>
+            <!-- Goal (entry) -->
+            <rect x="285" y="14" width="150" height="44" rx="10" fill="#eaf0fd" stroke="#cfd8e6"/>
+            <text x="360" y="41" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="15" font-weight="700" fill="#15181d">Goal</text>
+
+            <!-- Plan -->
+            <rect x="285" y="98" width="150" height="56" rx="10" fill="#fff" stroke="#e6e4df"/>
+            <text x="360" y="122" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="14" font-weight="700" fill="#15181d">Plan</text>
+            <text x="360" y="140" text-anchor="middle" font-family="monospace" font-size="11" fill="#5b626c">decide next step</text>
+
+            <!-- Act with tools -->
+            <rect x="520" y="200" width="170" height="56" rx="10" fill="#fff" stroke="#e6e4df"/>
+            <text x="605" y="224" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="14" font-weight="700" fill="#15181d">Act · use a tool</text>
+            <text x="605" y="242" text-anchor="middle" font-family="monospace" font-size="11" fill="#5b626c">query · run code · call API</text>
+
+            <!-- Observe -->
+            <rect x="30" y="200" width="170" height="56" rx="10" fill="#fff" stroke="#e6e4df"/>
+            <text x="115" y="224" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="14" font-weight="700" fill="#15181d">Observe</text>
+            <text x="115" y="242" text-anchor="middle" font-family="monospace" font-size="11" fill="#5b626c">read the result</text>
+
+            <!-- Done -->
+            <rect x="285" y="200" width="150" height="56" rx="10" fill="#e4f5ee" stroke="#bfe6d3"/>
+            <text x="360" y="224" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="14" font-weight="700" fill="#15181d">Done</text>
+            <text x="360" y="242" text-anchor="middle" font-family="monospace" font-size="11" fill="#5b626c">goal met → stop</text>
+
+            <!-- arrows: Goal -> Plan -->
+            <line x1="360" y1="58" x2="360" y2="94" stroke="#5b626c" stroke-width="1.5" marker-end="url(#ar)"/>
+            <!-- Plan -> Act -->
+            <path d="M435 132 C 520 150, 560 168, 595 196" fill="none" stroke="#5b626c" stroke-width="1.5" marker-end="url(#ar)"/>
+            <!-- Act -> Observe (the loop back across) -->
+            <line x1="516" y1="228" x2="204" y2="228" stroke="#2459d6" stroke-width="1.5" marker-end="url(#ar)"/>
+            <text x="360" y="284" text-anchor="middle" font-family="monospace" font-size="11" fill="#2459d6">result feeds back in</text>
+            <!-- Observe -> Plan (repeat) -->
+            <path d="M125 196 C 150 150, 210 130, 281 126" fill="none" stroke="#5b626c" stroke-width="1.5" marker-end="url(#ar)"/>
+            <text x="150" y="120" text-anchor="middle" font-family="monospace" font-size="11" fill="#5b626c">repeat</text>
+            <!-- Plan -> Done -->
+            <line x1="360" y1="154" x2="360" y2="196" stroke="#5b626c" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#ar)"/>
+          </svg>
+          <div class="fig-cap">The loop: plan a step, act with a tool, observe the result, repeat — until the goal is met and it stops.</div>
+        </div>
+
+        <h2>Why this feels familiar to me</h2>
+        <p>The first time I read a clean definition of an agent, my reaction wasn't "the future is here" — it was "oh, this is an orchestrator." I build and run an <a href="../p/data-analytics-platform.html">automated data analytics platform</a> where every job is scheduled, retried on failure, and watched from a console that shows what ran, how long it took, and whether it succeeded. An agent is the same skeleton with one difference: instead of a human author wiring the steps in advance, the model decides the next step at runtime.</p>
+
+        <p>That difference is the whole pitch <em>and</em> the whole risk. The flexibility is real — an agent can handle a task you didn't fully script. But a fixed pipeline can't suddenly decide to do something you never intended, and an agent can. Which is exactly why the disciplines I already apply to pipelines aren't optional for agents — they're the price of letting one loose.</p>
+
+        <div class="pullquote">An agent is an orchestrator that writes its own next step. That's the superpower and the liability in the same sentence.</div>
+
+        <h2>Where agents genuinely earn their keep</h2>
+        <p>Agents shine on tasks that are <strong>multi-step, tool-using, and well-bounded</strong> — where the path isn't fully knowable up front but the goal and the guardrails are clear. Think "triage these incoming support tickets, look each customer up, and draft a reply," or "investigate why this dashboard number looks off by checking the source query and the last few loads." The loop lets the model adapt as it learns what's actually there, instead of failing on the first surprise.</p>
+
+        <p>Where they're <strong>overkill or risky</strong> is the mirror image: a one-shot question doesn't need a loop, and a high-stakes, irreversible, or vaguely-specified task is where the loop turns dangerous. If the goal is fuzzy, the agent will cheerfully optimise for the wrong thing. If an action can't be undone — moving money, deleting records, sending something to a customer — you want a human between the model and the button.</p>
+
+        <div class="compare">
+          <div class="col good">
+            <h4>Good fit for an agent</h4>
+            <ul>
+              <li>Multiple steps where the path isn't fully known up front</li>
+              <li>Real tools to call — data, APIs, code — not just text</li>
+              <li>A clear, checkable goal and bounded scope</li>
+              <li>Cheap to verify, easy to undo if it's wrong</li>
+            </ul>
+          </div>
+          <div class="col bad">
+            <h4>Poor fit (keep it simple, or keep a human in)</h4>
+            <ul>
+              <li>One-shot answers a plain prompt already nails</li>
+              <li>High-stakes or irreversible actions — money, deletes, sends</li>
+              <li>Vague goals with no way to tell "done" from "wrong"</li>
+              <li>Hard real-time limits the loop can't meet</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2>Being honest about the limitations</h2>
+        <p>If you've only seen the demos, agents look unstoppable. In day-to-day use they're more like a fast, eager junior who occasionally wanders off. Three failure modes are worth naming plainly. They <strong>drift</strong>: over a long loop the model loses the thread and starts solving a subtly different problem. They <strong>over-act</strong>: given a hammer-shaped tool, they'll find nails — taking actions you didn't ask for because the loop rewards <em>doing</em> something. And they <strong>compound errors</strong>: a wrong observation early can send the next ten steps confidently in the wrong direction.</p>
+
+        <p>None of that makes them useless — it makes them something to engineer around. The same orchestration disciplines apply, and they're not negotiable.</p>
+
+        <ul class="steps">
+          <li><strong>Bounded permissions.</strong> Give the agent the narrowest set of tools and access it needs. A reporting agent doesn't need delete rights. Least privilege isn't a nice-to-have; it's the blast-radius limiter.</li>
+          <li><strong>Observability.</strong> Log every step — what it planned, which tool it called, what came back. If you can't replay why an agent did something, you can't trust it or fix it. It's the run console all over again.</li>
+          <li><strong>Human gates.</strong> Put a person in front of anything irreversible or high-stakes. The agent proposes; a human approves the action that can't be taken back.</li>
+        </ul>
+
+        <div class="callout">
+          <span class="lab">My one-line takeaway</span>
+          An agent isn't a magic worker — it's a model in a loop with tools. Treat it like a pipeline you'd actually put in production: <strong>bounded permissions, full observability, and a human on the dangerous buttons.</strong> Do that and it's genuine leverage. Skip it and you've automated a way to be confidently wrong, faster.
+        </div>
+
+        <p>So when someone tells you they've "built an agent," the useful follow-up isn't "wow" — it's "what's the goal, what tools can it touch, and what happens when it's wrong?" Strip away the hype and that's all an agent is: a loop, some tools, and a goal. The interesting engineering — the part that decides whether it helps or hurts — is everything you wrap around that loop to keep it honest.</p>
+      </div>
+
+      <div class="post-foot">
+        <div class="by">
+          <img src="https://avatars.githubusercontent.com/u/43398608?v=4" alt="Oleksandr Tverdokhlieb" />
+          <div>
+            <div class="n">Oleksandr Tverdokhlieb</div>
+            <div class="r">Data Analytics Manager · Dubai — building data platforms, automation and applied AI.</div>
+          </div>
+        </div>
+        <div class="post-cta">
+          <a class="primary" href="index.html">More writing →</a>
+          <a href="../p/data-analytics-platform.html">My data platform</a>
+          <a href="https://www.linkedin.com/in/tverd" target="_blank" rel="noopener">Connect on LinkedIn ↗</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-in">
+      <div class="c">© <span data-year></span> Oleksandr Tverdokhlieb · Dubai, UAE</div>
+      <div class="foot-links">
+        <a href="https://www.linkedin.com/in/tverd" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6 1.12 6 0 4.88 0 3.5 0 2.12 1.12 1 2.49 1c1.38 0 2.49 1.12 2.49 2.5zM.24 8h4.5v14H.24V8zm7.5 0h4.31v1.92h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V22h-4.5v-6.6c0-1.57-.03-3.6-2.19-3.6-2.2 0-2.53 1.71-2.53 3.48V22h-4.5V8z"/></svg></a>
+        <a href="https://github.com/scripts-and-tables" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.05-.02-2.06-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22 0 1.61-.01 2.9-.01 3.29 0 .32.21.7.82.58A12.01 12.01 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"/></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/site.js"></script>
+</body>
+</html>

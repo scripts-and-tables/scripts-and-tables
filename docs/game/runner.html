@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no" />
+<title>Deadline Dash — Oleksandr Tverdokhlieb</title>
+<meta name="description" content="A Chrome-offline-game style endless runner: sprint to ship, leaping piles of Excel files and ducking flying reports. Plain-JS browser game with a day/night cycle." />
+<meta name="theme-color" content="#0c1018" />
+<link rel="icon" href="https://avatars.githubusercontent.com/u/43398608?v=4" />
+<link rel="canonical" href="https://oleks.devapp24.com/game/runner.html" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Deadline Dash — leap the spreadsheets" />
+<meta property="og:description" content="Endless runner in the classic offline-game style: jump the Excel files, duck the flying reports. Plain-JS browser game." />
+<meta property="og:url" content="https://oleks.devapp24.com/game/runner.html" />
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/43398608?v=4" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0c1018; --panel:#121826; --ink:#eef2f7; --ink-2:#9aa6b8;
+    --accent:#3b6fe0; --green:#22b07a; --amber:#e0a13b; --red:#e0584c;
+    --line:rgba(255,255,255,.10);
+    --display:'Space Grotesk',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;}
+  body{ background:radial-gradient(900px 500px at 50% -10%, #18203200 0%, transparent 60%), var(--bg);
+    color:var(--ink); font-family:var(--display); -webkit-font-smoothing:antialiased;
+    display:flex; flex-direction:column; min-height:100%; overflow-x:hidden; touch-action:manipulation; }
+  a{color:inherit;}
+  .top{ display:flex; align-items:center; gap:12px; padding:12px 16px; border-bottom:1px solid var(--line);
+    background:rgba(10,13,20,.7); backdrop-filter:blur(8px); }
+  .brand{display:flex;align-items:center;gap:9px;text-decoration:none;font-weight:600;font-size:14px;letter-spacing:-.01em;}
+  .brand img{width:26px;height:26px;border-radius:7px;}
+  .brand .glyph{font-family:var(--mono);font-weight:700;color:var(--green);}
+  .top .sp{flex:1;}
+  .top a.lk{ font-family:var(--mono); font-size:12px; color:var(--ink-2); text-decoration:none;
+    padding:6px 11px; border:1px solid var(--line); border-radius:999px; white-space:nowrap; }
+  .top a.lk:hover{color:var(--ink);border-color:rgba(255,255,255,.25);}
+
+  .stage-wrap{ flex:1; display:flex; flex-direction:column; align-items:center; padding:18px 12px 8px; gap:12px; }
+  .titleline{ text-align:center; max-width:640px; }
+  .titleline h1{ font-size:clamp(22px,4.5vw,30px); font-weight:700; letter-spacing:-.02em;
+    display:flex; align-items:center; gap:10px; justify-content:center; }
+  .titleline h1 .x{ display:inline-grid; place-items:center; width:30px;height:30px;border-radius:7px;
+    background:var(--accent); color:#fff; font-family:var(--mono); font-weight:700; font-size:16px;
+    box-shadow:0 0 0 3px rgba(59,111,224,.18); }
+  .titleline p{color:var(--ink-2); font-size:13.5px; margin-top:6px; font-family:var(--mono);}
+
+  .stage{ position:relative; width:100%; max-width:760px; border:1px solid var(--line);
+    border-radius:14px; overflow:hidden; background:#f7f7f7;
+    box-shadow:0 20px 60px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.02); }
+  canvas{ display:block; width:100%; height:auto; touch-action:none; cursor:pointer; }
+
+  .pad{ display:none; width:100%; max-width:760px; justify-content:space-between; gap:12px; user-select:none; }
+  .pad button{ font-family:var(--mono); font-weight:700; color:var(--ink);
+    height:64px; border-radius:12px; background:var(--panel); border:1px solid var(--line);
+    border-bottom-width:3px; -webkit-tap-highlight-color:transparent; }
+  .pad .duck{width:120px; font-size:15px;}
+  .pad .jump{flex:1; color:#fff; background:var(--accent); border-color:#2a4fae; font-size:18px;}
+  .pad button:active{transform:translateY(1px); border-bottom-width:1px;}
+
+  .footnote{ font-family:var(--mono); font-size:11.5px; color:var(--ink-2); text-align:center; padding:6px 16px 18px; line-height:1.6; }
+  .footnote .mute{ cursor:pointer; color:var(--ink-2); background:none; border:1px solid var(--line);
+    border-radius:999px; padding:3px 10px; font-family:var(--mono); font-size:11.5px; }
+  .footnote .mute:hover{color:var(--ink);}
+
+  @media (hover:none) and (pointer:coarse){
+    .pad{display:flex; gap:10px;}
+    .pad button{height:76px;}
+    html,body{height:100dvh;}
+    body{overflow:hidden;}
+    .top{padding:8px 12px;}
+    .titleline{display:none;}
+    .stage-wrap{flex:1; min-height:0; padding:8px; gap:8px; justify-content:flex-start;}
+    .stage{flex:1 1 auto; min-height:0; width:100%; display:flex; align-items:center; justify-content:center; border-radius:12px;}
+    canvas{max-width:100%; max-height:100%; width:auto; height:auto;}
+    .footnote{font-size:0; padding:6px 8px 10px;}
+    .footnote .mute{font-size:12px;}
+  }
+  @media (max-width:560px){ .stage-wrap{padding:12px 8px 6px;} }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a class="brand" href="../index.html">
+    <img src="https://avatars.githubusercontent.com/u/43398608?v=4" alt="" />
+    <span class="glyph">▸▸</span><span>Oleksandr&nbsp;Tverdokhlieb</span>
+  </a>
+  <span class="sp"></span>
+  <a class="lk" href="index.html">← Arcade</a>
+  <a class="lk" href="../projects.html">Projects</a>
+</header>
+
+<main class="stage-wrap">
+  <div class="titleline">
+    <h1><span class="x">▸</span> Deadline Dash</h1>
+    <p>Sprint to ship — leap the Excel files, duck the flying reports.</p>
+  </div>
+
+  <div class="stage" id="stage">
+    <canvas id="game" width="760" height="300"></canvas>
+  </div>
+
+  <div class="pad" id="pad" aria-hidden="true">
+    <button class="duck" id="bDuck" aria-label="Duck">DUCK ▼</button>
+    <button class="jump" id="bJump" aria-label="Jump">JUMP ▲</button>
+  </div>
+
+  <div class="footnote">
+    Plain JavaScript · &lt;canvas&gt; · day/night cycle · best distance saved locally.
+    &nbsp; <button class="mute" id="btnMute">🔊 sound on</button>
+  </div>
+</main>
+
+<script>
+(function () {
+  "use strict";
+  var cv=document.getElementById("game"), ctx=cv.getContext("2d");
+  var W=760, H=300;
+  var DPR=Math.min(2, window.devicePixelRatio||1);
+  cv.width=W*DPR; cv.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0);
+
+  // hero face
+  var face=new Image(); var faceOK=false;
+  face.onload=function(){ faceOK=true; };
+  face.src="https://avatars.githubusercontent.com/u/43398608?v=4";
+
+  // ---- audio ----
+  var AC=null, muted=false;
+  function audio(){ if(!AC){ try{ AC=new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} } return AC; }
+  function blip(f,d,t,v){ if(muted) return; var ac=audio(); if(!ac) return;
+    var o=ac.createOscillator(),g=ac.createGain(); o.type=t||"square"; o.frequency.value=f;
+    g.gain.value=(v==null?0.05:v); o.connect(g); g.connect(ac.destination);
+    var tt=ac.currentTime; g.gain.setValueAtTime(g.gain.value,tt);
+    g.gain.exponentialRampToValueAtTime(0.0001,tt+(d||0.1)); o.start(tt); o.stop(tt+(d||0.1)+0.02); }
+  var sfx={
+    jump:  function(){ blip(560,0.10,"square",0.045); },
+    point: function(){ blip(1100,0.07,"square",0.05); blip(1500,0.07,"square",0.03); },
+    hit:   function(){ blip(420,0.08,"square",0.05); setTimeout(function(){blip(200,0.3,"square",0.05);},70); }
+  };
+
+  // ---- palette (day <-> night) ----
+  var DAY ={ bg:[247,247,247], fg:[83,83,83] };
+  var NIGHT={ bg:[32,33,36],   fg:[200,202,208] };
+  var GREEN="#1f8a5b", GREEN_D="#0c4a35";
+  var night=0, nightTarget=0;            // 0 day .. 1 night
+  function mix(a,b,t){ return "rgb("+Math.round(a[0]+(b[0]-a[0])*t)+","+Math.round(a[1]+(b[1]-a[1])*t)+","+Math.round(a[2]+(b[2]-a[2])*t)+")"; }
+  function FG(){ return mix(DAY.fg, NIGHT.fg, night); }
+  function BG(){ return mix(DAY.bg, NIGHT.bg, night); }
+
+  // ---- state ----
+  var HI_KEY="deadlineDashBest";
+  var best=parseInt(localStorage.getItem(HI_KEY)||"0",10)||0;
+  var state="idle";                      // idle | run | paused | dead
+
+  var GROUND=H-34;                       // hero feet line
+  var hero={ x:90, feet:GROUND, vy:0, onGround:true, duck:false, run:0, blink:0 };
+  var G=2400, JUMP=-625;
+  var baseSpeed=330, maxSpeed=760, speed=baseSpeed;
+  var score=0, nextMile=100, flash=0;
+  var obstacles=[], spawnTimer=0.8;
+  var clouds=[], cloudTimer=0;
+  var groundScroll=0, bumps=[];
+  var keys={};
+
+  // ground texture (stable pebbles, scroll modulo 2W)
+  (function(){ var seed=1; function rnd(){ seed=(seed*9301+49297)%233280; return seed/233280; }
+    for(var x=0;x<2*W;x+=Math.floor(8+rnd()*46)){ bumps.push({x:x, y:rnd()<0.5?0:2, w:1+Math.floor(rnd()*3)}); } })();
+
+  function reset(){
+    hero.feet=GROUND; hero.vy=0; hero.onGround=true; hero.duck=false; hero.run=0;
+    speed=baseSpeed; score=0; nextMile=100; flash=0;
+    obstacles=[]; spawnTimer=0.8; clouds=[]; cloudTimer=0; groundScroll=0;
+    night=0; nightTarget=0;
+  }
+  function startRun(){ reset(); state="run"; }
+  function gameOver(){
+    state="dead";
+    if(score>best){ best=score; localStorage.setItem(HI_KEY,String(best)); }
+    sfx.hit();
+  }
+
+  // ---- input ----
+  function jump(){ if(state!=="run") return; if(hero.onGround){ hero.vy=JUMP; hero.onGround=false; sfx.jump(); } }
+  function primary(){                    // space / up / tap
+    if(state==="idle"||state==="dead") startRun();
+    else if(state==="paused") state="run";
+    else jump();
+  }
+  window.addEventListener("keydown", function(e){
+    var k=e.key;
+    if(k===" "||k==="ArrowUp"||k==="w"||k==="W"){ e.preventDefault(); primary(); }
+    else if(k==="ArrowDown"||k==="s"||k==="S"){ keys.duck=true; e.preventDefault(); }
+    else if(k==="p"||k==="P"){ if(state==="run") state="paused"; else if(state==="paused") state="run"; }
+    else if(k==="Enter"){ if(state==="idle"||state==="dead") startRun(); }
+    else if(k==="m"||k==="M") toggleMute();
+  });
+  window.addEventListener("keyup", function(e){
+    if(e.key==="ArrowDown"||e.key==="s"||e.key==="S") keys.duck=false;
+  });
+  function bindHold(id,on,off){ var el=document.getElementById(id);
+    el.addEventListener("pointerdown",function(e){e.preventDefault();on();});
+    el.addEventListener("pointerup",function(e){e.preventDefault();off();});
+    el.addEventListener("pointerleave",function(){off();});
+    el.addEventListener("pointercancel",function(){off();}); }
+  document.getElementById("bJump").addEventListener("pointerdown",function(e){ e.preventDefault(); primary(); });
+  bindHold("bDuck", function(){keys.duck=true;}, function(){keys.duck=false;});
+  cv.addEventListener("pointerdown", function(e){ e.preventDefault(); primary(); });
+  function toggleMute(){ muted=!muted; document.getElementById("btnMute").textContent=muted?"🔇 sound off":"🔊 sound on"; }
+  document.getElementById("btnMute").onclick=toggleMute;
+
+  // ---- obstacles ----
+  function spawn(){
+    if(score>=350 && Math.random()<0.22){
+      // flying report (bird): high = duck, low = jump
+      var high=Math.random()<0.62;
+      obstacles.push({ kind:"report", x:W+24, w:34, h:high?18:16,
+        y: high ? GROUND-52 : GROUND-22, flap:0, high:high });
+    } else {
+      var big=Math.random()<0.4;
+      var n=big ? (2+Math.floor(Math.random()*2)) : (1+Math.floor(Math.random()*2)); // height in files
+      var cols=(!big && Math.random()<0.45) ? 2 : (big && Math.random()<0.3 ? 2 : 1);
+      var cw=22, ch=16;
+      obstacles.push({ kind:"file", x:W+20, cw:cw, ch:ch, n:n, cols:cols, w:cols*cw, h:n*ch,
+        t:Math.floor(Math.random()*3) });
+    }
+  }
+
+  function heroBox(){
+    if(hero.duck && hero.onGround) return { x:hero.x-15, y:hero.feet-26, w:40, h:26 };
+    return { x:hero.x-14, y:hero.feet-46, w:30, h:46 };
+  }
+  function hit(a,b){ return a.x<b.x+b.w && a.x+a.w>b.x && a.y<b.y+b.h && a.y+a.h>b.y; }
+
+  function update(dt){
+    // night easing always
+    night += (nightTarget-night) * Math.min(1, dt*2.5);
+    hero.blink += dt;
+
+    if(state!=="run") return;
+
+    speed=Math.min(maxSpeed, baseSpeed + score*0.045);
+    score += dt*speed/7;
+
+    if(score>=nextMile){ nextMile+=100; flash=0.6; sfx.point();
+      if(Math.floor(score/700)%2===1) nightTarget=1; else nightTarget=0; }
+    if(flash>0) flash-=dt;
+
+    // hero physics
+    hero.duck=keys.duck;
+    if(!hero.onGround){
+      var g=G*(keys.duck?1.8:1);
+      hero.vy+=g*dt; hero.feet+=hero.vy*dt;
+      if(hero.feet>=GROUND){ hero.feet=GROUND; hero.vy=0; hero.onGround=true; }
+    }
+    hero.run += dt*(hero.onGround?speed*0.045:0);
+
+    groundScroll=(groundScroll + speed*dt) % (2*W);
+
+    // clouds
+    cloudTimer-=dt;
+    if(cloudTimer<=0){ clouds.push({ x:W+30, y:20+Math.random()*70 }); cloudTimer=2.2+Math.random()*2.6; }
+    for(var c=clouds.length-1;c>=0;c--){ clouds[c].x -= speed*0.28*dt; if(clouds[c].x<-60) clouds.splice(c,1); }
+
+    // spawn obstacles
+    spawnTimer-=dt;
+    if(spawnTimer<=0){ spawn(); spawnTimer=(360+Math.random()*360)/speed; }
+
+    // move + collide
+    var hb=heroBox();
+    for(var i=obstacles.length-1;i>=0;i--){
+      var o=obstacles[i]; o.x-=speed*dt;
+      var ob;
+      if(o.kind==="report"){ o.flap+=dt*9; ob={ x:o.x+4, y:o.y+2, w:o.w-8, h:o.h-4 }; }
+      else ob={ x:o.x+2, y:GROUND-o.h, w:o.w-4, h:o.h };
+      if(hit(hb,ob)){ gameOver(); return; }
+      if(o.x + o.w < -30) obstacles.splice(i,1);
+    }
+  }
+
+  // ---- draw ----
+  function rr(x,y,w,h,r){ ctx.beginPath(); ctx.moveTo(x+r,y);
+    ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r);
+    ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath(); }
+
+  function drawClouds(fg){
+    ctx.fillStyle=fg; ctx.globalAlpha=0.18;
+    for(var i=0;i<clouds.length;i++){ var c=clouds[i];
+      rr(c.x, c.y, 34, 10, 5); ctx.fill();
+      rr(c.x+8, c.y-5, 18, 10, 5); ctx.fill();
+    }
+    ctx.globalAlpha=1;
+  }
+  function drawSky(fg){
+    if(night>0.05){
+      // moon + stars
+      ctx.globalAlpha=night;
+      ctx.fillStyle=fg;
+      ctx.beginPath(); ctx.arc(W-90, 40, 11, 0, Math.PI*2); ctx.fill();
+      ctx.fillStyle=BG();
+      ctx.beginPath(); ctx.arc(W-85, 37, 11, 0, Math.PI*2); ctx.fill();
+      ctx.fillStyle=fg;
+      var st=[[120,30],[210,52],[330,26],[470,44],[560,30],[640,58]];
+      for(var i=0;i<st.length;i++){ ctx.fillRect(st[i][0], st[i][1], 2, 2); }
+      ctx.globalAlpha=1;
+    }
+  }
+  function drawGround(fg){
+    ctx.strokeStyle=fg; ctx.lineWidth=2;
+    ctx.beginPath(); ctx.moveTo(0,GROUND+3.5); ctx.lineTo(W,GROUND+3.5); ctx.stroke();
+    ctx.fillStyle=fg;
+    for(var i=0;i<bumps.length;i++){
+      var bx=bumps[i].x - groundScroll; if(bx<-4) bx+=2*W;
+      if(bx>=0 && bx<=W) ctx.fillRect(bx, GROUND+7+bumps[i].y, bumps[i].w, 2);
+    }
+  }
+
+  function drawHero(fg){
+    var x=hero.x, feet=hero.feet;
+    var dead=(state==="dead");
+    var ducking=hero.duck && hero.onGround && !dead;
+    var bodyTop = ducking ? feet-22 : feet-36;
+    var headR = ducking ? 12 : 14;
+    var phase=Math.floor(hero.run)%2;
+
+    // legs
+    ctx.fillStyle=fg;
+    if(dead){ ctx.fillRect(x-9, feet-11, 6, 11); ctx.fillRect(x+3, feet-11, 6, 11); }
+    else if(!hero.onGround){ ctx.fillRect(x-9, feet-11, 6, 11); ctx.fillRect(x+3, feet-11, 6, 11); }
+    else if(state==="run"){
+      if(phase){ ctx.fillRect(x-9, feet-9, 6, 9); ctx.fillRect(x+3, feet-12, 6, 12); }
+      else { ctx.fillRect(x-9, feet-12, 6, 12); ctx.fillRect(x+3, feet-9, 6, 9); }
+    } else { ctx.fillRect(x-9, feet-11, 6, 11); ctx.fillRect(x+3, feet-11, 6, 11); }
+
+    // torso
+    var th = ducking?14:22, tw = ducking?30:22, tx = ducking? x-15 : x-11;
+    rr(tx, bodyTop, tw, th, 5); ctx.fillStyle=fg; ctx.fill();
+    // tie
+    ctx.fillStyle=BG(); ctx.fillRect(x-1, bodyTop+3, 2, th-5);
+    // arm swing
+    ctx.fillStyle=fg;
+    if(state==="run" && hero.onGround && phase) ctx.fillRect(x+ (ducking?12:8), bodyTop+3, 8, 4);
+    else ctx.fillRect(x- (ducking?20:15), bodyTop+3, 8, 4);
+
+    // head = avatar
+    var cx = ducking ? x+10 : x;
+    var cy = bodyTop - (ducking?2:4) - headR;
+    ctx.save();
+    ctx.beginPath(); ctx.arc(cx, cy, headR, 0, Math.PI*2); ctx.closePath();
+    ctx.fillStyle=fg; ctx.fill();
+    if(faceOK){
+      // idle blink: briefly cover with fg
+      var blinking = (state==="idle") && (hero.blink%3.2 > 3.0);
+      if(!blinking){ ctx.clip(); ctx.drawImage(face, cx-headR+1, cy-headR+1, (headR-1)*2, (headR-1)*2); }
+    }
+    ctx.restore();
+    ctx.lineWidth=2; ctx.strokeStyle=dead?"#e0584c":GREEN;
+    ctx.beginPath(); ctx.arc(cx, cy, headR+0.5, 0, Math.PI*2); ctx.stroke();
+    if(dead){ // X eyes mood: small mark
+      ctx.fillStyle="#e0584c"; ctx.font="700 11px JetBrains Mono, monospace";
+      ctx.textAlign="center"; ctx.textBaseline="middle"; ctx.fillText("!", cx+headR+6, cy-headR);
+    }
+  }
+
+  function drawFile(o){
+    var DOC=[ {c:GREEN,d:GREEN_D,l:"X"}, {c:"#c2691b",d:"#5a3210",l:"P"}, {c:"#2459d6",d:"#13306f",l:"W"} ];
+    var baseY=GROUND;
+    for(var c=0;c<o.cols;c++){
+      for(var r=0;r<o.n;r++){
+        var fx=o.x + c*o.cw, fy=baseY-(r+1)*o.ch;
+        var d=DOC[(o.t+r)%3];
+        rr(fx+1, fy, o.cw-2, o.ch-2, 3); ctx.fillStyle=d.d; ctx.fill();
+        rr(fx+2.5, fy+1.5, o.cw-5, o.ch-5, 2); ctx.fillStyle=d.c; ctx.fill();
+        // fold
+        ctx.fillStyle="rgba(0,0,0,.25)"; ctx.beginPath();
+        ctx.moveTo(fx+o.cw-7, fy+2); ctx.lineTo(fx+o.cw-3, fy+6); ctx.lineTo(fx+o.cw-7, fy+6); ctx.closePath(); ctx.fill();
+        ctx.fillStyle = d.l==="X" ? "#06281c" : "rgba(255,255,255,.92)";
+        ctx.font="700 8px JetBrains Mono, monospace"; ctx.textAlign="center"; ctx.textBaseline="middle";
+        ctx.fillText(d.l, fx+o.cw/2, fy+o.ch/2+1);
+      }
+    }
+  }
+  function drawReport(o, fg){
+    var flapUp = Math.floor(o.flap)%2===0;
+    var x=o.x, y=o.y, w=o.w, h=o.h;
+    // document body
+    ctx.fillStyle="#eef2f7"; ctx.strokeStyle=fg; ctx.lineWidth=1.5;
+    rr(x+6, y, w-12, h, 2); ctx.fill(); ctx.stroke();
+    // text lines
+    ctx.strokeStyle="#9aa6b8"; ctx.lineWidth=1;
+    for(var i=0;i<3;i++){ var ly=y+4+i*4; ctx.beginPath(); ctx.moveTo(x+9, ly); ctx.lineTo(x+w-9, ly); ctx.stroke(); }
+    // flapping wings (paper edges)
+    ctx.fillStyle=fg;
+    if(flapUp){
+      ctx.beginPath(); ctx.moveTo(x+6,y+2); ctx.lineTo(x-4,y-7); ctx.lineTo(x+6,y+h*0.5); ctx.closePath(); ctx.fill();
+      ctx.beginPath(); ctx.moveTo(x+w-6,y+2); ctx.lineTo(x+w+4,y-7); ctx.lineTo(x+w-6,y+h*0.5); ctx.closePath(); ctx.fill();
+    } else {
+      ctx.beginPath(); ctx.moveTo(x+6,y+h-2); ctx.lineTo(x-4,y+h+7); ctx.lineTo(x+6,y+h*0.5); ctx.closePath(); ctx.fill();
+      ctx.beginPath(); ctx.moveTo(x+w-6,y+h-2); ctx.lineTo(x+w+4,y+h+7); ctx.lineTo(x+w-6,y+h*0.5); ctx.closePath(); ctx.fill();
+    }
+  }
+
+  function drawScore(fg){
+    ctx.textBaseline="top"; ctx.font="700 14px JetBrains Mono, monospace";
+    var s=String(Math.floor(score)).padStart(5,"0");
+    ctx.textAlign="right";
+    if(!(flash>0 && Math.floor(flash*8)%2)){ ctx.fillStyle=fg; ctx.fillText(s, W-16, 14); }
+    ctx.fillStyle=fg; ctx.globalAlpha=0.7; ctx.font="500 13px JetBrains Mono, monospace";
+    ctx.fillText("HI "+String(best).padStart(5,"0"), W-90, 15); ctx.globalAlpha=1;
+  }
+
+  function centerText(fg){
+    ctx.textAlign="center"; ctx.fillStyle=fg;
+    if(state==="idle"){
+      ctx.font="700 17px Space Grotesk, sans-serif"; ctx.textBaseline="middle";
+      ctx.fillText("PRESS  SPACE  ·  TAP  TO  RUN", W/2, 56);
+    } else if(state==="paused"){
+      ctx.font="700 20px Space Grotesk, sans-serif"; ctx.textBaseline="middle";
+      ctx.fillText("PAUSED", W/2, H/2-6);
+    } else if(state==="dead"){
+      ctx.font="700 22px Space Grotesk, sans-serif"; ctx.textBaseline="middle";
+      ctx.fillText("G A M E   O V E R", W/2, 44);
+      // restart icon (refresh circle)
+      var rx=W/2, ry=80, rad=13;
+      ctx.strokeStyle=fg; ctx.lineWidth=3;
+      ctx.beginPath(); ctx.arc(rx, ry, rad, Math.PI*0.55, Math.PI*2.05); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(rx+rad-6, ry-rad+4); ctx.lineTo(rx+rad+2, ry-rad+1); ctx.lineTo(rx+rad-1, ry-rad+9); ctx.closePath();
+      ctx.fillStyle=fg; ctx.fill();
+      ctx.font="500 12px JetBrains Mono, monospace"; ctx.fillStyle=fg; ctx.globalAlpha=0.85;
+      ctx.fillText("space / tap to retry", W/2, 108); ctx.globalAlpha=1;
+    }
+  }
+
+  function draw(){
+    var fg=FG(), bg=BG();
+    ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+    drawSky(fg);
+    drawClouds(fg);
+    drawGround(fg);
+    for(var k=0;k<obstacles.length;k++){ var o=obstacles[k]; if(o.kind==="report") drawReport(o,fg); else drawFile(o); }
+    drawHero(fg);
+    drawScore(fg);
+    centerText(fg);
+  }
+
+  var last=0;
+  function frame(t){ if(!last) last=t; var dt=Math.min(0.04,(t-last)/1000); last=t;
+    update(dt); draw(); requestAnimationFrame(frame); }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
