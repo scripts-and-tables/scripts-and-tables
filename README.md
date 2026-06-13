@@ -24,7 +24,3 @@ I design and run production data platforms end to end — turning raw files, API
 
 ### Credentials (highlights)
 Microsoft Certified: **Power BI Data Analyst Associate (PL-300)** · MSc International Economics (Honours) · Anthropic AI Fluency · Stanford Machine Learning · U. Michigan Applied Data Science.
-
----
-
-*Open to senior Data & Analytics opportunities in the UAE.*
